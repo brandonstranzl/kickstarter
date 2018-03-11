@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyText
+  live: 2018-03-11
+  description: MyText
+  fundingreq: 1
+  votes: 1
+
+two:
+  name: MyText
+  live: 2018-03-11
+  description: MyText
+  fundingreq: 1
+  votes: 1

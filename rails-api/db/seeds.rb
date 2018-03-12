@@ -10,6 +10,8 @@
 
 puts "Finding or Creating Categories ..."
 
+Category.destroy_all
+
 category = Category.create([
   {
     name: "Applications",
@@ -23,9 +25,24 @@ category = Category.create([
 
 categories = Category.all.to_a
 
+puts "Re-creating events ..."
+
+Event.destroy_all
+
+event = Event.create([
+  {
+    name: "Hacker Stack Labs Demo Day",
+    date: "2018-03-31",
+  }
+  ])
+
+events = Event.all.to_a
+
+byebug
 puts "Re-creating Demos ..."
 
 Demo.destroy_all
+
 
 demo = Demo.create([
   {
@@ -34,7 +51,8 @@ demo = Demo.create([
     description: "this is a crowdfunding web app",
     fundingreq: 10000,
     votes: 5,
-    category: categories.sample
+    category: categories[0],
+    event: events[0]
   },
   {
     name: "Tweeter",
@@ -42,6 +60,7 @@ demo = Demo.create([
     description: "this is a twitter clone messenger",
     fundingreq: 8000,
     votes: 10,
-    category: categories.sample
+    category: categories[0],
+    event: events[0]
   }
 ])

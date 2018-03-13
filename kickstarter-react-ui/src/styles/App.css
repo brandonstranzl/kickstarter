@@ -1,6 +1,6 @@
-.App {
-  text-align: center;
-}
+@import '../../node_modules/bootstrap/dist/css/bootstrap.css';
+@import '../../node_modules/bootstrap/dist/css/bootstrap-theme.css';
+@import 'index.css';
 
 .App-header {
   height: 150px;

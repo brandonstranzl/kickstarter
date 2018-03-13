@@ -2,8 +2,9 @@ class EventsController < ApplicationController
   before_action :set_event, only: [:show, :update, :destroy]
 
   def index
-    @events = Demo.all.
-    render json: {data: @events}
+    @events = Event.includes(:demos).all
+
+    render json: @events.to_json(include: :demos)
   end
 
 

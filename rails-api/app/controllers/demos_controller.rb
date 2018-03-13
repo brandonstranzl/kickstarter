@@ -3,11 +3,11 @@ class DemosController < ApplicationController
 
 
   def index
-      :authorize
-      @demos = Demo.all
-      @categories = Category.all
-      @cats_and_demos = [@categories, @demos]
-      render json: @demos, status: 200
+
+      # authorize
+
+      @demos = Demo.includes(:category).all
+      render json: @demos.to_json(include: :category), status: 200
   end
 
   def new

@@ -7,7 +7,10 @@ class DemosContainer extends Component {
     this.state = {
       demos: []
     }
+    // this.state.map = this.state.map.bind(this);
   }
+
+
 
   componentDidMount() {
     // axios.get('http://localhost:3000/demos') //need to learn axios
@@ -15,6 +18,7 @@ class DemosContainer extends Component {
     .then(res => res.json())
     .then(demos => this.setState({ demos }))
   }
+
 
   render() {
     return(
@@ -25,6 +29,7 @@ class DemosContainer extends Component {
             )
         })}
       </div>
+
     )
   }
 }

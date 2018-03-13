@@ -2,6 +2,13 @@
 @import '../../node_modules/bootstrap/dist/css/bootstrap-theme.css';
 @import 'index.css';
 
+.navbar-right {
+  margin-right: 0px !important
+}
+.log {
+  margin: 5px 10px 0 0;
+}
+
 .App-header {
   height: 150px;
   padding: 20px;

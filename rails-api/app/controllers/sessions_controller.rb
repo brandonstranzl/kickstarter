@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController
   def new
-    redirect_to '/sessions/new'
+    render json: {'test'}, notice: "testing!"
   end
 
   def create

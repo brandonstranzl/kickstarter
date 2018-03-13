@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import DemosContainer from './DemosContainer'
-import Login from './Login'
-import Navbar from './TopNav'
+import TopNav from './TopNav'
+import LoginForm from './LoginForm'
 
 
 class App extends Component {
@@ -9,14 +9,17 @@ class App extends Component {
   render() {
     return (
       <div>
-      <Navbar />
+      <TopNav />
 
         <header className="App-header">
-          <h1 className="App-title">Kickstarter</h1>
+          <h1 className="App-title">Demo88</h1>
         </header>
-        <div>
+        <div class="container">
         <DemosContainer />
-        <Login />
+        {" "}
+        </div>
+        <div class="container">
+        <LoginForm />
         </div>
 
       </div>

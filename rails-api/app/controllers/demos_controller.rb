@@ -1,13 +1,10 @@
 class DemosController < ApplicationController
   before_action :set_demo, only: [:show, :update, :destroy]
-
+  # before_filter :authorize
 
   def index
-
-      # authorize
-
-      @demos = Demo.includes(:category).all
-      render json: @demos.to_json(include: :category), status: 200
+        @demos = Demo.includes(:category).all
+        render json: @demos.to_json(include: :category), status: 200
   end
 
   def new

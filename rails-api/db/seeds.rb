@@ -38,7 +38,7 @@ event = Event.create([
 
 events = Event.all.to_a
 
-byebug
+# byebug
 puts "Re-creating Demos ..."
 
 Demo.destroy_all

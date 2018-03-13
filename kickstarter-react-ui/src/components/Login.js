@@ -12,7 +12,7 @@ class Login extends Component {
   render() {
     return(
       <div>
-      Make a form
+      This is Login.js
       </div>
     )
   }

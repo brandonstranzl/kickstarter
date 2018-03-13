@@ -12,7 +12,7 @@ class App extends Component {
       <Navbar />
 
         <header className="App-header">
-          <h1 className="App-title">Kickstarter</h1>
+          <h1 className="App-title">CrocTrap</h1>
         </header>
         <div>
         <DemosContainer />

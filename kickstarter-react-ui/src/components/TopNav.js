@@ -30,7 +30,7 @@ constructor(props){
       // </nav>
       // className="d-inline-block align-top"
       <nav className="navbar navbar-light bg-light">
-        <a className="navbar-brand" href="#">
+        <a className="navbar-brand" href="/">
           <img src={process.env.PUBLIC_URL + "/flux_capacitor.svg"} width="30" height="30" className="d-inline-block align-top" alt=""/>
         </a>
       </nav>

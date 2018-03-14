@@ -5,7 +5,7 @@ import $ from 'jquery';
 
 
 
-class LoginForm extends Component {
+class SignUpForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -30,22 +30,11 @@ class LoginForm extends Component {
   handleSubmit(event) {
     alert('Your info submitted');
     event.preventDefault();
-    console.log(this.state.email, this.state.password)
-    $.ajax({
-        url:"http://localhost:3000/sessions",
-        type:"POST",
-        data: JSON.stringify([{email: this.state.email, password: this.state.password}]),
-        dataType: "json",
-        contentType: "; charset=utf-8",
-        success: function(data){
-          console.log("this seems to have worled",  data)
-        }
-      })
-    // $.post('http://localhost:3000/sessions', JSON.stringify([{email: this.state.email, password: this.state.password}]),
-    //   function(data) {
-    //   console.log(data)
-    //   // this.setState({email: data.email},{password: data.password});
-    // });
+    $.post('http://localhost:3000/users', JSON.stringify([{email: this.state.email, password: this.state.password}]),
+      function(data) {
+      console.log(data)
+      this.setState({email: data.email},{password: data.password});
+    });
   }
 
   render() {

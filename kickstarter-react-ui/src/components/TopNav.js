@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import {Link} from 'react-router-dom'
-import {Navbar, Nav, NavItem} from 'react-bootstrap'  
+import {Navbar, Nav, NavItem} from 'react-bootstrap'
 
 // import { Navbar, Jumbotron, Button } from 'react-bootstrap';
 // import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Navbar, Nav, NavItem} from 'reactstrap';
@@ -43,11 +43,11 @@ const TopNav = (props) => (
     </Navbar.Header>
 
     <Nav>
-      <NavItem eventKey={1}>
+      <NavItem className="navbar-right" eventKey={1}>
         <Link to="/login">Login</Link>
       </NavItem>
 
-      <NavItem eventKey={2}>
+      <NavItem className="navbar-right" eventKey={2}>
         <Link to="/signup">Signup</Link>
       </NavItem>
     </Nav>

@@ -3,7 +3,6 @@ class EventsController < ApplicationController
 
   def index
     @events = Event.includes(:demos).all
-
     render json: @events.to_json(include: :demos)
   end
 

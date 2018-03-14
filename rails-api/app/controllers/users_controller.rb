@@ -1,8 +1,5 @@
 class UsersController < ApplicationController
 
-  def new
-  end
-
   def create
     @user = User.new(params)
     if @user.save && @user.authenticate_with_credentials(params[:email], params[:password])

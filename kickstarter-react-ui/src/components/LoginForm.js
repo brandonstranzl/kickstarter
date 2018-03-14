@@ -34,11 +34,11 @@ class LoginForm extends Component {
     $.ajax({
         url:"http://localhost:3000/sessions",
         type:"POST",
-        data: JSON.stringify([{email: this.state.email, password: this.state.password}]),
+        data: {email: this.state.email, password: this.state.password},
         dataType: "json",
-        contentType: "; charset=utf-8",
+        // contentType: "; charset=utf-8",
         success: function(data){
-          console.log("this seems to have worled",  data)
+          window.location = data.redirect_to
         }
       })
     // $.post('http://localhost:3000/sessions', JSON.stringify([{email: this.state.email, password: this.state.password}]),

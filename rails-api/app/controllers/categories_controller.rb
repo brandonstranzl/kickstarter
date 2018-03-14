@@ -9,7 +9,7 @@ class CategoriesController < ApplicationController
 
   # GET /events/:id
   def show
-    render json: {data: @category}
+    render json: @category.to_json(include: [:demos])
   end
 
   # POST /event I AM NOT SURE WHAT LOCATION: @category DOES
@@ -35,6 +35,7 @@ class CategoriesController < ApplicationController
   # DELETE /categories/:id
   def destroy
     @category.destroy
+    render json: {data: 'destroyed'}
   end
 
   private

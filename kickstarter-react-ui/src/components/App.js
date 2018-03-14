@@ -9,6 +9,8 @@ import LoginForm from './LoginForm'
 import SignUpForm from './LoginForm'
 import Demos from './Demos'
 import Categories from './Categories'
+import Events from './Events'
+import Demo from './Demo'
 
 const App = (props) => (
   <div>
@@ -18,10 +20,10 @@ const App = (props) => (
         <Route path="/" exact component={Dashboard} />
         <Route path="/login" component={LoginForm}/>
         <Route path="/signup" component={SignUpForm}/>
-        <Route path="/demos" component={Demos} />
+        <Route exact path="/demos" component={Demos} />
         <Route path="/categories" component={Categories} />
-        <Route path="/events" component={Categories} />
-
+        <Route path="/events" component={Events} />
+        <Route path="/demos/:id" component={Demo} />
       </Switch>
     </Grid>
   </div>

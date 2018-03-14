@@ -24,26 +24,27 @@ class DemosController < ApplicationController
   # POST /demos
   def create
     # POST /clients
-  @demo = Demo.new(params) #demo_params
+  @demo = Demo.new(demo_params) #demo_params
     if @demo.save
       render json: @demo, status: :created, location: @client
     else
-      render json: @client.errors, status: :unprocessable_entity
+      render json: @demo.errors, status: :unprocessable_entity
     end
   end
 
   # PATCH/PUT /clients/1
   def update
-    if @client.update(params) #demo_params
-      render json: @client
+    if @demo.update(demo_params) #demo_params
+      render json: @demo
     else
-      render json: @client.errors, status: :unprocessable_entity
+      render json: @demo.errors, status: :unprocessable_entity
     end
   end
 
   # DELETE /clients/1
   def destroy
-    @client.destroy
+    @demo.destroy
+    render json: {data: "destroyed"}
   end
 
   private

@@ -9,7 +9,7 @@ class EventsController < ApplicationController
 
   # GET /events/:id
   def show
-    render json: {data: @event}
+    render json: @event.to_json(include: [:demos])
   end
 
   # POST /event I AM NOT SURE WHAT LOCATION: @EVENT DOES
@@ -35,6 +35,7 @@ class EventsController < ApplicationController
   # DELETE /clients/1
   def destroy
     @event.destroy
+    render json: {data: 'destroyed'}
   end
 
   private

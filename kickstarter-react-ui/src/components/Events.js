@@ -1,14 +1,14 @@
 import React, { Component } from 'react'
 import {Row, Col, PageHeader} from 'react-bootstrap'
 
-const Dashboard = (props) => (
+const Events = (props) => (
   <Row>
     <Col xs={12}>
       <PageHeader>
-        HOME HOME HOME Welcome <small>to the dashboard!</small>
+        Welcome <small>to the dashboard!</small>
       </PageHeader>
     </Col>
   </Row>
 )
 
-export default Dashboard
+export default Events

@@ -5,7 +5,11 @@ root to: 'demos#index'
 resources :demos
 # get '/demos', to: 'demos#index'
 
-resources :events, only: [:index, :create, :destroy] do
+resources :events, only: [:index, :show, :create, :destroy] do
+  resources :demos, only: [:show]
+end
+
+resources :categories, only: [:index, :show, :create, :destroy] do
   resources :demos, only: [:show]
 end
 

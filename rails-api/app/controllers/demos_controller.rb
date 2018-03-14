@@ -12,8 +12,8 @@ class DemosController < ApplicationController
 
   # GET /demos
   def index
-        @demos = Demo.includes(:category).all
-        render json: @demos.to_json(include: :category), status: 200
+        @demos = Demo.includes(:category, :event).all
+        render json: @demos.to_json(include: [:event, :category]), status: 200
   end
 
   # GET /demos/:id

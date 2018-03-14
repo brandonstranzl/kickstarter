@@ -1,11 +1,11 @@
 class SessionsController < ApplicationController
   def new
-    render json: {'test'}, notice: "testing!"
+
   end
 
   def create
 
-      user = User.find_by_username(params[:username])
+      user = User.find_by_email(params[:email])
       # If the user exists AND the password entered is correct.
       if user && user.authenticate(params[:password])
         # Save the user id inside the browser cookie. This is how we keep the user
@@ -14,10 +14,11 @@ class SessionsController < ApplicationController
         redirect_to '/', notice: "Logged in!"
 
       else
+
       # If user's login doesn't work, send them back to the login form.
         # notice: "incorrect username or password",
         # render "new"
-        redirect_to '/sessions/new', notice: "username and email do not match"
+        redirect_to '/sessions/new', notice: ""
       end
   end
 

@@ -11,10 +11,16 @@ import './styles/App.css';
 // Render the top-level React component
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter } from 'react-router-dom';
 import App from './components/App.js';
 
 //what does this do?
 import registerServiceWorker from './registerServiceWorker';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(
+  <BrowserRouter>
+  <App/>
+  </BrowserRouter>,
+  document.getElementById('root')
+  );
 registerServiceWorker();

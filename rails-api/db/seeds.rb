@@ -7,6 +7,13 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 ## CATEGORIES
+User.destroy_all
+
+user = User.create!({
+  name: "Jazz",
+  email: "jazz@jazz.com",
+  password_digest: BCrypt::Password.create("password")
+})
 
 puts "Finding or Creating Categories ..."
 
@@ -38,11 +45,23 @@ event = Event.create([
 
 events = Event.all.to_a
 
-byebug
+puts "Re-creating users ..."
+
+# User.destroy_all
+
+# user = User.create([
+#   {
+#     name: "Jazz",
+#     email: "jazz@jazz.com",
+#     password_digest: BCrypt::Password.create('password')
+#   }
+#   ])
+
+users = User.all.to_a
+
 puts "Re-creating Demos ..."
 
 Demo.destroy_all
-
 
 demo = Demo.create([
   {
@@ -52,7 +71,8 @@ demo = Demo.create([
     fundingreq: 10000,
     votes: 5,
     category: categories[0],
-    event: events[0]
+    event: events[0],
+    user: users[0]
   },
   {
     name: "Tweeter",
@@ -61,6 +81,7 @@ demo = Demo.create([
     fundingreq: 8000,
     votes: 10,
     category: categories[0],
-    event: events[0]
+    event: events[0],
+    user: users[0]
   }
 ])

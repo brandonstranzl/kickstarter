@@ -1,20 +1,16 @@
 class User < ApplicationRecord
+  attr_accessor :password
   has_secure_password
-
-  validates :password, length: { minimum: 6 }
-
+  # validates :password, length: { minimum: 6 }, allow_nil: true
   validates_uniqueness_of :email, case_sensitive: false
-  validates :name, :email, :username, presence: true
+  validates :name, :email, presence: true
 
+  has_many :demos
 
-  def authenticate_with_credentials(params)
-      if user.email == params[:email] && user.authenticate(params[:password])
-      session[:user_id] = user.id
-      redirect_to '/', notice: "Logged in!"      # success logic, log them in
-      else
-        # failure, render login form
-      redirect_to '/sessions/new', notice: "username and email do not match"
-      end
-  end
-  
+  # def self.authenticate_with_credentials (email, password)
+  #    user = User.where(email: (email)).take
+  #    if user && user.authenticate(password)
+  #      user
+  #    end
+  # end
 end

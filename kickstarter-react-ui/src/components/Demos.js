@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import {Grid, Button, Thumbnail, Row, Col, PageHeader, Modal, Table} from 'react-bootstrap'
 import Demo from './Demo'
-import TopNav from './TopNav'
+// import TopNav from './TopNav'
 import {Route, Switch, Link} from 'react-router-dom'
 
 // import Dialog from './Dialog'
@@ -58,7 +58,7 @@ class Demos extends React.Component {
   render() { 
     return ( 
       <div>
-        <TopNav user={this.state.user}/>
+        {/*<TopNav user={this.state.user}/>*/}
 
         {this.state.demos.map((demo, id) => {
           return (
@@ -74,7 +74,7 @@ class Demos extends React.Component {
                     <p>{demo.fundingreq}</p>
                     <p>{demo.votes}</p>
                     <p>
-                      <Button bsStyle="primary">Contribute</Button>&nbsp;
+                      <Button bsStyle="primary" href="/login">Contribute</Button>&nbsp;
                       <Button bsStyle="default">View More</Button>
                     </p>
                   </Thumbnail>

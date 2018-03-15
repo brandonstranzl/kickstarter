@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 // import { Navbar, Jumbotron, Button } from 'react-bootstrap';
+import {Link} from 'react-router-dom'
 import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+
 import $ from 'jquery';
 
 
@@ -42,15 +44,19 @@ class SignUpForm extends Component {
        <div>
        <Form onSubmit={this.handleSubmit}>
          <FormGroup>
-           <Label for="exampleEmail">Email</Label>
+           <Label for="exampleEmail">Please Enter Your Email:</Label>
            <Input type="email" name="email" id="exampleEmail" placeholder="yourname@youremail.com"
             value={this.state.email} onChange={this.emailHandleChange} />
          </FormGroup>
          <FormGroup>
-           <Label for="examplePassword">Password</Label>
+           <Label for="examplePassword">Please Choose A Password*: </Label>
            <Input type="password" name="password" id="examplePassword" placeholder="your password"
             value={this.state.password} onChange={this.passwordHandleChange} />
          </FormGroup>
+          <FormGroup>
+          <p>*We will not save your password. It will be encrypted on signup, and we will ony save the key.
+          Pease see <Link to="/https://en.wikipedia.org/wiki/Public-key_cryptography">Wikipedia </Link>for more information</p>
+          </FormGroup>
          <FormGroup>
          <Button color="warning" type="Submit" onClick={this.onSave}>Submit</Button>
          </FormGroup>
@@ -61,4 +67,4 @@ class SignUpForm extends Component {
 }
 
 
-export default LoginForm;
+export default SignUpForm;

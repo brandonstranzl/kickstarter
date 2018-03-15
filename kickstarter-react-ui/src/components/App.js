@@ -6,7 +6,7 @@ import TopNav from './TopNav'
 import Dashboard from './Dashboard'
 import Dialog from './Dialog'
 import LoginForm from './LoginForm'
-import SignUpForm from './LoginForm'
+import SignUpForm from './SignUpForm'
 import Demos from './Demos'
 import Categories from './Categories'
 import Events from './Events'
@@ -17,7 +17,7 @@ const App = (props) => (
     <TopNav />
     <Grid>
       <Switch>
-        <Route path="/" exact component={Dashboard} />
+        <Route path="/" exact component={Dashboard}/>
         <Route path="/login" component={LoginForm}/>
         <Route path="/signup" component={SignUpForm}/>
         <Route exact path="/demos" component={Demos} />

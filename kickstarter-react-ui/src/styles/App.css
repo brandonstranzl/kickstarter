@@ -1,6 +1,15 @@
-@import '../../node_modules/bootstrap/dist/css/bootstrap.css';
-@import '../../node_modules/bootstrap/dist/css/bootstrap-theme.css';
-@import 'index.css';
+.navbar-brand {
+  display: flex;
+  align-items: center;
+}
+.navbar-img {
+  padding: 50px 20px;
+}
+
+.nav-logo {
+  float: left !important;
+  margin-top: -15px !important;
+}
 
 .navbar-right {
   margin-right: 0px !important
@@ -31,3 +40,22 @@
   font-size: 11px;
   text-align: left;
 }
+
+.modal {
+  position: 'fixed';
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.backdrop {
+  backgroundColor: 'rgba(0,0,0,0.3)';
+  padding: 50;
+  backgroundColor: '#fff';
+  borderRadius: 5;
+  maxWidth: 500;
+  minHeight: 300;
+  margin: '0 auto';
+  padding: 30;
+};

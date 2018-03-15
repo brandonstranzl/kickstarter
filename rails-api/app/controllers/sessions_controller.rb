@@ -6,7 +6,6 @@ class SessionsController < ApplicationController
       puts "here is hte user *********  : #{@user}"
       # If the user exists AND the password entered is correct:
       # can use this line below with function from User model:
-      byebug
       if @user = User.authenticate_with_credentials(params[:email], params[:password])
       # or can use this line without the function from user model:
       # if user && user.authenticate(params[:password])

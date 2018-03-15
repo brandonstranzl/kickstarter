@@ -1,6 +1,7 @@
 import React from 'react'
 import Demo from './Demo'
-import Dialog from './Dialog'
+import TopNav from './TopNav'
+// import Dialog from './Dialog'
 // import Modal from './Modal';
 
 // import $ from 'jquery'
@@ -15,6 +16,8 @@ const DemoStore = Resource('demos')
 class Demos extends React.Component {
   constructor(props) {
     super(props)
+
+
     this.state = {
       demos: [],
       selectedDemo: {},
@@ -22,6 +25,9 @@ class Demos extends React.Component {
       errors: null,
       isOpen: false
       }
+    if (props.location.state) {
+      this.state.user = this.props.location.state.user
+    }
     // this.state.map = this.state.map.bind(this);
     }
 
@@ -49,8 +55,13 @@ class Demos extends React.Component {
   render() {
     if (this.state.demos.length > 0) {
       console.log(this.state.demos);
+      console.log(this.state)
     }
     return (
+
+    <div>
+    <TopNav user={this.state.user}/>
+
     <Row>
       <Col xs={12}>
 
@@ -79,10 +90,7 @@ class Demos extends React.Component {
                   <tr>
                   <td>{demo.id}</td>
                   <td>
-                  <Button bsStyle="primary" bsSize="large"
-                  onClick={this.toggleModal}>
                     {demo.name}
-                  </Button>
                   </td>
                   <td>{demo.description}</td>
                   <td>{demo.category.name}</td>
@@ -110,6 +118,7 @@ class Demos extends React.Component {
 
           </Col>
           </Row>
+          </div>
 
 
 

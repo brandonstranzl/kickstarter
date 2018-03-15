@@ -37,8 +37,11 @@ class LoginForm extends Component {
         data: {email: this.state.email, password: this.state.password},
         dataType: "json",
         // contentType: "; charset=utf-8",
-        success: function(data){
-          window.location = data.redirect_to
+        success:(data) => {
+          console.log("here is the res ", data)
+          this.setState({user: data})
+          this.props.history.push('/demos', this.state);
+          // window.location = '/demos'
         }
       })
     // $.post('http://localhost:3000/sessions', JSON.stringify([{email: this.state.email, password: this.state.password}]),

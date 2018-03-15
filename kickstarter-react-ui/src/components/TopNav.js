@@ -1,71 +1,85 @@
 import React, { Component } from 'react'
 import {Link} from 'react-router-dom'
-import {Navbar, Nav, NavItem, Image} from 'react-bootstrap'
+import {Navbar, Nav, NavItem, Image, Button, Modal} from 'react-bootstrap'
+import LogoutModal from './LogoutModal'
 
-// import { Navbar, Jumbotron, Button } from 'react-bootstrap';
-// import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Navbar, Nav, NavItem} from 'reactstrap';
-// import LoginForm from './LoginForm';
-// class TopNav extends Component {
-//
-//
-// constructor(props){
-//   super(props);
-//   this.state={
-//   username:'',
-//   password:''
-//   }
-//  }
-//
-// //  render() {
-// //     return (
-// //       <nav className="navbar navbar-default">
-// //         <div className="navbar-header">
-// //           <img className="navbar-left" alt="Brand" src={process.env.PUBLIC_URL + "/flux_capacitor.svg"} width="75" alt=""/>
-// //           <a href="http://localhost:3000/events" className="navbar-brand">Demo88</a>
-// //         </div>
-// //         <ul className="nav navbar-nav navbar-right">
-// //           <li><Button active className="btn btn-warning log">Log In</Button>  </li>
-// //           <li><NavLink href="http://localhost:3000/sessions/:id" active className="btn btn-warning log">Log Out</NavLink>  </li>
-// //           <li><NavLink href="http://localhost:3000/users/new" active className="btn btn-warning log">NEW<br></br>USERS</NavLink></li>
-// //         </ul>
-// //       </nav>
-// //     );
-// //   }
-// // }
-const TopNav = (props) => (
+
+
+
+class TopNav extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+    isToggleOn: false,
+    }
+    if (props.location && props.location.state) {
+      this.state.user = this.props.location.state.user
+    }
+
+    }
+
+    handleLogoutClick = () => {
+      this.setState({
+        isToggleOn: !this.state.isToggleOn
+      });
+    }
+
+    handleLogout = () => {
+      fetch(`http://localhost:3000/sessions/${this.props.user.id}`,
+      { method: 'DELETE' }).then(response => response.json())
+      .catch(error => console.error('Error:', error))
+      .then(response => console.log('Success:', response));
+      };
+
+    componentWillMount() {
+
+        this.setState({isToggleOn: false})
+
+    }
+
+
+render() {
+  this.state ? console.log("HERE IS THE STATE", this.props) : console.log("MAJOR ISSUE")
+
+  return(
+
   <Navbar collapseOnSelect>
-    <Navbar.Header>
+        <Navbar.Header>
         <Navbar.Brand>
         <Link to='/'>  Demo88  </Link>
-      </Navbar.Brand>
-      <Navbar.Toggle />
-    </Navbar.Header>
-  <Navbar.Collapse>
-  <Nav>
-  <NavItem eventKey={1} href="#">
-    Link
-  </NavItem>
-  <NavItem eventKey={2} href="#">
-    Link
-  </NavItem>
-  </Nav>
-    <Nav pullRight>
+        </Navbar.Brand>
+        </Navbar.Header>
 
-      <NavItem className="navbar-right" eventKey={2}>
-      <Link to="/signup">Signup</Link>
+        <Nav>
+        <NavItem eventKey={1}>
+        <Link to='/demos'>Explore Demos</Link>
+        </NavItem>
+        <NavItem eventKey={2}>
+        <Link to='/demos/new'>Create A Demo</Link>
+        </NavItem>
+        </Nav>
+
+        <Nav pullRight>
+        <NavItem className="navbar-right" eventKey={2}>
+        <Link to="/signup">Signup</Link>
         </NavItem>
 
-      <NavItem className="navbar-right" eventKey={2}>
-        <Link to="/logout">Logout</Link>
-      </NavItem>
+        <NavItem className="navbar-right" eventKey={2}>
+        <Button onClick={this.handleLogoutClick}>Logout</Button>
+        </NavItem>
 
-      <NavItem className="navbar-right" eventKey={1}>
+        <NavItem className="navbar-right" eventKey={1}>
         <Link to="/login">Login</Link>
-      </NavItem>
+        </NavItem>
 
-    </Nav>
-  </Navbar.Collapse>
+        <LogoutModal show={this.state.isToggleOn} onClose={this.handleLogoutClick}
+        onSave={this.handleLogout}/>
+
+        </Nav>
+
   </Navbar>
-)
+        )
+      }
+    }
 
 export default TopNav

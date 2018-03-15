@@ -32,12 +32,16 @@ class Demos extends React.Component {
     }
 
     componentWillMount() {
-    fetch('http://localhost:3000/demos')
-    .then(r => r.clone().json())
-    .then(data => this.setState({ demos: data }))
-    // .then(demos => this.setState({ demos: data }))
-    .catch(e => console.log('parsing failed'))
+    // fetch('http://localhost:3000/demos')
+    // .then(r => r.clone().json())
+    // .then(data => this.setState({ demos: data }))
+    // // .then(demos => this.setState({ demos: data }))
+    // .catch(e => console.log('parsing failed'))
 
+    // }
+    DemoStore.findAll() // DemoStore does the API fetching!
+    .then((result) => this.setState({demos: result, errors: null}))
+    .catch((errors) => this.setState({errors: errors}))
     }
 
     toggleModal = () => {
@@ -47,10 +51,7 @@ class Demos extends React.Component {
     }
 
   //
-  //   DemoStore.findAll() // DemoStore does the API fetching!
-  //   .then((result) => console.log(result))//this.setState({demos: result.data, errors: null}))
-  //   .catch((errors) => this.setState({errors: errors}))
-  // }
+
 
   render() {
     if (this.state.demos.length > 0) {

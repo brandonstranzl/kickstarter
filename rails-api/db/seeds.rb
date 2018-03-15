@@ -65,21 +65,23 @@ Demo.destroy_all
 
 demo = Demo.create([
   {
-    name: "Kickstarter",
+    name: "Bytesoft",
     live: "2018-03-31",
-    description: "this is a crowdfunding web app",
+    description: "this is goign to be really big even though i am a nerd",
     fundingreq: 10000,
     votes: 5,
+    videos: 'WRduVfYXjI8',
     category: categories[0],
     event: events[0],
     user: users[0]
   },
   {
-    name: "Tweeter",
+    name: "Clementine",
     live: "2018-03-31",
     description: "this is a twitter clone messenger",
     fundingreq: 8000,
     votes: 10,
+    videos: '3H-Y-D3-j-M',
     category: categories[0],
     event: events[0],
     user: users[0]

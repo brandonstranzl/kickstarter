@@ -28,6 +28,7 @@ const server = axios.create({
 
 function get(endpoint) {
   return server.get(endpoint)
+
 }
 
 function post(endpoint, data) {

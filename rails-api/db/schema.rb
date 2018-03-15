@@ -15,6 +15,10 @@ ActiveRecord::Schema.define(version: 20180314201414) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "admin", id: :serial, force: :cascade do |t|
+    t.string "email", limit: 255
+  end
+
   create_table "categories", force: :cascade do |t|
     t.text "name"
     t.text "description"
@@ -46,6 +50,16 @@ ActiveRecord::Schema.define(version: 20180314201414) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "migrations", id: :serial, force: :cascade do |t|
+    t.string "name", limit: 255
+    t.integer "batch"
+    t.datetime "migration_time"
+  end
+
+  create_table "migrations_lock", id: false, force: :cascade do |t|
+    t.integer "is_locked"
+  end
+
   create_table "orders", force: :cascade do |t|
     t.integer "amount"
     t.datetime "created_at", null: false
@@ -54,6 +68,23 @@ ActiveRecord::Schema.define(version: 20180314201414) do
     t.bigint "demo_id"
     t.index ["demo_id"], name: "index_orders_on_demo_id"
     t.index ["user_id"], name: "index_orders_on_user_id"
+  end
+
+  create_table "survey", id: :serial, force: :cascade do |t|
+    t.integer "admin_id"
+    t.string "title", limit: 255
+    t.string "description", limit: 255
+    t.string "admin_link", limit: 255
+    t.string "user_link", limit: 255
+    t.string "question", limit: 255
+    t.string "answer_1", limit: 255
+    t.integer "score_1"
+    t.string "answer_2", limit: 255
+    t.integer "score_2"
+    t.string "answer_3", limit: 255
+    t.integer "score_3"
+    t.string "answer_4", limit: 255
+    t.integer "score_4"
   end
 
   create_table "users", force: :cascade do |t|
@@ -67,4 +98,5 @@ ActiveRecord::Schema.define(version: 20180314201414) do
 
   add_foreign_key "orders", "demos"
   add_foreign_key "orders", "users"
+  add_foreign_key "survey", "admin", name: "survey_admin_id_foreign"
 end

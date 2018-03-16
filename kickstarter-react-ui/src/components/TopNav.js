@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import {Link} from 'react-router-dom'
 import {Navbar, Nav, NavItem, Image, Button, Modal} from 'react-bootstrap'
 import LogoutModal from './LogoutModal'
-// import SignUpModal from './LogoutModal'
+import SignUpModal from './SignUpModal'
 import SignUpForm from './SignUpForm'
 import Cookies from 'universal-cookie';
 
@@ -26,15 +26,18 @@ class TopNav extends React.Component {
       });
     }
 
-    // handleSignUpClick = () => {
-    //   <SignUpForm onSave={this.handleSignUpSuccess} />
-    // }
+    handleSignUpClick = () => {
+      this.setState({
+        SignUpShow: !this.state.SignUpShow
+      });
+    }
 
     _onButtonClick = () => {
        this.setState({
          SignUpShow: true,
        });
      }
+
 
 
       // this.setState({
@@ -83,6 +86,14 @@ class TopNav extends React.Component {
 render() {
   this.state ? console.log("HERE IS THE STATE", this.props) : console.log("MAJOR ISSUE")
 
+  const cookies = new Cookies();
+  let displayLogin
+    if (cookies.get('userCookie')) {
+      displayLogin = <p>Logged in as {cookies.get('userCookie')}</p>
+    } else {
+      displayLogin = <Link to="/login">Login</Link>
+    };
+
   return(
 
   <Navbar collapseOnSelect>
@@ -101,9 +112,10 @@ render() {
         </NavItem>
       </Nav>
 
+
         <Nav pullRight>
           <NavItem className="navbar-right" eventKey={2}>
-            <Button onClick={this._onButtonClick}>SignUp</Button>
+            <Button onClick={this.handleSignUpClick}>SignUp</Button>
           </NavItem>
 
           <NavItem className="navbar-right" eventKey={2}>
@@ -111,13 +123,15 @@ render() {
           </NavItem>
 
           <NavItem className="navbar-right" eventKey={1}>
-            <Link to="/login">Login</Link>
+            <Button>{displayLogin}</Button>
           </NavItem>
 
           <LogoutModal show={this.state.isToggleOn} onClose={this.handleLogoutClick}
         onSave={this.handleLogout}/>
 
-          {this.state.SignUpShow ?  <SignUpForm /> :null }
+        <SignUpModal show={this.state.SignUpShow} toggleModal={this.handleSignUpClick}
+        />
+
 
 
         </Nav>
@@ -131,3 +145,5 @@ export default TopNav
 
 // <SignUpModal show={this.state.SignUpShow} onSave={this.handleSignUpSuccess}
 // />
+// {this.state.SignUpShow ?  <SignUpForm /> :null }
+// <Button onClick={this._onButtonClick}>SignUp</Button>

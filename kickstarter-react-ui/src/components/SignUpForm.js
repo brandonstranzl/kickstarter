@@ -2,14 +2,14 @@ import React, { Component } from 'react'
 // import { Navbar, Jumbotron, Button } from 'react-bootstrap';
 import {Link, Redirect} from 'react-router-dom'
 import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
-import Cookies from 'universal-cookie'
+import Cookies from 'universal-cookie';
 import ErrorMsg from './ErrorMsg'
 
 
 import $ from 'jquery';
 
-import Resource from '../utilities/resource'
-const UserStore = Resource('users')
+// import Resource from '../utilities/resource'
+// const UserStore = Resource('users')
 
 
 class SignUpForm extends Component {
@@ -18,9 +18,13 @@ class SignUpForm extends Component {
     this.state = {
       email: '',
       password: '',
-      signOnErrorShow: false
+      signOnErrorShow: false,
+      errors: []
     };
   }
+
+
+
 
   emailHandleChange = (event) => {
     this.setState({
@@ -48,7 +52,7 @@ class SignUpForm extends Component {
   // }
   handleSignUpSuccess = (event) => {
     event.preventDefault();
-    console.log(event.data)
+    console.log(this.state)
     fetch(`http://localhost:3000/users`,
     { method: "POST",
       body: JSON.stringify({email: this.state.email, password: this.state.password}),
@@ -57,11 +61,19 @@ class SignUpForm extends Component {
     .then(response => response.json())
     .catch(error => console.error('Error:', error))
     .then((response) => {
-      const cookies = new Cookies();
-      cookies.set("userCookie", response.id, { path: '/'})
-      this.setState({user: response})
-      if (response.status = 403) { alert('something is wrong please try again') }
+      if (response.ok) {
+        this.setState({ user: response.user })
+        const cookies = new Cookies();
+        cookies.set("userCookie", response.user.email, { path: '/'})
+        this.props.toggleModal()
+      } else {
+        this.setState({errors: response.error_msg})
+      }
+      // if (response.status = 403) { alert('something is wrong please try again') }
+
       // this.props.history.push('/demos', this.state);
+
+      // window.location = '/demos'
 
     });
   };
@@ -74,7 +86,10 @@ class SignUpForm extends Component {
   render() {
      return (
        <div>
-       {this.state.SignOnErrorShow ?  <ErrorMsg /> :null }
+       {this.state.errors.map((errorText) => {
+         return <h3><em>{errorText}</em></h3>
+       })}
+
        <Form onSubmit={this.handleSignUpSuccess}>
          <FormGroup>
            <Label for="exampleEmail">Please Enter Your Email:</Label>
@@ -101,3 +116,7 @@ class SignUpForm extends Component {
 
 
 export default SignUpForm;
+
+// {this.state.errors.map((errorText) => {
+//   return <p>{errorText}</p>
+// })}

@@ -14,9 +14,6 @@ class SignUpForm extends Component {
       email: '',
       password: ''
     };
-    this.emailHandleChange = this.emailHandleChange.bind(this);
-    this.passwordHandleChange = this.passwordHandleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   emailHandleChange(event) {

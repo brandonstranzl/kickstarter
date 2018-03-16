@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import {Link} from 'react-router-dom'
 import {Navbar, Nav, NavItem, Image, Button, Modal} from 'react-bootstrap'
 import LogoutModal from './LogoutModal'
-
+import Cookies from 'universal-cookie';
 
 
 
@@ -24,11 +24,16 @@ class TopNav extends React.Component {
       });
     }
 
+    // this.props.user.id
     handleLogout = () => {
-      fetch(`http://localhost:3000/sessions/${this.props.user.id}`,
+      const cookies = new Cookies();
+      fetch(`http://localhost:3000/sessions/${cookies.get('userCookie')}`,
       { method: 'DELETE' }).then(response => response.json())
       .catch(error => console.error('Error:', error))
-      .then(response => console.log('Success:', response));
+      .then((response) => {
+        console.log('Success:', response)
+        cookies.remove('userCookie')
+      });
       };
 
     componentWillMount() {

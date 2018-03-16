@@ -21,7 +21,6 @@ import Demo from './Demo'
 
 const App = (props) => (
   <div>
-    <TopNav />
     <Grid>
       <Switch>
         <Route path="/" exact component={Dashboard}/>

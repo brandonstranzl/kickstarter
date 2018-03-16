@@ -50,6 +50,9 @@ class Demos extends React.Component {
       });
     }
 
+    show by category = () =>
+    change demos to categories with videos
+
   //
 
 

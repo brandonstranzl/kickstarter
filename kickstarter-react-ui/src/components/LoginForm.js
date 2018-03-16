@@ -34,7 +34,6 @@ class LoginForm extends Component {
         type:"POST",
         data: {email: this.state.email, password: this.state.password},
         dataType: "json",
-        // contentType: "; charset=utf-8",
         success:(data) => {
           console.log("here is the res ", data)
           this.setState({user: data})

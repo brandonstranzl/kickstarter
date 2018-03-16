@@ -1,16 +1,18 @@
 import React, { Component } from 'react'
-import {Grid, Button, Thumbnail, Row, Col, PageHeader, Modal, Table} from 'react-bootstrap'
 import Demo from './Demo'
-// import TopNav from './TopNav'
-import {Route, Switch, Link} from 'react-router-dom'
-
+import TopNav from './TopNav'
 // import Dialog from './Dialog'
 // import Modal from './Modal';
 
 // import $ from 'jquery'
 // import { Card, CardImg, CardText, CardBody, CardTitle, CardSubtitle, Button} from 'reactstrap'
+import {Grid, Button, Thumbnail, Row, Col, PageHeader, Modal, Table} from 'react-bootstrap'
+import {Route, Switch, Link} from 'react-router-dom'
 
   // Client-side model
+import Resource from '../utilities/resource'
+const DemoStore = Resource('demos')
+
 
 class Demos extends React.Component {
   constructor(props) {
@@ -31,16 +33,16 @@ class Demos extends React.Component {
     }
 
     componentWillMount() {
-    fetch('http://localhost:3000/demos')
-    .then(r => r.clone().json())
-    .then(data => {
-      if(!data.error) {
-        this.setState({ demos: data })
-      }
-    })
-    // .then(demos => this.setState({ demos: data }))
-    .catch(e => console.log('parsing failed'))
+      // fetch('http://localhost:3000/demos')
+      // .then(r => r.clone().json())
+      // .then(data => this.setState({ demos: data }))
+      // // .then(demos => this.setState({ demos: data }))
+      // .catch(e => console.log('parsing failed'))
 
+      // }
+      DemoStore.findAll() // DemoStore does the API fetching!
+      .then((result) => this.setState({demos: result, errors: null}))
+      .catch((errors) => this.setState({errors: errors}))
     }
 
     toggleModal = () => {
@@ -48,6 +50,11 @@ class Demos extends React.Component {
         isOpen: !this.state.isOpen
       });
     }
+
+    // show by category = () =>
+    // change demos to categories with videos
+
+  //
 
   //
   //   DemoStore.findAll() // DemoStore does the API fetching!

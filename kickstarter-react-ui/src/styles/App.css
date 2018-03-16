@@ -1,6 +1,15 @@
-@import '../../node_modules/bootstrap/dist/css/bootstrap.css';
-@import '../../node_modules/bootstrap/dist/css/bootstrap-theme.css';
-@import 'index.css';
+.navbar-brand {
+  display: flex;
+  align-items: center;
+}
+.navbar-img {
+  padding: 50px 20px;
+}
+
+.nav-logo {
+  float: left !important;
+  margin-top: -15px !important;
+}
 
 .navbar-right {
   margin-right: 0px !important

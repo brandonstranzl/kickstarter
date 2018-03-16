@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 // import { Navbar, Jumbotron, Button } from 'react-bootstrap';
 import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 import $ from 'jquery';
-import Cookies from 'universal-cookie';
+import Cookies from 'universal-cookie'
 
 
 
@@ -34,7 +34,6 @@ class LoginForm extends Component {
         type:"POST",
         data: {email: this.state.email, password: this.state.password},
         dataType: "json",
-        // contentType: "; charset=utf-8",
         success:(data) => {
           console.log("here is the res ", data)
           this.setState({user: data})

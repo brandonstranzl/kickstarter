@@ -1,5 +1,7 @@
 import React from 'react'
 import {Redirect} from 'react-router-dom'
+import Cookies from 'universal-cookie'
+
 // import Modal from './Modal'
 
 // import {Row, Col, PageHeader} from 'react-bootstrap';

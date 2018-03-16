@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Demo from './Demo'
 import TopNav from './TopNav'
 import {DropdownButton, MenuItem, ButtonToolbar, Tab, Tabs} from 'react-bootstrap'
+import Cookies from 'universal-cookie'
 
 // import Dialog from './Dialog'
 // import Modal from './Modal';
@@ -97,7 +98,7 @@ class Demos extends React.Component {
       <MenuItem divider />
       <MenuItem eventKey={3.3}>Brainstation</MenuItem>
       <MenuItem divider />
-      <MenuItem eventKey={3.4}>Hacker</MenuItem>
+      <MenuItem eventKey={3.4}>Hacker You</MenuItem>
     </NavDropdown>
   </Nav>
 </Navbar>
@@ -109,7 +110,8 @@ class Demos extends React.Component {
               return (
 
                     <Col xs={6} md={4}>
-                      <Thumbnail src={"https://img.youtube.com/vi/" + demo.videos + "/0.jpg"}>
+                      <Thumbnail /*src={"https://img.youtube.com/vi/" + demo.videos + "/0.jpg"}*/>
+                      <iframe width="240" height="200" src={"https://www.youtube.com/embed/"+demo.videos} frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
                         <h3>{demo.name}</h3>
                         <p>{demo.description}</p>
                         <p>{demo.category.name}</p>
@@ -133,5 +135,4 @@ class Demos extends React.Component {
     )
   }
 }
-
 export default Demos

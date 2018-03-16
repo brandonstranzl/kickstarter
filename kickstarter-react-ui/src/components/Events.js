@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import {Grid, Button, Thumbnail, Row, Col, PageHeader} from 'react-bootstrap'
+import Cookies from 'universal-cookie'
+
 
 const Events = (props) => (
   <Row>

@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import Demo from './Demo'
 import TopNav from './TopNav'
+import Cookies from 'universal-cookie'
+
 // import Dialog from './Dialog'
 // import Modal from './Modal';
 
@@ -33,17 +35,17 @@ class Demos extends React.Component {
     }
 
     componentWillMount() {
-      // fetch('http://localhost:3000/demos')
-      // .then(r => r.clone().json())
-      // .then(data => this.setState({ demos: data }))
-      // // .then(demos => this.setState({ demos: data }))
-      // .catch(e => console.log('parsing failed'))
+      fetch('http://localhost:3000/demos')
+      .then(r => r.clone().json())
+      .then(data => this.setState({ demos: data }))
+      // .then(demos => this.setState({ demos: data }))
+      .catch(e => console.log('parsing failed'))
+      }
 
-      // }
-      DemoStore.findAll() // DemoStore does the API fetching!
-      .then((result) => this.setState({demos: result, errors: null}))
-      .catch((errors) => this.setState({errors: errors}))
-    }
+    //   DemoStore.findAll() // DemoStore does the API fetching!
+    //   .then((result) => this.setState({demos: result, errors: null}))
+    //   .catch((errors) => this.setState({errors: errors}))
+    // }
 
     toggleModal = () => {
       this.setState({
@@ -61,18 +63,19 @@ class Demos extends React.Component {
   //   .then((result) => console.log(result))//this.setState({demos: result.data, errors: null}))
   //   .catch((errors) => this.setState({errors: errors}))
   // }
+  // <TopNav user={this.state.user}/>
 
-  render() { 
-    return ( 
+
+  render() {
+    return (
       <div>
-        {/*<TopNav user={this.state.user}/>*/}
 
         {this.state.demos.map((demo, id) => {
           return (
             <Grid>
               <Row>
                 <Col xs={6} md={4}>
-                  <Thumbnail src="https://img.youtube.com/vi/bCb6JEjbwhQ/0.jpg">
+                  <Thumbnail src={`https://img.youtube.com/vi/{demo.videos}/0.jpg`}>
                     <h3>{demo.name}</h3>
                     <p>{demo.description}</p>
                     <p>{demo.category.name}</p>

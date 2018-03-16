@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 // import { Navbar, Jumbotron, Button } from 'react-bootstrap';
 import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 import $ from 'jquery';
-import Cookies from 'universal-cookie';
+import Cookies from 'universal-cookie'
 
 
 

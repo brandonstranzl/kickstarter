@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import {Link} from 'react-router-dom'
 import {Navbar, Nav, NavItem, Image, Button, Modal} from 'react-bootstrap'
 import LogoutModal from './LogoutModal'
+import SignUpModal from './LogoutModal'
 import Cookies from 'universal-cookie';
 
 
@@ -11,11 +12,11 @@ class TopNav extends React.Component {
     super(props);
     this.state = {
     isToggleOn: false,
+    SignUpShow: false,
     }
     if (props.location && props.location.state) {
-      this.state.user = this.props.location.state.user
-    }
-
+        this.state.user = this.props.location.state.user
+        }
     }
 
     handleLogoutClick = () => {
@@ -24,8 +25,32 @@ class TopNav extends React.Component {
       });
     }
 
+    handleSignUpClick = () => {
+      this.setState({
+        SignUpShow: !this.state.SignUpShow
+      });
+    }
+
+    handleSignUpSuccess = (data) => {
+      const cookies = new Cookies();
+      fetch(`http://localhost:3000/users`,
+      { method: "POST",
+      body: JSON.stringify(data)
+      })
+      .then(response => response.json())
+      .catch(error => console.error('Error:', error))
+      .then((response) => {
+        const cookies = new Cookies();
+        cookies.set("userCookie", data.id, { path: '/'})
+        this.setState({user: data})
+        this.props.history.push('/demos', this.state);
+        console.log('Success:', response)
+      });
+    };
+
+
     // this.props.user.id
-    handleLogout = () => {
+    handleLogout = (data) => {
       const cookies = new Cookies();
       fetch(`http://localhost:3000/sessions/${cookies.get('userCookie')}`,
       { method: 'DELETE' }).then(response => response.json())
@@ -34,11 +59,13 @@ class TopNav extends React.Component {
         console.log('Success:', response)
         cookies.remove('userCookie')
       });
-      };
+    };
 
     componentWillMount() {
-
-        this.setState({isToggleOn: false})
+        this.setState({
+          isToggleOn: false,
+          SignUpShow: false
+        })
 
     }
 
@@ -48,26 +75,25 @@ render() {
 
   return(
 
-  <Navbar inverse collapseOnSelect>
-        <Navbar.Header>
+  <Navbar collapseOnSelect>
+      <Navbar.Header>
         <Navbar.Brand>
-          <a href="/">Demo88</a>
-        </Navbar.Brand>
-        <Navbar.Toggle />
-        </Navbar.Header>
+          <Link to='/'>Demo88</Link>
+          </Navbar.Brand>
+      </Navbar.Header>
 
-        <Nav>
-          <NavItem eventKey={1}>
-          <Link to='/demos'>Explore Demos</Link>
-          </NavItem>
-          <NavItem eventKey={2}>
-          <Link to='/demos/new'>Create A Demo</Link>
-          </NavItem>
-        </Nav>
+      <Nav>
+        <NavItem eventKey={1}>
+        <Link to='/demos'>Explore Demos</Link>
+        </NavItem>
+        <NavItem eventKey={2}>
+        <Link to='/demos/new'>Create A Demo</Link>
+        </NavItem>
+      </Nav>
 
         <Nav pullRight>
           <NavItem className="navbar-right" eventKey={2}>
-            <Link to="/signup">Signup</Link>
+            <Button onClick={this.handleSignUpClick}>SignUp</Button>
           </NavItem>
 
           <NavItem className="navbar-right" eventKey={2}>
@@ -80,6 +106,9 @@ render() {
 
           <LogoutModal show={this.state.isToggleOn} onClose={this.handleLogoutClick}
         onSave={this.handleLogout}/>
+
+        <SignUpModal show={this.state.SignUpShow} onSave={this.handleSignUpSuccess}
+        />
 
         </Nav>
 

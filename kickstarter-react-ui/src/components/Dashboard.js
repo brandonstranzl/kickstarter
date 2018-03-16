@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import {Carousel, Row, Col, PageHeader} from 'react-bootstrap';
 import { Button } from 'reactstrap';
+import Cookies from 'universal-cookie'
+
 
 const Dashboard = (props) => (
   // <Row>

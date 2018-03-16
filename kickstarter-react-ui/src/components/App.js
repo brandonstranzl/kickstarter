@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {Route, Switch, BrowserRouter, Link, NavLink, withRouter} from 'react-router-dom'
 import {Grid} from 'react-bootstrap'
+import Cookies from 'universal-cookie'
 
 import TopNav from './TopNav'
 import LogoutModal from './LogoutModal'
@@ -17,10 +18,11 @@ import Demo from './Demo'
 //   { method: DELETE }).then(response => response.json())
 //   .catch(error => console.error('Error:', error))
 //   .then(response => console.log('Success:', response));
-
+const cookies = new Cookies();
 
 const App = (props) => (
   <div>
+    <TopNav user={cookies.get('userCookie')}/>
     <Grid>
       <Switch>
         <Route path="/" exact component={Dashboard}/>

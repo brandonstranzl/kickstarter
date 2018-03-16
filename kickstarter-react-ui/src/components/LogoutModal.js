@@ -1,5 +1,7 @@
 import React from 'react';
 import {Modal, Button} from 'react-bootstrap'
+import Cookies from 'universal-cookie'
+
 
 
 class LogoutModal extends React.Component {

@@ -37,9 +37,9 @@ class LoginForm extends Component {
         success:(data) => {
           console.log("here is the res ", data)
           this.setState({user: data})
-          this.props.history.push('/demos', this.state);
           const cookies = new Cookies();
           cookies.set("userCookie", data.id, { path: '/'})
+          this.props.history.push('/demos', this.state);
           // document.cookie = "userId=" + data.id
           // window.location = '/demos'
         }

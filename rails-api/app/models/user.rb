@@ -1,9 +1,8 @@
 class User < ApplicationRecord
-  attr_accessor :password
   has_secure_password
   validates :password, length: { minimum: 6 }, allow_nil: true
   validates_uniqueness_of :email, case_sensitive: false
-  validates :name, :email, presence: true
+  validates :email, presence: true
 
   has_many :demos
 

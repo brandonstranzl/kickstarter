@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import {Link} from 'react-router-dom'
 import {Navbar, Nav, NavItem, Image, Button, Modal} from 'react-bootstrap'
 import LogoutModal from './LogoutModal'
-import SignUpModal from './LogoutModal'
+// import SignUpModal from './LogoutModal'
+import SignUpForm from './SignUpForm'
 import Cookies from 'universal-cookie';
 
 
@@ -25,28 +26,38 @@ class TopNav extends React.Component {
       });
     }
 
-    handleSignUpClick = () => {
-      this.setState({
-        SignUpShow: !this.state.SignUpShow
-      });
-    }
+    // handleSignUpClick = () => {
+    //   <SignUpForm onSave={this.handleSignUpSuccess} />
+    // }
 
-    handleSignUpSuccess = (data) => {
-      const cookies = new Cookies();
-      fetch(`http://localhost:3000/users`,
-      { method: "POST",
-      body: JSON.stringify(data)
-      })
-      .then(response => response.json())
-      .catch(error => console.error('Error:', error))
-      .then((response) => {
-        const cookies = new Cookies();
-        cookies.set("userCookie", data.id, { path: '/'})
-        this.setState({user: data})
-        this.props.history.push('/demos', this.state);
-        console.log('Success:', response)
-      });
-    };
+    _onButtonClick = () => {
+       this.setState({
+         SignUpShow: true,
+       });
+     }
+
+
+      // this.setState({
+      //   SignUpShow: !this.state.SignUpShow
+      // });
+
+
+    // handleSignUpSuccess = (data) => {
+    //   const cookies = new Cookies();
+    //   fetch(`http://localhost:3000/users`,
+    //   { method: "POST",
+    //   body: JSON.stringify(data)
+    //   })
+    //   .then(response => response.json())
+    //   .catch(error => console.error('Error:', error))
+    //   .then((response) => {
+    //     const cookies = new Cookies();
+    //     cookies.set("userCookie", data.id, { path: '/'})
+    //     this.setState({user: data})
+    //     this.props.history.push('/demos', this.state);
+    //     console.log('Success:', response)
+    //   });
+    // };
 
 
     // this.props.user.id
@@ -66,7 +77,6 @@ class TopNav extends React.Component {
           isToggleOn: false,
           SignUpShow: false
         })
-
     }
 
 
@@ -93,7 +103,7 @@ render() {
 
         <Nav pullRight>
           <NavItem className="navbar-right" eventKey={2}>
-            <Button onClick={this.handleSignUpClick}>SignUp</Button>
+            <Button onClick={this._onButtonClick}>SignUp</Button>
           </NavItem>
 
           <NavItem className="navbar-right" eventKey={2}>
@@ -107,8 +117,8 @@ render() {
           <LogoutModal show={this.state.isToggleOn} onClose={this.handleLogoutClick}
         onSave={this.handleLogout}/>
 
-        <SignUpModal show={this.state.SignUpShow} onSave={this.handleSignUpSuccess}
-        />
+          {this.state.SignUpShow ?  <SignUpForm /> :null }
+
 
         </Nav>
 
@@ -118,3 +128,6 @@ render() {
 }
 
 export default TopNav
+
+// <SignUpModal show={this.state.SignUpShow} onSave={this.handleSignUpSuccess}
+// />

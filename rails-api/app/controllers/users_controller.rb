@@ -1,18 +1,20 @@
 class UsersController < ApplicationController
 
   def create
-    @user = User.new(params)
-    if @user.save && @user.authenticate_with_credentials(params[:email], params[:password])
+    @user = User.new(user_params)
+    if @user.save
       session[:user_id] = @user.id
-      redirect_to '/' , notice: "You are now logged in! Enjoy the Demos!"
+      render :json => @user
     else
-      render :json => {:status => 400, :error => "something is wrong with info entered"}
+      render :json => {:status => 403, :error => "something wrong"}
     end
   end
 
   private
   def user_params
-    params.require(:user).permit(:name, :email, :username, :password)
+    # params.require(:user).permit(:email, :password, :password_confirmation)
+    params.permit(:email, :password)
+
   end
 
   # def self.authenticate_with_credentials (email, password)

@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 // import { Navbar, Jumbotron, Button } from 'react-bootstrap';
 import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 import $ from 'jquery';
+import Cookies from 'universal-cookie'
 
 
 
@@ -12,22 +13,19 @@ class LoginForm extends Component {
       email: '',
       password: ''
     };
-    this.emailHandleChange = this.emailHandleChange.bind(this);
-    this.passwordHandleChange = this.passwordHandleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  emailHandleChange(event) {
+  emailHandleChange = (event) => {
     this.setState({
       email: event.target.value
     });
   }
 
-  passwordHandleChange(event) {
+  passwordHandleChange = (event) => {
     this.setState({password: event.target.value});
   }
 
-  handleSubmit(event) {
+  handleSubmit = (event) => {
     alert('Your info submitted');
     event.preventDefault();
     console.log(this.state.email, this.state.password)
@@ -36,11 +34,13 @@ class LoginForm extends Component {
         type:"POST",
         data: {email: this.state.email, password: this.state.password},
         dataType: "json",
-        // contentType: "; charset=utf-8",
         success:(data) => {
           console.log("here is the res ", data)
           this.setState({user: data})
           this.props.history.push('/demos', this.state);
+          const cookies = new Cookies();
+          cookies.set("userCookie", data.id, { path: '/'})
+          // document.cookie = "userId=" + data.id
           // window.location = '/demos'
         }
       })

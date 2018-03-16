@@ -1,17 +1,20 @@
-import React from 'react'
+import React, { Component } from 'react'
 import Demo from './Demo'
 import TopNav from './TopNav'
+import Cookies from 'universal-cookie'
+
 // import Dialog from './Dialog'
 // import Modal from './Modal';
 
 // import $ from 'jquery'
 // import { Card, CardImg, CardText, CardBody, CardTitle, CardSubtitle, Button} from 'reactstrap'
-import {Button, Grid, Row, Col, PageHeader, Table, Modal} from 'react-bootstrap'
+import {Grid, Button, Thumbnail, Row, Col, PageHeader, Modal, Table} from 'react-bootstrap'
 import {Route, Switch, Link} from 'react-router-dom'
 
   // Client-side model
 import Resource from '../utilities/resource'
 const DemoStore = Resource('demos')
+
 
 class Demos extends React.Component {
   constructor(props) {
@@ -32,17 +35,17 @@ class Demos extends React.Component {
     }
 
     componentWillMount() {
-    // fetch('http://localhost:3000/demos')
-    // .then(r => r.clone().json())
-    // .then(data => this.setState({ demos: data }))
-    // // .then(demos => this.setState({ demos: data }))
-    // .catch(e => console.log('parsing failed'))
+      fetch('http://localhost:3000/demos')
+      .then(r => r.clone().json())
+      .then(data => this.setState({ demos: data }))
+      // .then(demos => this.setState({ demos: data }))
+      .catch(e => console.log('parsing failed'))
+      }
 
+    //   DemoStore.findAll() // DemoStore does the API fetching!
+    //   .then((result) => this.setState({demos: result, errors: null}))
+    //   .catch((errors) => this.setState({errors: errors}))
     // }
-    DemoStore.findAll() // DemoStore does the API fetching!
-    .then((result) => this.setState({demos: result, errors: null}))
-    .catch((errors) => this.setState({errors: errors}))
-    }
 
     toggleModal = () => {
       this.setState({
@@ -50,88 +53,50 @@ class Demos extends React.Component {
       });
     }
 
+    // show by category = () =>
+    // change demos to categories with videos
+
   //
+
+  //
+  //   DemoStore.findAll() // DemoStore does the API fetching!
+  //   .then((result) => console.log(result))//this.setState({demos: result.data, errors: null}))
+  //   .catch((errors) => this.setState({errors: errors}))
+  // }
+  // <TopNav user={this.state.user}/>
 
 
   render() {
-    if (this.state.demos.length > 0) {
-      console.log(this.state.demos);
-      console.log(this.state)
-    }
     return (
+      <div>
 
-    <div>
-    <TopNav user={this.state.user}/>
-
-    <Row>
-      <Col xs={12}>
-
-        <PageHeader>
-          Demos
-        </PageHeader>
-
-        <Table>
-            <thead>
-              <tr>
-                <th>id</th>
-                <th>Name</th>
-                <th>Description</th>
-                <th>Category</th>
-                <th>Next Live Demo @</th>
-                <th>Live Date!</th>
-                <th>Funding Requirements</th>
-                <th>Likes</th>
-              </tr>
-            </thead>
-
-
-            <tbody>
-              {this.state.demos.map((demo, id) => (
-                // <tr key={id}>
-                  <tr>
-                  <td>{demo.id}</td>
-                  <td>
-                    {demo.name}
-                  </td>
-                  <td>{demo.description}</td>
-                  <td>{demo.category.name}</td>
-                  <td>{demo.event.name}</td>
-                  <td>{demo.live}</td>
-                  <td>{demo.fundingreq}</td>
-                  <td>{demo.votes}</td>
-                </tr>
-            ))}
-            </tbody>
-            </Table>
-
-
-          <Switch>
-          <Route path="/demos/:id" render={(props) =>
-            (<demo {...this.props} />)}
-            />
-          </Switch>
-
-          <Modal show={this.state.isOpen}
-          onClose={this.toggleModal}>
-          <Demo />
-          </Modal>
-
-
-          </Col>
-          </Row>
-          </div>
-
-
-
-
-      )
-    }
+        {this.state.demos.map((demo, id) => {
+          return (
+            <Grid>
+              <Row>
+                <Col xs={6} md={4}>
+                  <Thumbnail src={`https://img.youtube.com/vi/{demo.videos}/0.jpg`}>
+                    <h3>{demo.name}</h3>
+                    <p>{demo.description}</p>
+                    <p>{demo.category.name}</p>
+                    <p>{demo.event.name}</p>
+                    <p>{demo.live}</p>
+                    <p>{demo.fundingreq}</p>
+                    <p>{demo.votes}</p>
+                    <p>
+                      <Button bsStyle="primary" href="/login">Contribute</Button>&nbsp;
+                      <Button bsStyle="default">View More</Button>
+                    </p>
+                  </Thumbnail>
+                </Col>
+              </Row>
+            </Grid>
+            )
+        })
+      }
+      </div>
+    )
   }
+}
 
 export default Demos
-
-
-  // <Route path="/demos/:id" component={Demo} />
-//             // <Route path="/demos/:id" render={(demos) =>
-            //   (<demo {...props} {demos} />)}
-            // >/

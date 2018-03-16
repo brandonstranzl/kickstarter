@@ -15,7 +15,8 @@ const Dashboard = (props) => (
   // </Row>
   <Carousel>
     <Carousel.Item>
-      <img width={900} height={500} alt="900x500" src={process.env.PUBLIC_URL + "/images/carousel.png"} />
+      {/*<img width={900} height={500} alt="900x500" src={process.env.PUBLIC_URL + "/images/carousel.png"} />*/}
+      <iframe width="900" height="500" src="https://www.youtube.com/embed/S2S_4G103Ik" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
       <Carousel.Caption>
         <h3>First slide label</h3>
         <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>

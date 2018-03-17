@@ -14,7 +14,6 @@ import {Route, Switch, Link} from 'react-router-dom'
 
   // Client-side model
 import Resource from '../utilities/resource'
-
 const DemoStore = Resource('demos')
 
 
@@ -26,9 +25,10 @@ class Demos extends React.Component {
     this.state = {
       demos: [],
       selectedDemo: {},
-      showDetails: false,
+      showDemoId: false,
       errors: null,
-      isOpen: false
+      isOpen: false,
+
       }
     if (props.location.state) {
       this.state.user = this.props.location.state.user
@@ -36,7 +36,7 @@ class Demos extends React.Component {
     // this.state.map = this.state.map.bind(this);
     }
 
-    componentWillMount() {
+    componentDidMount() {
       // fetch('http://localhost:3000/demos')
       // .then(r => r.clone().json())
       // .then(data => this.setState({ demos: data }))
@@ -55,16 +55,12 @@ class Demos extends React.Component {
       });
     }
 
-    // show by category = () =>
-    // change demos to categories with videos
+    toggleShowDemoId = () => {
+      this.setState({
+        false: !this.state.false
+      });
+    }
 
-  //
-
-  //
-  //   DemoStore.findAll() // DemoStore does the API fetching!
-  //   .then((result) => console.log(result))//this.setState({demos: result.data, errors: null}))
-  //   .catch((errors) => this.setState({errors: errors}))
-  // }
   render() {
     return (
       <div>
@@ -97,7 +93,7 @@ class Demos extends React.Component {
   </Nav>
 </Navbar>
       <div>
-        {/*<TopNav user={this.state.user}/>*/}
+
         <Grid>
           <Row>
             {this.state.demos.map((demo, id) => {
@@ -114,11 +110,13 @@ class Demos extends React.Component {
                         <p>{demo.fundingreq}</p>
                         <p>{demo.votes}</p>
                         <p>{demo.videos}</p>
-                        <p>
-                          <Button bsStyle="primary" href="/demo/:id">See More Details</Button>&nbsp;
-                          <Button bsStyle="warning" href="/order">
-                          <img src=""
-                          Back It!</Button>
+                        <p className="clearfix">
+                          <Button className="clickToDetailsButton" href={`/demos/${demo.id}`} bsStyle="">
+                          <img className="detailsButtonImage" src={process.env.PUBLIC_URL + "/images/glasses.svg"}></img>
+                          <p>Details</p></Button>
+                          <Button className="clearfix" className="contributeButton" bsStyle="warning" href="/order">
+                          <img className="contributeButtonImage" src={process.env.PUBLIC_URL + "/images/lightninglike.svg"}></img>
+                          Back It</Button>
                         </p>
                       </Thumbnail>
                     </Col>
@@ -132,3 +130,5 @@ class Demos extends React.Component {
   }
 }
 export default Demos
+
+// <Demo onClick={this.toggleShowDemoId} state={this.props} />

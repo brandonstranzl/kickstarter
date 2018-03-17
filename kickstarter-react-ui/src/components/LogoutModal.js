@@ -21,11 +21,12 @@ class LogoutModal extends React.Component {
           return (
           <div className="static-modal">
             <Modal.Dialog>
-              <Modal.Header>
-                <Modal.Title>
-                <img  width="30" src={process.env.PUBLIC_URL + "/images/flux_capacitor.svg"}></img>
-                </Modal.Title>
+              <Modal.Header className="clearfix">
+                <Modal.Title className="clearfix" className="logoutTitleBox">
+                <img className="logOutImage" width="30" src={process.env.PUBLIC_URL + "/images/flux_capacitor.svg"}></img>
+                   &nbsp;Demo88
                 <Button className="close" onClick={this.props.toggleLogOutModal}>&times;</Button>
+                </Modal.Title>
               </Modal.Header>
 
               <Modal.Body>

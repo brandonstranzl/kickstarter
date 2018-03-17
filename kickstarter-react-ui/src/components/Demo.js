@@ -1,15 +1,12 @@
 import React from 'react'
 import {Redirect} from 'react-router-dom'
 import Cookies from 'universal-cookie'
-
-// import Modal from './Modal'
-
-// import {Row, Col, PageHeader} from 'react-bootstrap';
+import {Button, PageHeader, Col, Row} from 'react-bootstrap'
+import {Route, Switch, Link} from 'react-router-dom'
 
 class Demo extends React.Component {
   constructor(props) {
     super(props)
-
     this.state = {
       demoId: (this.props.match.params.id || null),
       demo: {},
@@ -18,21 +15,15 @@ class Demo extends React.Component {
       }
     }
 
-  // handleClose() {
-  // this.setState({ show: false });
-  // }
-  //
-  // handleShow() {
-  //   this.setState({ show: true });
-  // }
 
-  componentWillMount() {
+
+  componentDidMount() {
   if (!this.state.demoId) return
   fetch(`http://localhost:3000/demos/${this.props.match.params.id}`)
-  .then(r => r.clone().json())
+  .then(r => r.json())
   .then(data => this.setState({ demo: data }))
   // .then(demos => this.setState({ demos: data }))
-  .catch(e => console.log('parsing failed'))
+    .catch(e => console.log('parsing failed'))
   }
 
   // _hide = () => {
@@ -40,19 +31,35 @@ class Demo extends React.Component {
   // }
 
   render() {
-    if (this.state.demo) {
-      console.log('HERE PUTS THE DEMO:');
-      console.log(this.state.demo);
-    }
-  if (this.state.redirect) return <Redirect to={this.state.redirect} />
+
+  if (this.state.demo) {
+    console.log('HERE PUTS THE DEMO:');
+
+    console.log(this.state.demo);
+  }
 
     return (
-    <div>
-            You selected <strong>{this.state.demo.name}</strong>
-    </div>
+
+
+    <Row>
+      <Col xs={12}>
+        <PageHeader>
+          DEMOID DEMOID DEMOID Welcome <small>to the DETAILS page</small>
+        </PageHeader>
+      </Col>
+    <Button color="danger">save !</Button>
+    </Row>
+
+
+
+
+
+
     )
   }
 }
 //
 
 export default Demo
+
+// (this.props.match.params.id || null),

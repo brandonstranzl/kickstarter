@@ -1,3 +1,44 @@
+.logOutImage {
+  vertical-align: bottom;
+}
+
+.clickToDetailsButton {
+color: orange;
+height: 36px !important;
+width: 48%;
+box-sizing: border-box;
+float: left;
+background-image: linear-gradient(to bottom, #481e0e 0%, #384c82 100%);
+border-color: #e38d13;
+border-top-color: rgb(227, 141, 19);
+border-right-color: rgb(227, 141, 19);
+border-bottom-color: rgb(227, 141, 19);
+border-left-color: rgb(227, 141, 19);
+}
+
+.contributeButton {
+  color: orange;
+  box-sizing: border-box;
+  height: 36px !important;
+  width: 48%;
+  margin-left: 2%;
+  background-image: linear-gradient(to bottom, #481e0e 0%, #384c82 100%);
+}
+
+.detailsButtonImage {
+width: 25%;
+display: inline-block;
+margin: 0% 0% 0% 0%;
+float:left;
+}
+
+.contributeButtonImage {
+width: 25%;
+display: inline-block;
+margin: 0% 75% 0% 10%;
+float:left;
+}
+
 .navbar-brand {
   display: flex;
   align-items: center;
@@ -42,5 +83,5 @@
 }
 
 .container{
-  max-width: 900px; 
+  max-width: 900px;
 }

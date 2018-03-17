@@ -104,7 +104,8 @@ class Demos extends React.Component {
               return (
 
                     <Col xs={6} md={4}>
-                      <Thumbnail src={"https://img.youtube.com/vi/" + demo.videos + "/0.jpg"}>
+                      <Thumbnail src="">
+                        {/*{"https://img.youtube.com/vi/" + demo.videos + "/0.jpg"}*/}
                         <iframe width="240" height="200" src={"https://www.youtube.com/embed/"+demo.videos} frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
                         <h3>{demo.name} <small> asking for ${demo.fundingreq}</small> </h3>
                         <p>

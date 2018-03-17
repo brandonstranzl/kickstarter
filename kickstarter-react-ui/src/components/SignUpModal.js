@@ -1,5 +1,5 @@
 import React from 'react';
-import {Modal, Button, FormGroup, ControlLabel, FormControl} from 'react-bootstrap'
+import {Modal, Button, FormGroup, ControlLabel, FormControl, Clearfix} from 'react-bootstrap'
 import Cookies from 'universal-cookie'
 import SignUpForm from './SignUpForm'
 
@@ -25,6 +25,7 @@ class SignUpModal extends React.Component {
 
       <Modal.Header>
         <Modal.Title>Sign Up Modal</Modal.Title>
+        <Button className="close" onClick={this.props.toggleModal}>&times;</Button>
       </Modal.Header>
 
         <Modal.Body>

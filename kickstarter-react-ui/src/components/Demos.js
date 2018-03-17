@@ -120,7 +120,7 @@ class Demos extends React.Component {
                           <Button bsStyle="default" href={"https://www.youtube.com/watch?v="+demo.videos}>View Video</Button>
                           <Button bsStyle="primary" href="/demo/:id">See More Details</Button>&nbsp;
                           <Button bsStyle="warning" href="/order"></Button>
-                          <img src=""> </img>
+                          {/*<img src=""> </img>*/}
                           <Button>Back It!</Button>
                         <p></p>
                       </Thumbnail>

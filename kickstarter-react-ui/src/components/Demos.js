@@ -112,12 +112,12 @@ class Demos extends React.Component {
                         </p>
                         <p>
                           Initially pitched their idea at {demo.event.name} 
-                          on {demo.live}
-                          Here is some quick info about 
-                          {demo.name}: {demo.description}. Their main focus is {demo.category.name}.
+                          on {demo.live}. 
+                          Here is some quick info about {demo.name}: {demo.description}. 
+                          Their main focus is {demo.category.name}.
                         </p>
-                          <Button bsStyle="primary" href="/login">Contribute</Button>&nbsp;
-                          <Button bsStyle="default" href={"https://www.youtube.com/watch?v="+demo.videos}>View Video</Button>
+                          {/*<Button bsStyle="primary" href="/login">Contribute</Button>&nbsp;*/}
+                          {/*<Button bsStyle="default" href={"https://www.youtube.com/watch?v="+demo.videos}>View Video</Button>*/}
                           <Button bsStyle="primary" href="/demo/:id">See More Details</Button>&nbsp;
                           <Button bsStyle="warning" href="/order"></Button>
                           {/*<img src=""> </img>*/}

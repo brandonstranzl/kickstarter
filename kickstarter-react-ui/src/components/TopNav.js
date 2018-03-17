@@ -64,7 +64,7 @@ class TopNav extends React.Component {
 
 
     // this.props.user.id
-    handleLogout = (data) => {
+    handleLogoutPost = (data) => {
       const cookies = new Cookies();
       fetch(`http://localhost:3000/sessions/${cookies.get('userCookie')}`,
       { method: 'DELETE' }).then(response => response.json())
@@ -72,6 +72,7 @@ class TopNav extends React.Component {
       .then((response) => {
         console.log('Success:', response)
         cookies.remove('userCookie')
+        this.handleLogoutClick();
       });
     };
 
@@ -92,6 +93,13 @@ render() {
       displayLogin = <p>Logged in as {cookies.get('userCookie')}</p>
     } else {
       displayLogin = <Link to="/login">Login</Link>
+    };
+
+  let displaySignUp
+    if (cookies.get('userCookie')) {
+      displaySignUp = ""
+    } else {
+      displaySignUp = <Button onClick={this.handleSignUpClick}>SignUp</Button>
     };
 
   return(
@@ -115,7 +123,7 @@ render() {
 
         <Nav pullRight>
           <NavItem className="navbar-right" eventKey={2}>
-            <Button onClick={this.handleSignUpClick}>SignUp</Button>
+              {displaySignUp}
           </NavItem>
 
           <NavItem className="navbar-right" eventKey={2}>
@@ -126,8 +134,8 @@ render() {
             <Button>{displayLogin}</Button>
           </NavItem>
 
-          <LogoutModal show={this.state.isToggleOn} onClose={this.handleLogoutClick}
-        onSave={this.handleLogout}/>
+          <LogoutModal show={this.state.isToggleOn} toggleLogOutModal={this.handleLogoutClick}
+        onSave={this.handleLogoutPost}/>
 
         <SignUpModal show={this.state.SignUpShow} toggleModal={this.handleSignUpClick}
         />

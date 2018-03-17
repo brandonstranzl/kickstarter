@@ -26,7 +26,6 @@ class LoginForm extends Component {
   }
 
   handleSubmit = (event) => {
-    alert('Your info submitted');
     event.preventDefault();
     console.log(this.state.email, this.state.password)
     $.ajax({

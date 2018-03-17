@@ -27,6 +27,10 @@ category = Category.create([
   {
     name: "Hardware",
     description: "amazing robots and gadgets"
+  },
+  {
+    name: "Software",
+    description: "cool software for users"
   }
 ])
 
@@ -82,7 +86,18 @@ demo = Demo.create([
     fundingreq: 8000,
     votes: 10,
     videos: '3H-Y-D3-j-M',
-    category: categories[0],
+    category: categories[1],
+    event: events[0],
+    user: users[0]
+  },
+  {
+    name: "LaggerGram",
+    live: "2018-03-31",
+    description: "for all your throwback posts",
+    fundingreq: 40000,
+    votes: 60,
+    videos: 'KAC_JAnhspw',
+    category: categories[2],
     event: events[0],
     user: users[0]
   }

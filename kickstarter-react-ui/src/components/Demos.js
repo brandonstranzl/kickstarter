@@ -63,8 +63,9 @@ class Demos extends React.Component {
 
   render() {
     return (
-      <div>
-      <Navbar>
+<div>
+
+<Navbar>
   <Navbar.Header>
     <Navbar.Brand>
       <a href="/demos">Trending</a>
@@ -92,44 +93,52 @@ class Demos extends React.Component {
     </NavDropdown>
   </Nav>
 </Navbar>
-      <div>
 
+      <div>
         <Grid>
           <Row>
             {this.state.demos.map((demo, id) => {
               return (
 
-                    <Col xs={6} md={4}>
-                      <Thumbnail src={"https://img.youtube.com/vi/" + demo.videos + "/0.jpg"}>
-                        <iframe width="240" height="200" src={"https://www.youtube.com/embed/"+demo.videos} frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-                        <h3>{demo.name} <small> asking for ${demo.fundingreq}</small> </h3>
-                        <p>
-                          {demo.name} asking for ${demo.fundingreq}
-                        </p>
-                        <p>
-                          Initially pitched their idea at {demo.event.name}
-                          on {demo.live}
-                          Here is some quick info about
-                          {demo.name}: {demo.description}. Their main focus is {demo.category.name}.
-                        <p className="clearfix">
-                          <Button className="clickToDetailsButton" href={`/demos/${demo.id}`} bsStyle="">
-                          <img className="detailsButtonImage" src={process.env.PUBLIC_URL + "/images/glasses.svg"}></img>
-                          <p>Details</p></Button>
-                          <Button className="clearfix" className="contributeButton" bsStyle="warning" href="/order">
-                          <img className="contributeButtonImage" src={process.env.PUBLIC_URL + "/images/lightninglike.svg"}></img>
-                          Back It</Button>
-                          <p></p>
-                        </Thumbnail>
-                    </Col>
+            <Col xs={6} md={4}>
+              <Thumbnail>
+                <iframe width="240" height="200" src={"https://www.youtube.com/embed/"+demo.videos} frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                  <h3>{demo.name} <small> asking for ${demo.fundingreq}</small> </h3>
+                  <p>
+                    {demo.name} asking for ${demo.fundingreq}
+                    </p>
+                    <p>
+                      Initially pitched their idea at {demo.event.name}
+                      on {demo.live}
+                      Here is some quick info about
+                      {demo.name}: {demo.description}. Their main focus is {demo.category.name}.
+                    </p>
+
+                  <p className="clearfix">
+
+                  <Button className="clickToDetailsButton" href={`/demos/${demo.id}`} bsStyle="">
+                  <img className="detailsButtonImage" src={process.env.PUBLIC_URL + "/images/glasses.svg"}></img>
+                  <p>Details</p>
+                  </Button>
+
+                  <Button className="clearfix" className="contributeButton" bsStyle="warning" href="/order">
+                  <img className="contributeButtonImage" src={process.env.PUBLIC_URL + "/images/lightninglike.svg"}></img>
+                  Back It
+                  </Button>
+
+                  </p>
+
+              </Thumbnail>
+            </Col>
               )
             })}
           </Row>
         </Grid>
       </div>
-      </div>
+
+</div>
+
     )
   }
 }
 export default Demos
-
-// <Demo onClick={this.toggleShowDemoId} state={this.props} />

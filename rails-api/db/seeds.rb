@@ -27,6 +27,10 @@ category = Category.create([
   {
     name: "Hardware",
     description: "amazing robots and gadgets"
+  },
+  {
+    name: "Software",
+    description: "cool software for users"
   }
 ])
 
@@ -82,7 +86,205 @@ demo = Demo.create([
     fundingreq: 8000,
     votes: 10,
     videos: '3H-Y-D3-j-M',
-    category: categories[0],
+    category: categories[1],
+    event: events[0],
+    user: users[0]
+  },
+  {
+    name: "LaggerGram",
+    live: "2018-03-31",
+    description: "Share your throwback photos with your friends and the world.",
+    fundingreq: 40000,
+    votes: 60,
+    videos: 'KAC_JAnhspw',
+    category: categories[2],
+    event: events[0],
+    user: users[0]
+  },
+  {
+    name: "Book of Faces",
+    live: "2018-03-31",
+    description: "Connect with all your college mates and find out creepy things about them.",
+    fundingreq: 40000,
+    votes: 60,
+    videos: 'KAC_JAnhspw',
+    category: categories[2],
+    event: events[0],
+    user: users[0]
+  },
+  {
+    name: "A2Z",
+    live: "2018-03-31",
+    description: "We are an e-commerce platform that sells virtually everything from A to Z.",
+    fundingreq: 40000,
+    votes: 60,
+    videos: 'KAC_JAnhspw',
+    category: categories[2],
+    event: events[0],
+    user: users[0]
+  },
+  {
+    name: "Pied Piper",
+    live: "2018-03-31",
+    description: "",
+    fundingreq: 40000,
+    votes: 60,
+    videos: 'KAC_JAnhspw',
+    category: categories[2],
+    event: events[0],
+    user: users[0]
+  },
+  {
+    name: "Chillflix",
+    live: "2018-03-31",
+    description: "InsertCompanyDescription",
+    fundingreq: 40000,
+    votes: 60,
+    videos: 'dQw4w9WgXcQ',
+    category: categories[2],
+    event: events[0],
+    user: users[0]
+  },
+  {
+    name: "Ober",
+    live: "2018-03-31",
+    description: "InsertCompanyDescription",
+    fundingreq: 40000,
+    votes: 60,
+    videos: 'dQw4w9WgXcQ',
+    category: categories[2],
+    event: events[0],
+    user: users[0]
+  },
+  {
+    name: "Food Grab",
+    live: "2018-03-31",
+    description: "InsertCompanyDescription",
+    fundingreq: 40000,
+    votes: 60,
+    videos: 'dQw4w9WgXcQ',
+    category: categories[2],
+    event: events[0],
+    user: users[0]
+  },
+  {
+    name: "iBay",
+    live: "2018-03-31",
+    description: "InsertCompanyDescription",
+    fundingreq: 40000,
+    votes: 60,
+    videos: 'dQw4w9WgXcQ',
+    category: categories[2],
+    event: events[0],
+    user: users[0]
+  },
+  {
+    name: "MoneyPal",
+    live: "2018-03-31",
+    description: "InsertCompanyDescription",
+    fundingreq: 40000,
+    votes: 60,
+    videos: 'dQw4w9WgXcQ',
+    category: categories[2],
+    event: events[0],
+    user: users[0]
+  },
+  {
+    name: "Rectangle",
+    live: "2018-03-31",
+    description: "InsertCompanyDescription",
+    fundingreq: 40000,
+    votes: 60,
+    videos: 'dQw4w9WgXcQ',
+    category: categories[2],
+    event: events[0],
+    user: users[0]
+  },
+  {
+    name: "Tweeter",
+    live: "2018-03-31",
+    description: "InsertCompanyDescription",
+    fundingreq: 40000,
+    votes: 60,
+    videos: 'dQw4w9WgXcQ',
+    category: categories[2],
+    event: events[0],
+    user: users[0]
+  },
+  {
+    name: "Readit",
+    live: "2018-03-31",
+    description: "InsertCompanyDescription",
+    fundingreq: 40000,
+    votes: 60,
+    videos: 'dQw4w9WgXcQ',
+    category: categories[2],
+    event: events[0],
+    user: users[0]
+  },
+  {
+    name: "DropStorage",
+    live: "2018-03-31",
+    description: "InsertCompanyDescription",
+    fundingreq: 40000,
+    votes: 60,
+    videos: 'dQw4w9WgXcQ',
+    category: categories[2],
+    event: events[0],
+    user: users[0]
+  },
+  {
+    name: "Hooli",
+    live: "2018-03-31",
+    description: "InsertCompanyDescription",
+    fundingreq: 40000,
+    votes: 60,
+    videos: 'dQw4w9WgXcQ',
+    category: categories[2],
+    event: events[0],
+    user: users[0]
+  },
+  {
+    name: "ElonMotors",
+    live: "2018-03-31",
+    description: "InsertCompanyDescription",
+    fundingreq: 40000,
+    votes: 60,
+    videos: 'dQw4w9WgXcQ',
+    category: categories[2],
+    event: events[0],
+    user: users[0]
+  },
+  {
+    name: "PicChat",
+    live: "2018-03-31",
+    description: "InsertCompanyDescription",
+    fundingreq: 40000,
+    votes: 60,
+    videos: 'dQw4w9WgXcQ',
+    category: categories[2],
+    event: events[0],
+    user: users[0]
+  },
+  {
+    name: "Musicify",
+    live: "2018-03-31",
+    description: "InsertCompanyDescription",
+    fundingreq: 40000,
+    votes: 60,
+    videos: 'dQw4w9WgXcQ',
+    category: categories[2],
+    event: events[0],
+    user: users[0]
+  },
+  {
+    name: "Exphone",
+    live: "2018-03-31",
+    description: "We make phones that can explode at any time.",
+    fundingreq: 40000,
+    votes: 60,
+    videos: 'dQw4w9WgXcQ',
+    category: categories[2],
     event: events[0],
     user: users[0]
   }

@@ -78,7 +78,7 @@ class Demos extends React.Component {
       <MenuItem divider />
       <MenuItem eventKey={3.3}>UI/UX Apps</MenuItem>
       <MenuItem divider />
-      <MenuItem eventKey={3.4}>Products</MenuItem>
+      <MenuItem eventKey={3.4}>Hardware</MenuItem>
     </NavDropdown>
 
     <NavDropdown eventKey={3} title="Sort by Location" id="basic-nav-dropdown">
@@ -100,16 +100,17 @@ class Demos extends React.Component {
               return (
 
                     <Col xs={6} md={4}>
-                      <Thumbnail /*src={"https://img.youtube.com/vi/" + demo.videos + "/0.jpg"}*/>
-                      <iframe width="240" height="200" src={"https://www.youtube.com/embed/"+demo.videos} frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-                        <h3>{demo.name}</h3>
-                        <p>{demo.description}</p>
-                        <p>{demo.category.name}</p>
-                        <p>{demo.event.name}</p>
-                        <p>{demo.live}</p>
-                        <p>{demo.fundingreq}</p>
-                        <p>{demo.votes}</p>
-                        <p>{demo.videos}</p>
+                      <Thumbnail src={"https://img.youtube.com/vi/" + demo.videos + "/0.jpg"}>
+                        <iframe width="240" height="200" src={"https://www.youtube.com/embed/"+demo.videos} frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                        <h3>{demo.name} <small> asking for ${demo.fundingreq}</small> </h3>
+                        <p>
+                          {demo.name} asking for ${demo.fundingreq}
+                        </p>
+                        <p>
+                          Initially pitched their idea at {demo.event.name}
+                          on {demo.live}
+                          Here is some quick info about
+                          {demo.name}: {demo.description}. Their main focus is {demo.category.name}.
                         <p className="clearfix">
                           <Button className="clickToDetailsButton" href={`/demos/${demo.id}`} bsStyle="">
                           <img className="detailsButtonImage" src={process.env.PUBLIC_URL + "/images/glasses.svg"}></img>
@@ -117,8 +118,8 @@ class Demos extends React.Component {
                           <Button className="clearfix" className="contributeButton" bsStyle="warning" href="/order">
                           <img className="contributeButtonImage" src={process.env.PUBLIC_URL + "/images/lightninglike.svg"}></img>
                           Back It</Button>
-                        </p>
-                      </Thumbnail>
+                          <p></p>
+                        </Thumbnail>
                     </Col>
               )
             })}

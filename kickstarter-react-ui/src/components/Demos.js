@@ -65,7 +65,7 @@ class Demos extends React.Component {
   //   .then((result) => console.log(result))//this.setState({demos: result.data, errors: null}))
   //   .catch((errors) => this.setState({errors: errors}))
   // }
-  render() { 
+  render() {
     return (
       <div>
       <Navbar>
@@ -75,12 +75,6 @@ class Demos extends React.Component {
     </Navbar.Brand>
   </Navbar.Header>
   <Nav>
-    {/*<NavItem eventKey={1} href="#">
-      Link
-    </NavItem>
-    <NavItem eventKey={2} href="#">
-      Link
-    </NavItem>*/}
     <NavDropdown eventKey={3} title="Sort by Category" id="basic-nav-dropdown">
       <MenuItem eventKey={3.1}>Web Apps</MenuItem>
       <MenuItem divider />
@@ -110,8 +104,8 @@ class Demos extends React.Component {
               return (
 
                     <Col xs={6} md={4}>
-                      <Thumbnail /*src={"https://img.youtube.com/vi/" + demo.videos + "/0.jpg"}*/>
-                      <iframe width="240" height="200" src={"https://www.youtube.com/embed/"+demo.videos} frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                      <Thumbnail src={"https://img.youtube.com/vi/" + demo.videos + "/0.jpg"}>
+                        <iframe width="240" height="200" src={"https://www.youtube.com/embed/"+demo.videos} frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
                         <h3>{demo.name} <small> asking for ${demo.fundingreq}</small> </h3>
                         <p>
                           {demo.name} asking for ${demo.fundingreq}
@@ -119,13 +113,16 @@ class Demos extends React.Component {
                         <p>
                           Initially pitched their idea at {demo.event.name} 
                           on {demo.live}
-
-
                           Here is some quick info about 
                           {demo.name}: {demo.description}. Their main focus is {demo.category.name}.
                         </p>
                           <Button bsStyle="primary" href="/login">Contribute</Button>&nbsp;
                           <Button bsStyle="default" href={"https://www.youtube.com/watch?v="+demo.videos}>View Video</Button>
+                          <Button bsStyle="primary" href="/demo/:id">See More Details</Button>&nbsp;
+                          <Button bsStyle="warning" href="/order"></Button>
+                          <img src=""> </img>
+                          <Button>Back It!</Button>
+                        <p></p>
                       </Thumbnail>
                     </Col>
               )

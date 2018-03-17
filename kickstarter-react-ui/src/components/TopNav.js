@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import {Link} from 'react-router-dom'
 import {Navbar, Nav, NavItem, Image, Button, Modal} from 'react-bootstrap'
 import LogoutModal from './LogoutModal'
-import SignUpModal from './LogoutModal'
+import SignUpModal from './SignUpModal'
+import SignUpForm from './SignUpForm'
 import Cookies from 'universal-cookie';
 
 
@@ -31,26 +32,39 @@ class TopNav extends React.Component {
       });
     }
 
-    handleSignUpSuccess = (data) => {
-      const cookies = new Cookies();
-      fetch(`http://localhost:3000/users`,
-      { method: "POST",
-      body: JSON.stringify(data)
-      })
-      .then(response => response.json())
-      .catch(error => console.error('Error:', error))
-      .then((response) => {
-        const cookies = new Cookies();
-        cookies.set("userCookie", data.id, { path: '/'})
-        this.setState({user: data})
-        this.props.history.push('/demos', this.state);
-        console.log('Success:', response)
-      });
-    };
+    _onButtonClick = () => {
+       this.setState({
+         SignUpShow: true,
+       });
+     }
+
+
+
+      // this.setState({
+      //   SignUpShow: !this.state.SignUpShow
+      // });
+
+
+    // handleSignUpSuccess = (data) => {
+    //   const cookies = new Cookies();
+    //   fetch(`http://localhost:3000/users`,
+    //   { method: "POST",
+    //   body: JSON.stringify(data)
+    //   })
+    //   .then(response => response.json())
+    //   .catch(error => console.error('Error:', error))
+    //   .then((response) => {
+    //     const cookies = new Cookies();
+    //     cookies.set("userCookie", data.id, { path: '/'})
+    //     this.setState({user: data})
+    //     this.props.history.push('/demos', this.state);
+    //     console.log('Success:', response)
+    //   });
+    // };
 
 
     // this.props.user.id
-    handleLogout = (data) => {
+    handleLogoutPost = (data) => {
       const cookies = new Cookies();
       fetch(`http://localhost:3000/sessions/${cookies.get('userCookie')}`,
       { method: 'DELETE' }).then(response => response.json())
@@ -58,6 +72,7 @@ class TopNav extends React.Component {
       .then((response) => {
         console.log('Success:', response)
         cookies.remove('userCookie')
+        this.handleLogoutClick();
       });
     };
 
@@ -66,12 +81,26 @@ class TopNav extends React.Component {
           isToggleOn: false,
           SignUpShow: false
         })
-
     }
 
 
 render() {
   this.state ? console.log("HERE IS THE STATE", this.props) : console.log("MAJOR ISSUE")
+
+  const cookies = new Cookies();
+  let displayLogin
+    if (cookies.get('userCookie')) {
+      displayLogin = <p>Logged in as {cookies.get('userCookie')}</p>
+    } else {
+      displayLogin = <Link to="/login">Login</Link>
+    };
+
+  let displaySignUp
+    if (cookies.get('userCookie')) {
+      displaySignUp = ""
+    } else {
+      displaySignUp = <Button onClick={this.handleSignUpClick}>SignUp</Button>
+    };
 
   return(
 
@@ -91,9 +120,10 @@ render() {
         </NavItem>
       </Nav>
 
+
         <Nav pullRight>
           <NavItem className="navbar-right" eventKey={2}>
-            <Button onClick={this.handleSignUpClick}>SignUp</Button>
+              {displaySignUp}
           </NavItem>
 
           <NavItem className="navbar-right" eventKey={2}>
@@ -101,14 +131,16 @@ render() {
           </NavItem>
 
           <NavItem className="navbar-right" eventKey={1}>
-            <Link to="/login">Login</Link>
+            <Button>{displayLogin}</Button>
           </NavItem>
 
-          <LogoutModal show={this.state.isToggleOn} onClose={this.handleLogoutClick}
-        onSave={this.handleLogout}/>
+          <LogoutModal show={this.state.isToggleOn} toggleLogOutModal={this.handleLogoutClick}
+        onSave={this.handleLogoutPost}/>
 
-        <SignUpModal show={this.state.SignUpShow} onSave={this.handleSignUpSuccess}
+        <SignUpModal show={this.state.SignUpShow} toggleModal={this.handleSignUpClick}
         />
+
+
 
         </Nav>
 
@@ -118,3 +150,8 @@ render() {
 }
 
 export default TopNav
+
+// <SignUpModal show={this.state.SignUpShow} onSave={this.handleSignUpSuccess}
+// />
+// {this.state.SignUpShow ?  <SignUpForm /> :null }
+// <Button onClick={this._onButtonClick}>SignUp</Button>

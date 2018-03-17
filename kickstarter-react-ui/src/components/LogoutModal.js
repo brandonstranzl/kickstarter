@@ -22,14 +22,19 @@ class LogoutModal extends React.Component {
           <div className="static-modal">
             <Modal.Dialog>
               <Modal.Header>
-                <Modal.Title>Modal title</Modal.Title>
+                <Modal.Title>
+                <img  width="30" src={process.env.PUBLIC_URL + "/images/flux_capacitor.svg"}></img>
+                </Modal.Title>
+                <Button className="close" onClick={this.props.toggleLogOutModal}>&times;</Button>
               </Modal.Header>
 
-              <Modal.Body>One fine body...</Modal.Body>
+              <Modal.Body>
+              <h5>Thank you for visting Demo88!</h5>
+              <h5>Where Tech Companies Begin!</h5>
+              </Modal.Body>
 
               <Modal.Footer>
-                <Button onClick={this.props.onClose}>Close</Button>
-                <Button onClick={this.props.onSave} bsStyle="primary">Save changes</Button>
+                <Button onClick={this.props.onSave} bsStyle="primary">Click here to confirm logout</Button>
               </Modal.Footer>
             </Modal.Dialog>
           </div>

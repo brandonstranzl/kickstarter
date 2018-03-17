@@ -1,8 +1,9 @@
 import React from 'react';
-import {Modal, Button} from 'react-bootstrap'
+import {Modal, Button, FormGroup, ControlLabel, FormControl, Clearfix} from 'react-bootstrap'
 import Cookies from 'universal-cookie'
+import SignUpForm from './SignUpForm'
 
-className SignUpModal extends React.Component {
+class SignUpModal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -24,22 +25,15 @@ className SignUpModal extends React.Component {
 
       <Modal.Header>
         <Modal.Title>Sign Up Modal</Modal.Title>
+        <Button className="close" onClick={this.props.toggleModal}>&times;</Button>
       </Modal.Header>
 
         <Modal.Body>
 
+        <SignUpForm toggleModal={this.props.toggleModal}/>
 
-            <form>
-           <FormGroup>
-             <ControlLabel>Static text</ControlLabel>
-             <FormControl.Static>email@example.com</FormControl.Static>
-           </FormGroup>
-
-           <Button type="submit">Submit</Button>
-           </form>
-
-           <Modal.Body>
-
+           </Modal.Body>
+  </Modal.Dialog>
 </div>
 
 
@@ -48,3 +42,5 @@ className SignUpModal extends React.Component {
         }
       }
     }
+
+    export default SignUpModal

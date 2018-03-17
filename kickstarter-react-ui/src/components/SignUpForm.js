@@ -1,12 +1,13 @@
 import React, { Component } from 'react'
 // import { Navbar, Jumbotron, Button } from 'react-bootstrap';
-import {Link} from 'react-router-dom'
+import {Link, Redirect} from 'react-router-dom'
 import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
-import Cookies from 'universal-cookie'
-
+import Cookies from 'universal-cookie';
 
 import $ from 'jquery';
 
+// import Resource from '../utilities/resource'
+// const UserStore = Resource('users')
 
 
 class SignUpForm extends Component {
@@ -14,37 +15,80 @@ class SignUpForm extends Component {
     super(props);
     this.state = {
       email: '',
-      password: ''
+      password: '',
+      signOnErrorShow: false,
+      errors: []
     };
-    this.emailHandleChange = this.emailHandleChange.bind(this);
-    this.passwordHandleChange = this.passwordHandleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  emailHandleChange(event) {
+
+
+
+  emailHandleChange = (event) => {
     this.setState({
       email: event.target.value
     });
   }
 
-  passwordHandleChange(event) {
+  passwordHandleChange = (event) => {
     this.setState({password: event.target.value});
   }
 
-  handleSubmit(event) {
-    alert('Your info submitted');
+  // handleSignUpSuccess = (event) => {
+  //   alert('Your info submitted');
+  //   event.preventDefault();
+  //   $.post('http://localhost:3000/users', {data},
+  //     function(data) {
+  //     console.log(data)
+  //     this.setState({email: data.email},{password: data.password});
+  //     const cookies = new Cookies();
+  //     cookies.set("userCookie", data.id, { path: '/'})
+  //     this.setState({user: data})
+  //     this.props.history.push('/demos', this.state);
+  //     console.log('Success:', data)
+  //   });
+  // }
+  handleSignUpSuccess = (event) => {
     event.preventDefault();
-    $.post('http://localhost:3000/users', JSON.stringify([{email: this.state.email, password: this.state.password}]),
-      function(data) {
-      console.log(data)
-      this.setState({email: data.email},{password: data.password});
+    console.log(this.state)
+    fetch(`http://localhost:3000/users`,
+    { method: "POST",
+      body: JSON.stringify({email: this.state.email, password: this.state.password}),
+      headers: {"content-type": "application/json"}
+    })
+    .then(response => response.json())
+    .catch(error => console.error('Error:', error))
+    .then((response) => {
+      if (response.ok) {
+        this.setState({ user: response.user })
+        const cookies = new Cookies();
+        cookies.set("userCookie", response.user.email, { path: '/'})
+        this.props.toggleModal()
+      } else {
+        this.setState({errors: response.error_msg})
+      }
+      // if (response.status = 403) { alert('something is wrong please try again') }
+
+      // this.props.history.push('/demos', this.state);
+
+      // window.location = '/demos'
+
     });
-  }
+  };
+
+  //   UserStore.create() // DemoStore does the API fetching!
+  //   .then((result) => this.setState({user: data, errors: null}))
+  //   .catch((errors) => this.setState({errors: errors}))
+  // }
 
   render() {
      return (
        <div>
-       <Form onSubmit={this.handleSubmit}>
+       {this.state.errors.map((errorText) => {
+         return <h3><em>{errorText}</em></h3>
+       })}
+
+       <Form onSubmit={this.handleSignUpSuccess}>
          <FormGroup>
            <Label for="exampleEmail">Please Enter Your Email:</Label>
            <Input type="email" name="email" id="exampleEmail" placeholder="yourname@youremail.com"
@@ -60,7 +104,7 @@ class SignUpForm extends Component {
           Pease see <Link to="/https://en.wikipedia.org/wiki/Public-key_cryptography">Wikipedia </Link>for more information</p>
           </FormGroup>
          <FormGroup>
-         <Button color="warning" type="Submit" onClick={this.onSave}>Submit</Button>
+         <Button color="warning" type="Submit">Submit</Button>
          </FormGroup>
         </Form>
         </div>
@@ -70,3 +114,7 @@ class SignUpForm extends Component {
 
 
 export default SignUpForm;
+
+// {this.state.errors.map((errorText) => {
+//   return <p>{errorText}</p>
+// })}

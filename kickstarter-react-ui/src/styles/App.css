@@ -2,6 +2,10 @@
   vertical-align: bottom;
 }
 
+.contributeButtonOnDetailsPage {
+  margin-top: 5%;
+}
+
 .clickToDetailsButton {
 color: orange;
 height: 36px !important;

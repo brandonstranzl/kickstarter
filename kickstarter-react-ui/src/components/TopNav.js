@@ -71,8 +71,9 @@ class TopNav extends React.Component {
       .then(response => response.json())
       .catch(error => console.error('Error:', error))
       .then((response) => {
-        console.log('Success:', response)
+        const cookies = new Cookies();
         cookies.remove('userCookie')
+        console.log('Success:', response)
         this.handleLogoutClick();
       });
     };

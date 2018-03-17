@@ -65,7 +65,7 @@ class Demos extends React.Component {
   //   .then((result) => console.log(result))//this.setState({demos: result.data, errors: null}))
   //   .catch((errors) => this.setState({errors: errors}))
   // }
-  render() { 
+  render() {
     return (
       <div>
       <Navbar>
@@ -75,12 +75,6 @@ class Demos extends React.Component {
     </Navbar.Brand>
   </Navbar.Header>
   <Nav>
-    {/*<NavItem eventKey={1} href="#">
-      Link
-    </NavItem>
-    <NavItem eventKey={2} href="#">
-      Link
-    </NavItem>*/}
     <NavDropdown eventKey={3} title="Sort by Category" id="basic-nav-dropdown">
       <MenuItem eventKey={3.1}>Web Apps</MenuItem>
       <MenuItem divider />
@@ -121,8 +115,10 @@ class Demos extends React.Component {
                         <p>{demo.votes}</p>
                         <p>{demo.videos}</p>
                         <p>
-                          <Button bsStyle="primary" href="/login">Contribute</Button>&nbsp;
-                          <Button bsStyle="default" href={"https://www.youtube.com/watch?v="+demo.videos}>View Video</Button>
+                          <Button bsStyle="primary" href="/demo/:id">See More Details</Button>&nbsp;
+                          <Button bsStyle="warning" href="/order">
+                          <img src=""
+                          Back It!</Button>
                         </p>
                       </Thumbnail>
                     </Col>

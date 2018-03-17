@@ -3,8 +3,6 @@ import React, { Component } from 'react'
 import {Link, Redirect} from 'react-router-dom'
 import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 import Cookies from 'universal-cookie';
-import ErrorMsg from './ErrorMsg'
-
 
 import $ from 'jquery';
 

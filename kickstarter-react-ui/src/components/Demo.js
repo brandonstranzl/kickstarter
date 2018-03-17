@@ -4,6 +4,9 @@ import Cookies from 'universal-cookie'
 import {Button, PageHeader, Col, Row} from 'react-bootstrap'
 import {Route, Switch, Link} from 'react-router-dom'
 
+import Resource from '../models/resource'
+const DemoStore = Resource('demos')
+
 class Demo extends React.Component {
   constructor(props) {
     super(props)
@@ -12,31 +15,34 @@ class Demo extends React.Component {
       demo: {},
       showDetails: true,
       redirect: '',
+      errors: []
       }
     }
 
 
-
   componentDidMount() {
-  if (!this.state.demoId) return
+  // if (!this.state.demoId) return
   fetch(`http://localhost:3000/demos/${this.props.match.params.id}`)
-  .then(r => r.json())
-  .then(data => this.setState({ demo: data }))
-  // .then(demos => this.setState({ demos: data }))
-    .catch(e => console.log('parsing failed'))
-  }
+  .then(response => response.json())
+  .catch(error => console.error('Error:', error))
+  .then((response) => console.log(response.json())
+  .then((response) => {
+    if (response.ok) {
+      this.setState({ demo: response.data })
+      } else {
+      this.setState({ errors: response.error_msg })
+      }
+    })
+  };
+
 
   // _hide = () => {
   // this.setState({show: false, redirect: '/demos'})
   // }
 
   render() {
+    console.log("this is the state", this.state)
 
-  if (this.state.demo) {
-    console.log('HERE PUTS THE DEMO:');
-
-    console.log(this.state.demo);
-  }
 
     return (
 

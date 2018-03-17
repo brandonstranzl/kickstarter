@@ -37,16 +37,16 @@ class Demos extends React.Component {
     }
 
     componentDidMount() {
-      // fetch('http://localhost:3000/demos')
-      // .then(r => r.clone().json())
-      // .then(data => this.setState({ demos: data }))
-      // // .then(demos => this.setState({ demos: data }))
+      fetch('http://localhost:3000/demos')
+      .then(r => r.clone().json())
+      .then(data => this.setState({ demos: data }))
+      // .then(demos => this.setState({ demos: data }))
       // .catch(e => console.log('parsing failed'))
 
       // }
-      DemoStore.findAll() // DemoStore does the API fetching!
-      .then((result) => this.setState({demos: result, errors: null}))
-      .catch((errors) => this.setState({errors: errors}))
+      // DemoStore.findAll() // DemoStore does the API fetching!
+      // .then((result) => this.setState({demos: result, errors: null}))
+      // .catch((errors) => this.setState({errors: errors}))
     }
 
     toggleModal = () => {

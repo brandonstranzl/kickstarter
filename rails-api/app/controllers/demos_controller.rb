@@ -7,7 +7,7 @@
 # index view showing a list of similar items you already created)
 
 class DemosController < ApplicationController
-  before_action :set_demo, only: [:show, :update, :destroy]
+  before_action :set_demo, only: [:update, :destroy]
   # before_filter :authorize
 
   # GET /demos
@@ -18,7 +18,12 @@ class DemosController < ApplicationController
 
   # GET /demos/:id
   def show
-    render json: {data: @demo}
+    if Demo.exists?(params[:id])
+      @demo = Demo.find(params[:id])
+      render :json => {ok: true, data: @demo.to_json(include: [:event, :category, :user])}
+    else
+      render :json => { ok: false, error_msg: 'user doesnt exist' }
+    end
   end
 
   # POST /demos

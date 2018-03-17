@@ -20,9 +20,9 @@ class DemosController < ApplicationController
   def show
     if Demo.exists?(params[:id])
       @demo = Demo.find(params[:id])
-      render :json => {ok: true, data: @demo.to_json(include: [:event, :category, :user])}
+      render json: {ok: true, data: @demo.as_json(include: [:event, :category, :user])}
     else
-      render :json => { ok: false, error_msg: 'user doesnt exist' }
+      render json: { ok: false, error_msg: 'user doesnt exist' }
     end
   end
 

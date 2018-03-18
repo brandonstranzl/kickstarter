@@ -2,6 +2,14 @@
   vertical-align: bottom;
 }
 
+.descriptionrow {
+  height: 75px;
+}
+
+.thumbnailtable {
+  margin-bottom: 10px;
+}
+
 .contributeButtonOnDetailsPage {
   margin-top: 5%;
 }

@@ -9,7 +9,7 @@ import FilterNavbar from './FilterNavbar'
 // import Modal from './Modal';
 
 // import $ from 'jquery'
-import {Grid, Button, Navbar, Nav, NavItem, NavDropdown, Thumbnail, Row, Col, PageHeader, Modal, Table} from 'react-bootstrap'
+import {ListGroupItem, ListGroup, Grid, Button, Navbar, Nav, NavItem, NavDropdown, Thumbnail, Row, Col, PageHeader, Modal, Table} from 'react-bootstrap'
 import {Route, Switch, Link} from 'react-router-dom'
 
   // Client-side model
@@ -115,16 +115,28 @@ Hardware Demos Off
             <Col xs={6} md={4}>
               <Thumbnail>
                 <iframe width="240" height="200" src={"https://www.youtube.com/embed/"+demo.videos} frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-                  <h3>{demo.name} <small> asking for ${demo.fundingreq}</small> </h3>
-                  <p>
-                    {demo.name} asking for ${demo.fundingreq}
-                    </p>
-                    <p>
-                      Initially pitched their idea at {demo.event.name}
-                      on {demo.live}
-                      Here is some quick info about
-                      {demo.name}: {demo.description}. Their main focus is {demo.category.name}.
-                    </p>
+                <Table className="thumbnailtable">
+                <thead><tr>
+                <th>{demo.name}</th>
+                </tr></thead>
+                <tbody>
+                <tr><td>
+                {demo.category.name}
+                </td></tr>
+                <tr className="descriptionrow"><td>
+                {demo.description}
+                </td></tr>
+                <tr><td>
+                {demo.event.name}
+                </td></tr>
+                <tr><td>
+                {demo.live}
+                </td></tr>
+                <tr><td>
+                {demo.fundingreq}
+                </td></tr>
+                </tbody>
+                </Table>
 
                   <p className="clearfix">
 

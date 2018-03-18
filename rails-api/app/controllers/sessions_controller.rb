@@ -14,12 +14,13 @@ class SessionsController < ApplicationController
         # Save the user id inside the browser cookie. This is how we keep the user
         # logged in when they navigate around our website.
         session[:user_id] = @user.id
-        render json: @user.to_json #{user: @user, redirect_to: '/demos'}
+        render json: { ok: true, data: @user.as_json }#{user: @user, redirect_to: '/demos'}
       else
+        puts "********DIDNT WORK**********"
       # If user's login doesn't work, send them back to the login form.
         # notice: "incorrect username or password",
         # render "new"
-        render :json => {:status => 401, :error => "something wrong"}
+        render json: { ok: false, error_msg: "Email and/or password do not match" }
       end
   end
 

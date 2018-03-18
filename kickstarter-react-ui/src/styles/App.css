@@ -9,6 +9,10 @@
   allowFullScreen:true;
 }
 
+.loginErrorMsg {
+  color: red;
+}
+
 .logOutImage {
   vertical-align: bottom;
 }

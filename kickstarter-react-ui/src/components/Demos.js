@@ -53,12 +53,6 @@ class Demos extends React.Component {
       });
     };
 
-    filter1 = (event) => {
-      event.preventDefault();
-      turnAllFiltersOff();
-      turnHardwareFilterOn();
-    };
-
     turnAllFiltersOff = () => {
         this.setState({ hardwareFilter: false })
     };
@@ -66,6 +60,13 @@ class Demos extends React.Component {
     turnHardwareFilterOn = () => {
         this.setState({ hardwareFilter: true })
     };
+
+    filterbyHardware = (event) => {
+      event.preventDefault();
+      this.turnAllFiltersOff()
+      this.turnHardwareFilterOn()
+    };
+
 
   render() {
 
@@ -90,7 +91,7 @@ class Demos extends React.Component {
     <FilterNavbar />
 
     <ButtonToolbar />
-      <Button bsStyle="primary" onClick={this.filter1}>
+      <Button bsStyle="primary" onClick={this.filterbyHardware}>
         Hardware Demos
       </Button>
     <ButtonToolbar />

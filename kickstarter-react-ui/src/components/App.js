@@ -6,7 +6,7 @@ import Cookies from 'universal-cookie'
 import TopNav from './TopNav'
 import LogoutModal from './LogoutModal'
 import Dashboard from './Dashboard'
-import LoginForm from './LoginForm'
+import LoginModal from './LoginModal'
 import SignUpForm from './SignUpForm'
 import Demos from './Demos'
 import Demo from './Demo'
@@ -19,7 +19,6 @@ const App = (props) => (
     <Grid>
       <Switch>
         <Route path="/" exact component={Dashboard}/>
-        <Route path="/login" component={LoginForm}/>
         <Route path="/SignUpForm" component={SignUpForm}/>
         <Route exact path="/demos" component={Demos} />
         <Route path="/demos/:id" component={Demo} />

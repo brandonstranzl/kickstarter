@@ -5,6 +5,7 @@ import LogoutModal from './LogoutModal'
 import SignUpModal from './SignUpModal'
 import SignUpForm from './SignUpForm'
 import Cookies from 'universal-cookie';
+import LoginModal from './LoginModal'
 
 class TopNav extends React.Component {
   constructor(props) {
@@ -12,6 +13,7 @@ class TopNav extends React.Component {
     this.state = {
     isToggleOn: false,
     SignUpShow: false,
+    LoginShow: false
     }
     if (props.location && props.location.state) {
         this.state.user = this.props.location.state.user
@@ -30,11 +32,17 @@ class TopNav extends React.Component {
       });
     }
 
-    _onButtonClick = () => {
-       this.setState({
-         SignUpShow: true,
-       });
-     }
+    // _onButtonClick = () => {
+    //    this.setState({
+    //      SignUpShow: true,
+    //    });
+    //  }
+
+   handleLoginClick = () => {
+     this.setState({
+       LoginShow: !this.state.LoginShow
+     });
+   }
 
     // this.props.user.id
     handleLogoutPost = (data) => {
@@ -63,11 +71,12 @@ render() {
   this.state ? console.log("HERE IS THE STATE", this.props) : console.log("MAJOR ISSUE")
 
   const cookies = new Cookies();
+
   let displayLogin
     if (cookies.get('userCookie')) {
-      displayLogin = <p>Logged in as {cookies.get('userCookie')}</p>
+      displayLogin = <Button>Logged in as {cookies.get('userCookie')}</Button>
     } else {
-      displayLogin = <Link to="/login">Login</Link>
+      displayLogin = <Button onClick={this.handleLoginClick}>Login</Button>
     };
 
   let displaySignUp
@@ -76,6 +85,19 @@ render() {
     } else {
       displaySignUp = <Button onClick={this.handleSignUpClick}>SignUp</Button>
     };
+
+    let displayLogOut
+      if (cookies.get('userCookie')) {
+        displayLogOut =
+        <NavItem className="navbar-right" eventKey={2}>
+        <Button onClick={this.handleLogoutClick}>Logout</Button>
+        </NavItem>
+      } else {
+        displayLogOut = ""
+      };
+
+
+
 
   return(
 
@@ -101,12 +123,10 @@ render() {
               {displaySignUp}
           </NavItem>
 
-          <NavItem className="navbar-right" eventKey={2}>
-            <Button onClick={this.handleLogoutClick}>Logout</Button>
-          </NavItem>
+              {displayLogOut}
 
           <NavItem className="navbar-right" eventKey={1}>
-            <Button>{displayLogin}</Button>
+              {displayLogin}
           </NavItem>
 
           <LogoutModal show={this.state.isToggleOn} toggleLogOutModal={this.handleLogoutClick}
@@ -115,6 +135,8 @@ render() {
         <SignUpModal show={this.state.SignUpShow} toggleModal={this.handleSignUpClick}
         />
 
+        <LoginModal show={this.state.LoginShow} toggleModal={this.handleLoginClick}
+        />
 
 
         </Nav>

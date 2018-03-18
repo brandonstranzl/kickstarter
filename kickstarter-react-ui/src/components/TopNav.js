@@ -6,8 +6,6 @@ import SignUpModal from './SignUpModal'
 import SignUpForm from './SignUpForm'
 import Cookies from 'universal-cookie';
 
-
-
 class TopNav extends React.Component {
   constructor(props) {
     super(props);
@@ -37,31 +35,6 @@ class TopNav extends React.Component {
          SignUpShow: true,
        });
      }
-
-
-
-      // this.setState({
-      //   SignUpShow: !this.state.SignUpShow
-      // });
-
-
-    // handleSignUpSuccess = (data) => {
-    //   const cookies = new Cookies();
-    //   fetch(`http://localhost:3000/users`,
-    //   { method: "POST",
-    //   body: JSON.stringify(data)
-    //   })
-    //   .then(response => response.json())
-    //   .catch(error => console.error('Error:', error))
-    //   .then((response) => {
-    //     const cookies = new Cookies();
-    //     cookies.set("userCookie", data.id, { path: '/'})
-    //     this.setState({user: data})
-    //     this.props.history.push('/demos', this.state);
-    //     console.log('Success:', response)
-    //   });
-    // };
-
 
     // this.props.user.id
     handleLogoutPost = (data) => {

@@ -3,7 +3,6 @@ import {Redirect} from 'react-router-dom'
 import Cookies from 'universal-cookie'
 import {Button, PageHeader, Col, Row, Grid, ListGroup, ListGroupItem, ProgressBar, wellStyles} from 'react-bootstrap'
 import {Route, Switch, Link} from 'react-router-dom'
-import Dialog from './Dialog'
 
 import Resource from '../utilities/resource'
 const DemoStore = Resource('demos')
@@ -91,7 +90,7 @@ class Demo extends React.Component {
                 </ListGroupItem>
               <ListGroupItem>
               <div class="fb-share-button" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button" data-size="large" data-mobile-iframe="true"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a></div>
-              <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-size="large" data-show-count="false">Tweet</a> 
+              <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-size="large" data-show-count="false">Tweet</a>
               </ListGroupItem>
               </ListGroup>
 

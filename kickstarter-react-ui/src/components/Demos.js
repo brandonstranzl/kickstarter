@@ -1,21 +1,11 @@
 import React, { Component } from 'react'
 import Demo from './Demo'
 import TopNav from './TopNav'
-import {DropdownButton, MenuItem, ButtonToolbar, Tab, Tabs} from 'react-bootstrap'
-import Cookies from 'universal-cookie'
 import FilterNavbar from './FilterNavbar'
-
-// import Dialog from './Dialog'
-// import Modal from './Modal';
-
-// import $ from 'jquery'
+import Cookies from 'universal-cookie'
+import {DropdownButton, MenuItem, ButtonToolbar, Tab, Tabs} from 'react-bootstrap'
 import {ListGroupItem, ListGroup, Grid, Button, Navbar, Nav, NavItem, NavDropdown, Thumbnail, Row, Col, PageHeader, Modal, Table} from 'react-bootstrap'
 import {Route, Switch, Link} from 'react-router-dom'
-
-  // Client-side model
-import Resource from '../utilities/resource'
-const DemoStore = Resource('demos')
-
 
 class Demos extends React.Component {
   constructor(props) {
@@ -23,18 +13,21 @@ class Demos extends React.Component {
 
     this.state = {
       demos: [],
+      webAppFilter: false,
+      iOSAppFiler: false,
       hardwareFilter: false,
       showDemoId: false,
       errors: null,
       isOpen: false,
 
       }
-    if (props.location.state) {
-      this.state.user = this.props.location.state.user
+    // if (props.location.state) {
+    //   this.state.user = this.props.location.state.user
+    // this.turnAllFiltersOff = this.turnAllFiltersOff.bind(this);
+    // this.filter1 = this.filter1.bind(this);
+    // this.turnHardwareFilterOn = this.turnHardwareFilterOn.bind(this);
     }
-    this.hardwareFilterOn = this.hardwareFilterOn.bind(this);
-    this.hardwareFilterOff = this.hardwareFilterOff.bind(this);
-    }
+
     componentDidMount() {
       fetch('http://localhost:3000/demos')
       .then(response => response.json())
@@ -47,64 +40,60 @@ class Demos extends React.Component {
       // .catch((errors) => this.setState({errors: errors}))
     }
 
+// event functions:
     toggleModal = () => {
       this.setState({
         isOpen: !this.state.isOpen
       });
-    }
+    };
 
     toggleShowDemoId = () => {
       this.setState({
         false: !this.state.false
       });
-    }
+    };
 
-    hardwareFilterOn = (event) => {
+    filter1 = (event) => {
       event.preventDefault();
-      // if (hardwareFilter) {
-      //   this.setState({ hardwareFilter: false })
-      // } else {
-        this.setState({ hardwareFilter: true })
-      }
-    // }
+      turnAllFiltersOff();
+      turnHardwareFilterOn();
+    };
 
-    hardwareFilterOff = (event) => {
-      event.preventDefault();
-      // if (hardwareFilter) {
-      //   this.setState({ hardwareFilter: false })
-      // } else {
+    turnAllFiltersOff = () => {
         this.setState({ hardwareFilter: false })
-      }
+    };
 
-
-
+    turnHardwareFilterOn = () => {
+        this.setState({ hardwareFilter: true })
+    };
 
   render() {
 
-    let demosArr = this.state.demos
     let categoriesToShow;
     if (this.state.hardwareFilter) {
-      categoriesToShow = demosArr.filter(demo => demo.category.name == "Hardware" )
+      categoriesToShow = this.state.demos.filter(demo => demo.category.name == "Hardware" )
       } else {
-      categoriesToShow = demosArr
+      categoriesToShow = this.state.demos
       }
     //
     console.log(this.state)
 
+// Facebook:
+    // <div class="fb-video" data-href="https://www.facebook.com/facebook/videos/10153231379946729/" data-width="500" data-show-text="false">
+    // <div class="fb-xfbml-parse-ignore">
+    // </div>
+    // </div>
 
     return (
-<div>
+  <div>
 
-<FilterNavbar />
+    <FilterNavbar />
 
-<ButtonToolbar />
-<Button bsStyle="primary" onClick={this.hardwareFilterOn}>
-Hardware Demos
-</Button>
-<Button bsStyle="primary" onClick={this.hardwareFilterOff}>
-Hardware Demos Off
-</Button>
-<ButtonToolbar />
+    <ButtonToolbar />
+      <Button bsStyle="primary" onClick={this.filter1}>
+        Hardware Demos
+      </Button>
+    <ButtonToolbar />
 
       <div>
         <Grid>

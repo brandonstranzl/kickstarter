@@ -1,3 +1,14 @@
+.facebookiframe {
+  width:500;
+  height:380;
+  border:none;
+  overflow:hidden;
+  scrolling:no;
+  frameborder:0;
+  allowTransparency:true;
+  allowFullScreen:true;
+}
+
 .logOutImage {
   vertical-align: bottom;
 }

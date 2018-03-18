@@ -13,19 +13,18 @@ class Demos extends React.Component {
 
     this.state = {
       demos: [],
-      webAppFilter: false,
-      iOSAppFiler: false,
-      hardwareFilter: false,
       showDemoId: false,
       errors: null,
       isOpen: false,
-
+      trendingFilter: false,
+      webAppFilter: false,
+      iOSAppFilter: false,
+      UXUIAppFilter: false,
+      ioTandHardwareAppFilter: false,
+      liveEventsFilter: false
       }
     // if (props.location.state) {
     //   this.state.user = this.props.location.state.user
-    // this.turnAllFiltersOff = this.turnAllFiltersOff.bind(this);
-    // this.filter1 = this.filter1.bind(this);
-    // this.turnHardwareFilterOn = this.turnHardwareFilterOn.bind(this);
     }
 
     componentDidMount() {
@@ -33,14 +32,9 @@ class Demos extends React.Component {
       .then(response => response.json())
       .then((response) => this.setState({ demos: response.data }))
       .catch(e => console.log('parsing failed'))
-      // .then(this.setState({hardwareFilter: false}))
-      // *****the below function can be uncommented and used in lieu of fetch:
-      // DemoStore.findAll() // DemoStore does the API fetching!
-      // .then((result) => this.setState({demos: result, errors: null}))
-      // .catch((errors) => this.setState({errors: errors}))
     }
 
-// event functions:
+// state change functions:
     toggleModal = () => {
       this.setState({
         isOpen: !this.state.isOpen
@@ -54,28 +48,53 @@ class Demos extends React.Component {
     };
 
     turnAllFiltersOff = () => {
-        this.setState({ hardwareFilter: false })
+      this.setState({
+        trendingFilter: false,
+        webAppFilter: false,
+        iOSAppFilter: false,
+        UXUIAppFilter: false,
+        ioTandHardwareAppFilter: false,
+        liveEventsFilter: false
+      })
     };
 
-    turnHardwareFilterOn = () => {
-        this.setState({ hardwareFilter: true })
+    turnTrendingFilterOn = () => {
+      this.setState({ trendingFilter: true })
     };
-
-    filterbyHardware = (event) => {
-      event.preventDefault();
-      this.turnAllFiltersOff()
-      this.turnHardwareFilterOn()
+    turnWebAppFilterOn = () => {
+      this.setState({ webAppFilter: true })
     };
-
+    turniOSAppFilterOn = () => {
+      this.setState({ iOSAppFilter: true })
+    };
+    turnUXUIAppFilterOn = () => {
+      this.setState({ UXUIAppFilter: true })
+    };
+    turnioTandHardwareAppFilterOn = () => {
+      this.setState({ ioTandHardwareAppFilter: true })
+    };
+    turnLiveEventsFilterOn = () => {
+      this.setState({ liveEventsFilter: true })
+    };
 
   render() {
 
     let categoriesToShow;
-    if (this.state.hardwareFilter) {
-      categoriesToShow = this.state.demos.filter(demo => demo.category.name == "Hardware" )
-      } else {
-      categoriesToShow = this.state.demos
-      }
+    if (this.state.trendingFilter) {
+      categoriesToShow = this.state.demos.filter(demo => demo.category.id == 94 )
+    } else if (this.state.webAppFilter) {
+      categoriesToShow = this.state.demos.filter(demo => demo.category.id == 93 )
+    } else if (this.state.iOSAppFilter) {
+      categoriesToShow = this.state.demos.filter(demo => demo.category.id == 200 )
+    } else if (this.state.UXUIAppFilter) {
+      categoriesToShow = this.state.demos.filter(demo => demo.category.id == 201 )
+    } else if (this.state.ioTandHardwareAppFilter) {
+      categoriesToShow = this.state.demos.filter(demo => demo.category.id == 94 )
+    } else if (this.state.liveEventsFilter) {
+      categoriesToShow = this.state.demos.filter(demo => demo.event.id == 31 )
+    } else {
+    categoriesToShow = this.state.demos
+    }
     //
     console.log(this.state)
 
@@ -88,13 +107,15 @@ class Demos extends React.Component {
     return (
   <div>
 
-    <FilterNavbar />
-
-    <ButtonToolbar />
-      <Button bsStyle="primary" onClick={this.filterbyHardware}>
-        Hardware Demos
-      </Button>
-    <ButtonToolbar />
+    <FilterNavbar
+      filterbyNone={this.turnAllFiltersOff}
+      filterbyTrending={this.turnTrendingFilterOn}
+      filterbyWebApps={this.turnWebAppFilterOn}
+      filterbyiOSApps={this.turniOSAppFilterOn}
+      filterbyUXUIApps={this.turnUXUIAppFilterOn}
+      filterbyiOTApps={this.turnioTandHardwareAppFilterOn}
+      filterbyLiveEvents={this.turnLiveEventsFilterOn}
+      />
 
       <div>
         <Grid>

@@ -43,6 +43,11 @@ border-bottom-color: rgb(227, 141, 19);
 border-left-color: rgb(227, 141, 19);
 }
 
+.filterButton {
+  width: auto;
+  margin-left: 2%;
+}
+
 .contributeButton {
   color: orange;
   box-sizing: border-box;
@@ -111,4 +116,5 @@ float:left;
 
 .container{
   max-width: 900px;
+  padding-left: 0px;
 }

@@ -1,37 +1,86 @@
 import React from 'react'
-import {Navbar, Nav, NavDropdown, MenuItem} from 'react-bootstrap'
+import {ButtonToolbar, Button, Navbar, Nav, NavDropdown, MenuItem} from 'react-bootstrap'
 
-const FilterNavbar = (props) => (
 
-<Navbar>
-  <Navbar.Header>
-    <Navbar.Brand>
-      <a href="/demos">Trending</a>
-    </Navbar.Brand>
-  </Navbar.Header>
-  <Nav>
-    <NavDropdown eventKey={3} title="Sort by Category" id="basic-nav-dropdown">
-      <MenuItem eventKey={3.1}>Web Apps</MenuItem>
-      <MenuItem divider />
-      <MenuItem eventKey={3.2}>iOS Apps</MenuItem>
-      <MenuItem divider />
-      <MenuItem eventKey={3.3}>UI/UX Apps</MenuItem>
-      <MenuItem divider />
-      <MenuItem eventKey={3.4}>Hardware</MenuItem>
-    </NavDropdown>
+// <img className="contributeButtonImage" src={process.env.PUBLIC_URL + "/images/lightninglike.svg"}></img>
+class FilterNavbar extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
 
-    <NavDropdown eventKey={3} title="Sort by Location" id="basic-nav-dropdown">
-      <MenuItem eventKey={3.1}>LHL Toronto</MenuItem>
-      <MenuItem divider />
-      <MenuItem eventKey={3.2}>LHL Montreal</MenuItem>
-      <MenuItem divider />
-      <MenuItem eventKey={3.3}>Brainstation</MenuItem>
-      <MenuItem divider />
-      <MenuItem eventKey={3.4}>Hacker You</MenuItem>
-    </NavDropdown>
-  </Nav>
-</Navbar>
+    };
+  }
+  showTrending = (event) => {
+    event.preventDefault();
+    this.props.filterbyNone()
+    this.props.filterbyTrending()
+  };
 
-)
+  showWebApps = (event) => {
+    event.preventDefault();
+    this.props.filterbyNone()
+    this.props.filterbyWebApps()
+  };
+
+  showiOSApps = (event) => {
+    event.preventDefault();
+    this.props.filterbyNone()
+    this.props.filterbyiOSApps()
+  };
+
+  showUXUIApps = (event) => {
+    event.preventDefault();
+    this.props.filterbyNone()
+    this.props.filterbyUXUIApps()
+  };
+
+  showiOTApps = (event) => {
+    event.preventDefault();
+    this.props.filterbyNone()
+    this.props.filterbyiOTApps()
+  };
+
+  showLiveEvents = (event) => {
+    event.preventDefault();
+    this.props.filterbyNone()
+    this.props.filterbyLiveEvents()
+  };
+
+  showAll = (event) => {
+    event.preventDefault();
+    this.props.filterbyNone()
+  };
+
+
+render() {
+     return (
+
+  <ButtonToolbar>
+      <Button bsStyle="default" className="filterButton" onClick={this.showTrending}>
+        Trending
+      </Button>
+      <Button className="filterButton" onClick={this.showWebApps}>
+        Web Apps
+      </Button>
+      <Button className="clearfix" className="filterButton" onClick={this.showiOSApps}>
+        iOS Apps
+      </Button>
+      <Button className="clearfix" className="filterButton" onClick={this.showUXUIApps}>
+        UX/UI Apps
+      </Button>
+      <Button className="clearfix" className="filterButton" onClick={this.showiOTApps}>
+        iOT Apps
+        </Button>
+      <Button className="clearfix" className="filterButton" onClick={this.showLiveEvents}>
+        Live Events
+      </Button>
+      <Button className="clearfix" className="filterButton" onClick={this.showAll}>
+        Show All
+      </Button>
+  </ButtonToolbar>
+
+            )
+          }
+        }
 
 export default FilterNavbar;

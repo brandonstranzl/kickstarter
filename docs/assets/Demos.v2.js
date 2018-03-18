@@ -9,6 +9,7 @@ import FilterNavbar from './FilterNavbar'
 // import Modal from './Modal';
 
 // import $ from 'jquery'
+// import { Card, CardImg, CardText, CardBody, CardTitle, CardSubtitle, Button} from 'reactstrap'
 import {Grid, Button, Navbar, Nav, NavItem, NavDropdown, Thumbnail, Row, Col, PageHeader, Modal, Table} from 'react-bootstrap'
 import {Route, Switch, Link} from 'react-router-dom'
 
@@ -23,8 +24,8 @@ class Demos extends React.Component {
 
     this.state = {
       demos: [],
-      hardwareFilter: false,
-      showDemoId: false,
+      filter: false,
+      // showDemoId: false,
       errors: null,
       isOpen: false,
 
@@ -32,15 +33,13 @@ class Demos extends React.Component {
     if (props.location.state) {
       this.state.user = this.props.location.state.user
     }
-    this.hardwareFilterOn = this.hardwareFilterOn.bind(this);
-    this.hardwareFilterOff = this.hardwareFilterOff.bind(this);
+
     }
     componentDidMount() {
       fetch('http://localhost:3000/demos')
       .then(response => response.json())
       .then((response) => this.setState({ demos: response.data }))
       .catch(e => console.log('parsing failed'))
-      // .then(this.setState({hardwareFilter: false}))
       // *****the below function can be uncommented and used in lieu of fetch:
       // DemoStore.findAll() // DemoStore does the API fetching!
       // .then((result) => this.setState({demos: result, errors: null}))
@@ -53,43 +52,32 @@ class Demos extends React.Component {
       });
     }
 
-    toggleShowDemoId = () => {
-      this.setState({
-        false: !this.state.false
-      });
-    }
-
-    hardwareFilterOn = (event) => {
-      event.preventDefault();
-      // if (hardwareFilter) {
-      //   this.setState({ hardwareFilter: false })
-      // } else {
-        this.setState({ hardwareFilter: true })
-      }
+    // toggleShowDemoId = () => {
+    //   this.setState({
+    //     false: !this.state.false
+    //   });
     // }
 
-    hardwareFilterOff = (event) => {
-      event.preventDefault();
-      // if (hardwareFilter) {
-      //   this.setState({ hardwareFilter: false })
-      // } else {
-        this.setState({ hardwareFilter: false })
-      }
+    addHardwareFilter = () => {
+      this.setState({filter: true})
+    }
 
-
-
+    removeHardwardFilter = () => {
+      this.setState({filter: false})
+    }
 
   render() {
 
-    let demosArr = this.state.demos
-    let categoriesToShow;
-    if (this.state.hardwareFilter) {
-      categoriesToShow = demosArr.filter(demo => demo.category.name == "Hardware" )
-      } else {
-      categoriesToShow = demosArr
-      }
+    // let demosarr = this.state.demos
+    // let categoriesToShow;
+    // if (this.state.filter) {
+    //   categoriesToShow = demosarr.filter(demo => this.state.demos.category.name == this.state.filter.type )
+    //   } else {
+    //   categoriesToShow = demosarr
+    //   }
     //
-    console.log(this.state)
+    // console.log(this.state)
+    // <Button onClick={this.addFilter({ type: 'category', name: 'Applications' })}>Applications Demos</Button>
 
 
     return (
@@ -97,19 +85,10 @@ class Demos extends React.Component {
 
 <FilterNavbar />
 
-<ButtonToolbar />
-<Button bsStyle="primary" onClick={this.hardwareFilterOn}>
-Hardware Demos
-</Button>
-<Button bsStyle="primary" onClick={this.hardwareFilterOff}>
-Hardware Demos Off
-</Button>
-<ButtonToolbar />
-
       <div>
         <Grid>
           <Row>
-            {categoriesToShow.map((demo, id) => {
+            {this.state.demos.map((demo, id) => {
               return (
 
             <Col xs={6} md={4}>

@@ -89,3 +89,8 @@ float:left;
 .container{
   max-width: 900px;
 }
+
+.demotile{
+  height: 530px;
+  width: 270px;
+}

@@ -1,5 +1,17 @@
 import React from 'react'
-import {ButtonToolbar, Button, Navbar, Nav, NavDropdown, MenuItem, Table} from 'react-bootstrap'
+import {
+  ButtonToolbar,
+  Button,
+  ButtonGroup,
+  Col,
+  Grid,
+  Navbar,
+  Nav,
+  NavDropdown,
+  MenuItem,
+  Row,
+  Table
+} from 'react-bootstrap'
 
 
 // <img className="contributeButtonImage" src={process.env.PUBLIC_URL + "/images/lightninglike.svg"}></img>
@@ -55,9 +67,13 @@ class FilterNavbar extends React.Component {
 render() {
      return (
 
+  <Grid>
+  <Row className="show-grid">
+  <Col xs={12} md={12}>
   <Table>
   <tr>
   <ButtonToolbar>
+     <ButtonGroup bsSize="large">
       <Button bsStyle="default" className="filterButton" onClick={this.showTrending}>
         Trending
       </Button>
@@ -79,9 +95,13 @@ render() {
       <Button className="clearfix" className="filterButton" onClick={this.showAll}>
         Show All
       </Button>
+    </ButtonGroup>
   </ButtonToolbar>
   </tr>
   </Table>
+  </Col>
+  </Row>
+  </Grid>
 
             )
           }

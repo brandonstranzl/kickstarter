@@ -1,3 +1,29 @@
+.zapButtonImagesR {
+
+}
+
+.heavyIt {
+  width: 25%;
+  font-weight: bolder;
+  color: white;
+  display: inline-block;
+  margin: 0% 0% 0% 0%;
+  float:left;
+
+  }
+
+.shareButtons {
+  width: 103px;
+  height: 40px;
+  margin-left: 0px;
+
+}
+
+.twitter-share-button {
+  margin: 0px 0px 0px 0px;
+  padding: 0px 0px 0px 0px;
+}
+
 .eventRadioBtns{
   margin-right: 10px;
 }
@@ -89,8 +115,8 @@ border-left-color: rgb(227, 141, 19);
 }
 
 .filterButton {
-  width: 120px;
-  margin-left: 2%;
+  width: 127px;
+  margin: 0, 0, 0, 2%;
 }
 
 .contributeButton {
@@ -103,7 +129,6 @@ border-left-color: rgb(227, 141, 19);
 }
 
 .detailsButtonImage {
-width: 25%;
 display: inline-block;
 margin: 0% 0% 0% 0%;
 float:left;

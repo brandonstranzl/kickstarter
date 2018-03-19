@@ -1,45 +1,152 @@
 import React from 'react'
+import Cookies from 'universal-cookie'
+// import {Input} from 'reactstrap';
+import {
+  Button,
+  ControlLabel,
+  InputGroup,
+  FieldGroup,
+  Form,
+  FormControl,
+  FormGroup,
+  Grid,
+  HelpBlock,
+  Radio,
+  Label,
+  ListGroupItem,
+  Well} from 'react-bootstrap'
+import moment from 'moment';
 
-const NewDemoForm = (props) => (
+class NewDemoForm extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      name: "",
+      description: "",
+      fundingreq: "",
+      live: "",
+      videos: "",
+      category_id: "",
+      event_id: "",
+      time: "",
+      msg: "",
+      status: "",
+      user: ""
+    }
+    this.handleChange = this.handleChange.bind(this)
+  }
 
-  <div>
-  <Form onSubmit={this.handleSubmit}>
-    <FormGroup>
-      <Label for="name">Demo Name</Label>
-      <Input />
-    </FormGroup>
-    <FormGroup>
-      <Label for="category">Category</Label>
-      <Input />
-    </FormGroup>
-    <FormGroup>
-      <Label for="description">Demo Description</Label>
-      <Input />
-    </FormGroup>
-    <FormGroup>
-      <Label for="fundingreq">Funding Goal</Label>
-      <Input />
-    </FormGroup>
-    <FormGroup>
-      <Label for="event">Name of Live Event</Label>
-      <Input />
-    </FormGroup>
-    <FormGroup>
-      <Label for="live">Date of Live Presentation</Label>
-      <Input />
-    </FormGroup>
-    <FormGroup>
-      <Label for="video">Video Id</Label>
-      <Input />
-    </FormGroup>
+  handleChange(e) {
+    let newState = {}
+    newState[e.target.name] = e.target.value;
+    this.setState(newState)
+  }
 
-    <FormGroup>
-    <Button color="warning" type="Submit" onClick={this.onSubmit}>Submit</Button>
-    </FormGroup>
-   </Form>
-   </div>
+  componentWillMount() {
+    const cookies = new Cookies();
+    if (cookies.get('userCookie')) {
+      this.setState({
+      user: (cookies.get('userCookie'))
+      });
+    }
+  }
 
+// for forms from React Bootstrap  - id is on <FormControl> and htmlFor on <FormGroup.Label>
+  handleNewDemoCreate = (event) => {
+    event.preventDefault();
+    const data = new FormData(event.target);
+    fetch(`http://localhost:3000/demos`,
+    { method: "POST",
+      body: JSON.stringify(
+        {name: this.state.name,
+        description: this.state.description,
+        fundingreq: this.state.fundingreq,
+        live: this.state.live,
+        videos: this.state.videos,
+        category_id: this.state.category_id,
+        event_id: this.state.event_id,
+        user: this.state.user
+        }),
+      headers: {"content-type": "application/json"}
+    })
+    .then(console.log("here is the post", data))
+    .then(response => response.json())
+    .catch(error => console.error('Error:', error))
+    .then((response) => {
+      if (response.ok) {
+        this.setState({ msg: response.status })
+        this.props.toggleModal()
+      } else {
+        this.setState({errors: response.status})
+      }
+    })
+  }
 
-)
+  render() {
+  return (
+
+          <div>
+            <form onSubmit={this.handleNewDemoCreate}>
+
+              <FormGroup controlId="name" validationState="success">
+                <ControlLabel>Please enter your Demo name:</ControlLabel>
+                <FormControl type="input" name="name"
+                placeholder="My Demo Name"  onChange={this.handleChange} />
+                <HelpBlock>Help text with validation state.</HelpBlock>
+              </FormGroup>
+
+              <FormGroup controlId="category_id">
+                <ControlLabel>Select Demo Category:</ControlLabel>
+                  <FormControl name="category_id" componentClass="select" placeholder="select"
+                   onChange={this.handleChange}>
+                    <option value="100">Web App</option>
+                    <option value="101">iOS App</option>
+                    <option value="102">UI/UX App</option>
+                    <option value="103">ioT/Hardward</option>
+                  </FormControl>
+              </FormGroup>
+
+              <FormGroup controlId="description">
+                <ControlLabel>Demo Description</ControlLabel>
+                <FormControl componentClass="textarea" placeholder="textarea"
+                name="description" onChange={this.handleChange} />
+              </FormGroup>
+
+              <FormGroup controlId="fundingreq">
+                <ControlLabel>Funding Goal</ControlLabel>
+                  <InputGroup>
+                    <InputGroup.Addon>$</InputGroup.Addon>
+                      <FormControl name="fundingreq" type="integer" onChange={this.handleChange}/>
+                    <InputGroup.Addon>.00</InputGroup.Addon>
+                  </InputGroup>
+              </FormGroup>
+
+              <FormGroup controlId="event_id">
+                <ControlLabel>For Live Demos, please select the event:</ControlLabel>
+                <FormControl name="event_id" componentClass="select" placeholder="select"
+                 onChange={this.handleChange}>
+                  <option value="30">Hacker Stack</option>
+                  <option value="31">Lighthouse Labs</option>
+                </FormControl>
+                </FormGroup>
+
+              <FormGroup controlId="videos">
+                <ControlLabel>Video URL:</ControlLabel>
+                <FormControl name="videos" componentClass="textarea" placeholder="
+                Please paste the URL for your video or livestream here" onChange={this.handleChange} />
+              </FormGroup>
+
+              <FormGroup>
+                <Button color="warning" type="Submit" onClick="this.handleChange">Click Here to Submit and Create Your Demo!</Button>
+              </FormGroup>
+            </form>
+          </div>
+
+          )
+        }
+      }
 
 export default NewDemoForm;
+
+
+// <Calendar format='DD/MM/YYYY' date='4-12-2014' />

@@ -1,3 +1,70 @@
+.zapButtonImagesR {
+
+}
+
+.heavyIt {
+  width: 25%;
+  font-weight: bolder;
+  color: white;
+  display: inline-block;
+  margin: 0% 0% 0% 0%;
+  float:left;
+
+  }
+
+.shareButtons {
+  width: 103px;
+  height: 40px;
+  margin-left: 0px;
+
+}
+
+.twitter-share-button {
+  margin: 0px 0px 0px 0px;
+  padding: 0px 0px 0px 0px;
+}
+
+.eventRadioBtns{
+  margin-right: 10px;
+}
+
+.newDemoNameInput {
+  margin-bottom: 10px;
+}
+
+.brand-name {
+  margin-top: 6px;
+}
+
+.demosLink {
+  margin-top: 6px;
+  margin-left: 20px;
+}
+
+.newDemoModalHeaderClose {
+  display: inherit;
+  float: right;
+  margin-right: 10px;
+}
+
+.newDemoModalHeader {
+  height: 4em;
+  display: inline;
+}
+.modal-tital {
+  display:inline;
+  margin-left: 10px;
+  color: blue;
+  border-bottom:
+
+}
+
+.modalContainer {
+  margin: 0px 0px 0px 0px;
+  height: 45px;
+}
+
+
 .facebookiframe {
   width:500;
   height:380;
@@ -7,6 +74,10 @@
   frameborder:0;
   allowTransparency:true;
   allowFullScreen:true;
+}
+
+.error-msg-sign-up {
+  color: red;
 }
 
 .loginErrorMsg {
@@ -44,8 +115,8 @@ border-left-color: rgb(227, 141, 19);
 }
 
 .filterButton {
-  width: auto;
-  margin-left: 2%;
+  width: 127px;
+  margin: 0, 0, 0, 2%;
 }
 
 .contributeButton {
@@ -58,7 +129,6 @@ border-left-color: rgb(227, 141, 19);
 }
 
 .detailsButtonImage {
-width: 25%;
 display: inline-block;
 margin: 0% 0% 0% 0%;
 float:left;
@@ -87,6 +157,7 @@ float:left;
 .navbar-right {
   margin-right: 0px !important
 }
+
 .log {
   margin: 5px 10px 0 0;
 }

@@ -4,7 +4,7 @@ import {Link, Redirect} from 'react-router-dom'
 import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 import Cookies from 'universal-cookie';
 
-import $ from 'jquery';
+// import $ from 'jquery';
 
 // import Resource from '../utilities/resource'
 // const UserStore = Resource('users')
@@ -60,7 +60,7 @@ class SignUpForm extends Component {
      return (
        <div>
        {this.state.errors.map((errorText) => {
-         return <h3><em>{errorText}</em></h3>
+         return <h3 className="error-msg-sign-up"><em>{errorText}</em></h3>
        })}
 
        <Form onSubmit={this.handleSignUpSuccess}>

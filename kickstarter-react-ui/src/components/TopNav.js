@@ -6,6 +6,7 @@ import SignUpModal from './SignUpModal'
 import SignUpForm from './SignUpForm'
 import Cookies from 'universal-cookie';
 import LoginModal from './LoginModal'
+import NewDemoCreate from './NewDemoCreate'
 
 class TopNav extends React.Component {
   constructor(props) {
@@ -13,11 +14,13 @@ class TopNav extends React.Component {
     this.state = {
     isToggleOn: false,
     SignUpShow: false,
-    LoginShow: false
+    LoginShow: false,
+    NewDemoShow: false
     }
     if (props.location && props.location.state) {
         this.state.user = this.props.location.state.user
         }
+        this.handleNewDemoClick = this.handleNewDemoClick.bind(this)
     }
 
     handleLogoutClick = () => {
@@ -44,6 +47,12 @@ class TopNav extends React.Component {
      });
    }
 
+   handleNewDemoClick = () => {
+     this.setState({
+       NewDemoShow: !this.state.NewDemoShow
+     });
+   }
+
     // this.props.user.id
     handleLogoutPost = (data) => {
       const cookies = new Cookies();
@@ -59,12 +68,14 @@ class TopNav extends React.Component {
       });
     };
 
-    componentWillMount() {
-        this.setState({
-          isToggleOn: false,
-          SignUpShow: false
-        })
-    }
+    // componentWillMount() {
+    //     this.setState({
+    //       // isToggleOn: false,
+    //       // SignUpShow: false,
+    //       // LoginShow: false,
+    //       // NewDemoShow: false
+    //     })
+    // }
 
 
 render() {
@@ -104,16 +115,16 @@ render() {
   <Navbar collapseOnSelect>
       <Navbar.Header>
         <Navbar.Brand>
-          <Link to='/'>Demo88</Link>
+          <Link to='/' className="brand-name">Demo88</Link>
           </Navbar.Brand>
       </Navbar.Header>
 
       <Nav>
-        <NavItem eventKey={1}>
-        <Link to='/demos'>Explore Demos</Link>
+        <NavItem className="demosLink" eventKey={1}>
+        <Link to='/demos' className="linkToDemos">Explore Demos</Link>
         </NavItem>
         <NavItem eventKey={2}>
-        <Link to='/demos/new'>Create A Demo</Link>
+        <Button onClick={this.handleNewDemoClick} bsStyle="link">Create</Button>
         </NavItem>
       </Nav>
 
@@ -138,6 +149,8 @@ render() {
         <LoginModal show={this.state.LoginShow} toggleModal={this.handleLoginClick}
         />
 
+        <NewDemoCreate show={this.state.NewDemoShow} toggleModal={this.handleNewDemoClick}
+        />
 
         </Nav>
 

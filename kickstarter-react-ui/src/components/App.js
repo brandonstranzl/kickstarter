@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import {Route, Switch, BrowserRouter, Link, NavLink, withRouter} from 'react-router-dom'
 import {Grid} from 'react-bootstrap'
 import Cookies from 'universal-cookie'
+import moment from 'moment';
+
 
 import TopNav from './TopNav'
 import LogoutModal from './LogoutModal'
@@ -10,6 +12,9 @@ import LoginModal from './LoginModal'
 import SignUpForm from './SignUpForm'
 import Demos from './Demos'
 import Demo from './Demo'
+import NewDemoCreate from './NewDemoCreate'
+import NewDemoForm from './NewDemoForm'
+
 
 const cookies = new Cookies();
 
@@ -22,6 +27,7 @@ const App = (props) => (
         <Route path="/SignUpForm" component={SignUpForm}/>
         <Route exact path="/demos" component={Demos} />
         <Route path="/demos/:id" component={Demo} />
+        <Route path="/newdemo" component={NewDemoCreate} />
       </Switch>
     </Grid>
   </div>

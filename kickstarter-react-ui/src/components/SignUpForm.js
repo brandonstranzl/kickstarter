@@ -60,7 +60,7 @@ class SignUpForm extends Component {
      return (
        <div>
        {this.state.errors.map((errorText) => {
-         return <h3><em>{errorText}</em></h3>
+         return <h3 className="error-msg-sign-up"><em>{errorText}</em></h3>
        })}
 
        <Form onSubmit={this.handleSignUpSuccess}>

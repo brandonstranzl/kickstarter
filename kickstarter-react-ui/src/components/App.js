@@ -22,6 +22,7 @@ const App = (props) => (
         <Route path="/SignUpForm" component={SignUpForm}/>
         <Route exact path="/demos" component={Demos} />
         <Route path="/demos/:id" component={Demo} />
+        <Route path="/demos/:id" component={Demo} />
       </Switch>
     </Grid>
   </div>

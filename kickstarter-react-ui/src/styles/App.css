@@ -9,6 +9,10 @@
   allowFullScreen:true;
 }
 
+.error-msg-sign-up {
+  color: red;
+}
+
 .loginErrorMsg {
   color: red;
 }

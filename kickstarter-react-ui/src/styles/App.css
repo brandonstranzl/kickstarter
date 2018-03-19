@@ -1,3 +1,36 @@
+.brand-name {
+  margin-top: 6px;
+}
+
+.demosLink {
+  margin-top: 6px;
+  margin-left: 20px;
+}
+
+.newDemoModalHeaderClose {
+  display: inherit;
+  float: right;
+  margin-right: 10px;
+}
+
+.newDemoModalHeader {
+  height: 4em;
+  display: inline;
+}
+.modal-tital {
+  display:inline;
+  margin-left: 10px;
+  color: blue;
+  border-bottom:
+
+}
+
+.modalContainer {
+  margin: 0px 0px 0px 0px;
+  height: 45px;
+}
+
+
 .facebookiframe {
   width:500;
   height:380;
@@ -48,7 +81,7 @@ border-left-color: rgb(227, 141, 19);
 }
 
 .filterButton {
-  width: auto;
+  width: 120px;
   margin-left: 2%;
 }
 
@@ -91,6 +124,7 @@ float:left;
 .navbar-right {
   margin-right: 0px !important
 }
+
 .log {
   margin: 5px 10px 0 0;
 }

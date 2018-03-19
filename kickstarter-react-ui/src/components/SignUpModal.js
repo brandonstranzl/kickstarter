@@ -8,7 +8,6 @@ class SignUpModal extends React.Component {
     super(props);
     this.state = {
       animation: true,
-      SignUpShow: false
       }
     }
 
@@ -19,7 +18,7 @@ class SignUpModal extends React.Component {
         } else {
           return (
 
-<div>
+    <div>
 
     <Modal.Dialog>
 

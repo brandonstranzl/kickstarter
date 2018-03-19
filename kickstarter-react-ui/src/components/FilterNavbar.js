@@ -1,5 +1,5 @@
 import React from 'react'
-import {ButtonToolbar, Button, Navbar, Nav, NavDropdown, MenuItem} from 'react-bootstrap'
+import {ButtonToolbar, Button, Navbar, Nav, NavDropdown, MenuItem, Table} from 'react-bootstrap'
 
 
 // <img className="contributeButtonImage" src={process.env.PUBLIC_URL + "/images/lightninglike.svg"}></img>
@@ -55,6 +55,8 @@ class FilterNavbar extends React.Component {
 render() {
      return (
 
+  <Table>
+  <tr>
   <ButtonToolbar>
       <Button bsStyle="default" className="filterButton" onClick={this.showTrending}>
         Trending
@@ -78,6 +80,8 @@ render() {
         Show All
       </Button>
   </ButtonToolbar>
+  </tr>
+  </Table>
 
             )
           }

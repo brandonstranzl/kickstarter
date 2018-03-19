@@ -4,7 +4,7 @@ import {Link, Redirect} from 'react-router-dom'
 import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 import Cookies from 'universal-cookie';
 
-import $ from 'jquery';
+// import $ from 'jquery';
 
 // import Resource from '../utilities/resource'
 // const UserStore = Resource('users')

@@ -1,74 +1,150 @@
 import React from 'react'
+import Cookies from 'universal-cookie'
 // import {Input} from 'reactstrap';
-import {ControlLabel, InputGroup, FieldGroup, Radio, Label, ListGroupItem, FormControl, FormGroup, Button, Grid, Form, Well} from 'react-bootstrap'
+import {
+  Button,
+  ControlLabel,
+  InputGroup,
+  FieldGroup,
+  Form,
+  FormControl,
+  FormGroup,
+  Grid,
+  HelpBlock,
+  Radio,
+  Label,
+  ListGroupItem,
+  Well} from 'react-bootstrap'
 import moment from 'moment';
 
-const NewDemoForm = (props) => (
+class NewDemoForm extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      name: "",
+      description: "",
+      fundingreq: "",
+      live: "",
+      videos: "",
+      category_id: "",
+      event_id: "",
+      time: "",
+      msg: "",
+      status: "",
+      user: ""
+    }
+    this.handleChange = this.handleChange.bind(this)
+  }
 
-  <div>
+  handleChange(e) {
+    let newState = {}
+    newState[e.target.name] = e.target.value;
+    this.setState(newState)
+  }
 
-    <Form>
+  componentWillMount() {
+    const cookies = new Cookies();
+    if (cookies.get('userCookie')) {
+      this.setState({
+      user: (cookies.get('userCookie'))
+      });
+    }
+  }
 
-        <ControlLabel>Please enter your Demo name:</ControlLabel>
-        <FormControl label="Demo Name" placeholder="My Demo Name">
-        </FormControl>
-        <br></br>
-        <FormGroup>
-        <ControlLabel>Select Demo Category:</ControlLabel>
-        <ListGroupItem bsStyle="info">
-        <Radio name="Web_App" inline>
-          Web App
-        </Radio>{' '}
-        <Radio name="iOS App" inline>
-          iOS App
-        </Radio>{' '}
-        <Radio name="UIUX App" inline>
-          UI/UX App
-        </Radio>
-        <Radio name="ioTorHardware App" inline>
-          ioT/Hardware
-        </Radio>
-        </ListGroupItem>
-        </FormGroup>
+// for forms from React Bootstrap  - id is on <FormControl> and htmlFor on <FormGroup.Label>
+  handleNewDemoCreate = (event) => {
+    event.preventDefault();
+    const data = new FormData(event.target);
+    fetch(`http://localhost:3000/demos`,
+    { method: "POST",
+      body: JSON.stringify(
+        {name: this.state.name,
+        description: this.state.description,
+        fundingreq: this.state.fundingreq,
+        live: this.state.live,
+        videos: this.state.videos,
+        category_id: this.state.category_id,
+        event_id: this.state.event_id,
+        user: this.state.user
+        }),
+      headers: {"content-type": "application/json"}
+    })
+    .then(console.log("here is the post", data))
+    .then(response => response.json())
+    .catch(error => console.error('Error:', error))
+    .then((response) => {
+      if (response.ok) {
+        this.setState({ msg: response.status })
+        this.props.toggleModal()
+      } else {
+        this.setState({errors: response.status})
+      }
+    })
+  }
 
-        <FormGroup controlId="formControlsTextarea">
-        <ControlLabel>Demo Description</ControlLabel>
-        <FormControl componentClass="textarea" placeholder="textarea" />
-        </FormGroup>
+  render() {
+  return (
 
-        <FormGroup>
-        <ControlLabel>Funding Goal</ControlLabel>
-          <InputGroup>
-            <InputGroup.Addon>$</InputGroup.Addon>
-            <FormControl type="integer" />
-            <InputGroup.Addon>.00</InputGroup.Addon>
-          </InputGroup>
-          </FormGroup>
+          <div>
+            <form onSubmit={this.handleNewDemoCreate}>
 
-          <FormGroup>
-          <Radio name="liveEvent">
-          Live Event?
-          </Radio>
-          </FormGroup>
+              <FormGroup controlId="name" validationState="success">
+                <ControlLabel>Please enter your Demo name:</ControlLabel>
+                <FormControl type="input" name="name"
+                placeholder="My Demo Name"  onChange={this.handleChange} />
+                <HelpBlock>Help text with validation state.</HelpBlock>
+              </FormGroup>
 
-          <FormGroup>
-          <ControlLabel>Video URL:</ControlLabel>
-          <FormControl componentClass="textarea" placeholder="
-          Please paste the URL for your video or livestream here" />
-          </FormGroup>
+              <FormGroup controlId="category_id">
+                <ControlLabel>Select Demo Category:</ControlLabel>
+                  <FormControl name="category_id" componentClass="select" placeholder="select"
+                   onChange={this.handleChange}>
+                    <option value="100">Web App</option>
+                    <option value="101">iOS App</option>
+                    <option value="102">UI/UX App</option>
+                    <option value="103">ioT/Hardward</option>
+                  </FormControl>
+              </FormGroup>
 
-        <FormGroup>
-        <Button color="warning" type="Submit" onClick={this.submitForm}>Click Here to Submit and Create Your Demo!</Button>
-        </FormGroup>
+              <FormGroup controlId="description">
+                <ControlLabel>Demo Description</ControlLabel>
+                <FormControl componentClass="textarea" placeholder="textarea"
+                name="description" onChange={this.handleChange} />
+              </FormGroup>
 
-    </Form>
+              <FormGroup controlId="fundingreq">
+                <ControlLabel>Funding Goal</ControlLabel>
+                  <InputGroup>
+                    <InputGroup.Addon>$</InputGroup.Addon>
+                      <FormControl name="fundingreq" type="integer" onChange={this.handleChange}/>
+                    <InputGroup.Addon>.00</InputGroup.Addon>
+                  </InputGroup>
+              </FormGroup>
 
+              <FormGroup controlId="event_id">
+                <ControlLabel>For Live Demos, please select the event:</ControlLabel>
+                <FormControl name="event_id" componentClass="select" placeholder="select"
+                 onChange={this.handleChange}>
+                  <option value="30">Hacker Stack</option>
+                  <option value="31">Lighthouse Labs</option>
+                </FormControl>
+                </FormGroup>
 
+              <FormGroup controlId="videos">
+                <ControlLabel>Video URL:</ControlLabel>
+                <FormControl name="videos" componentClass="textarea" placeholder="
+                Please paste the URL for your video or livestream here" onChange={this.handleChange} />
+              </FormGroup>
 
-  </div>
+              <FormGroup>
+                <Button color="warning" type="Submit" onClick="this.handleChange">Click Here to Submit and Create Your Demo!</Button>
+              </FormGroup>
+            </form>
+          </div>
 
-
-)
+          )
+        }
+      }
 
 export default NewDemoForm;
 

@@ -61,7 +61,7 @@ class DemosController < ApplicationController
   # Only allow a trusted parameter "white list" through.
   def demo_params
     params.require(:demo).permit(:name,
-      :live, :description, :fundingreq, :category, :user, :event)
+      :live, :description, :fundingreq, :category, :user, :event, :category_id, :event_id, :videos)
   end
 
 end

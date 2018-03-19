@@ -10,30 +10,41 @@ class NewDemoCreate extends Component {
     super(props);
     this.state = {
       animation: true,
-      msg: "",
-      status: ""
+
     }
-    this.handleNewDemoCreate = this.handleNewDemoCreate.bind(this)
+    // this.handleNewDemoCreate = this.handleNewDemoCreate.bind(this)
   }
 
-
-  handleNewDemoCreate = (data) => {
-    fetch(`http://localhost:3000/demos/new`,
-    { method: "POST",
-      body: JSON.stringify(data),
-      headers: {"content-type": "application/json"}
-    })
-    .then(response => response.json())
-    .catch(error => console.error('Error:', error))
-    .then((response) => {
-      if (response.ok) {
-        this.setState({ msg: response.status })
-        this.props.toggleModal()
-      } else {
-        this.setState({errors: response.status})
-      }
-    })
-  }
+// for forms from React Bootstrap  - id is on <FormControl> and htmlFor on <FormGroup.Label>
+  // handleNewDemoCreate = (event) => {
+  //   event.preventDefault();
+  //   const data = new FormData(event.target);
+  //   fetch(`http://localhost:3000/demos`,
+  //   { method: "POST",
+  //     body: JSON.stringify(
+  //       {name: "",
+  //       description: "",
+  //       fundingreq: "",
+  //       live: "",
+  //       video: "",
+  //       category_name: "",
+  //       event_name: "",
+  //       time: ""   //I dont need to get time except text display to user.
+  //       }),
+  //     headers: {"content-type": "application/json"}
+  //   })
+  //   .then(console.log("here is the post", data))
+  //   .then(response => response.json())
+  //   .catch(error => console.error('Error:', error))
+  //   .then((response) => {
+  //     if (response.ok) {
+  //       this.setState({ msg: response.status })
+  //       this.props.toggleModal()
+  //     } else {
+  //       this.setState({errors: response.status})
+  //     }
+  //   })
+  // }
 
   render() {
 
@@ -51,9 +62,8 @@ class NewDemoCreate extends Component {
       </div>
       <Modal.Body>
 
-           <NewDemoForm show={this.props.show} toggleModal={this.props.toggleModal}
-            submitForm={this.handleNewDemoCreate}
-            />
+       <NewDemoForm show={this.props.show} toggleModal={this.props.toggleModal}
+        />
 
         </Modal.Body>
 

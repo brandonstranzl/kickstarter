@@ -23,7 +23,7 @@ export default class TakeMoney extends React.Component {
         token={this.onToken}
         stripeKey="pk_test_s4jPh9mguQ56Sy5fDmsUxZ0e"
         amount={1} // cents
-        currency="USD"
+        currency="CAD"
       />
     )
   }

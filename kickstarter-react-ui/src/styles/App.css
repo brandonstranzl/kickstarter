@@ -94,3 +94,15 @@ float:left;
   height: 530px;
   width: 270px;
 }
+
+.userFirstName{
+  color: orange;
+}
+
+.containerForm{
+  /*background: #333333;*/
+  display: flex;
+  /*justify-content: center;*/
+  /*align-items: center;*/
+  font-family: Helvetica Neue;
+}

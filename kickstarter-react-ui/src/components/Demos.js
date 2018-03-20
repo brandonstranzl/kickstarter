@@ -124,7 +124,7 @@ class Demos extends React.Component {
               return (
 
             <Col xs={6} md={4}>
-              <Thumbnail>
+              <Thumbnail className="demoThumbnail">
                 <iframe width="240" height="200" src={"https://www.youtube.com/embed/"+demo.videos} frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
                 <Table className="thumbnailtable">
                 <thead><tr>

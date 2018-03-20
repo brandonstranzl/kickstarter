@@ -23,7 +23,10 @@ render() {
 
       <Modal.Body>
       <h3> There are no cookies here. You must be logged in to create a demo.</h3>
-      <Button onClick={this.toggleErrorOff} bsStyle="primary" bsSize="large"></Button>
+      <img className="cookieMonster" src={process.env.PUBLIC_URL + "/images/if_clock-tower_748997.svg"}></img>
+
+
+      <Button onClick={this.props.toggleErrorModal} bsStyle="primary" bsSize="large"></Button>
       </Modal.Body>
 
       </Modal.Dialog>

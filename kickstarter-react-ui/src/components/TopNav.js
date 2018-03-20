@@ -24,7 +24,7 @@ class TopNav extends React.Component {
         this.state.user = this.props.location.state.user
         }
         this.handleNewDemoClick = this.handleNewDemoClick.bind(this)
-        // this.toggleErrorModal = this.toggleErrorModal.bind(this)
+        this.toggleErrorModal = this.toggleErrorModal.bind(this)
     }
 
     componentDidMount() {
@@ -161,9 +161,9 @@ render() {
         <NewDemoCreate
           user={this.state.user} show={this.state.NewDemoShow}
           toggleModal={this.handleNewDemoClick}
-        />
+        />  
 
-        <ErrorModal toggleErrorOff={this.state.toggleErrorModal}
+        <ErrorModal toggleErrorModal={this.toggleErrorModal}
         show={this.state.ShowErrorModal}
          />
 

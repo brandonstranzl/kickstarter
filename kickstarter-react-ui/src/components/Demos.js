@@ -6,6 +6,9 @@ import Cookies from 'universal-cookie'
 import {DropdownButton, MenuItem, ButtonToolbar, Tab, Tabs} from 'react-bootstrap'
 import {ListGroupItem, ListGroup, Grid, Button, Navbar, Nav, NavItem, NavDropdown, Thumbnail, Row, Col, PageHeader, Modal, Table} from 'react-bootstrap'
 import {Route, Switch, Link} from 'react-router-dom'
+import StripeCheckout from 'react-stripe-checkout';
+
+
 class Demos extends React.Component {
   constructor(props) {
     super(props)
@@ -75,6 +78,17 @@ class Demos extends React.Component {
     turnLiveEventsFilterOn = () => {
       this.setState({ liveEventsFilter: true })
     };
+
+    onToken = (token) => {
+    fetch('/save-stripe-token', {
+      method: 'POST',
+      body: JSON.stringify(token),
+    }).then(response => {
+      response.json().then(data => {
+        alert(`We are in business, ${data.email}`);
+      });
+    });
+  }
   //
   //   DemoStore.findAll() // DemoStore does the API fetching!
   //   .then((result) => console.log(result))//this.setState({demos: result.data, errors: null}))
@@ -160,10 +174,17 @@ class Demos extends React.Component {
                   <p>Details</p>
                   </Button>
 
-                  <Button className="clearfix" className="contributeButton" bsStyle="warning" href="/order">
+                  {/*<Button className="clearfix" className="contributeButton" bsStyle="warning" href="/ordermodal">
                   <img className="contributeButtonImage" src={process.env.PUBLIC_URL + "/images/lightninglike.svg"}></img>
                   Back It
-                  </Button>
+                  </Button>*/}
+                  <StripeCheckout
+                  name="{demo.name}"
+                  token={this.onToken}
+                  stripeKey="pk_test_s4jPh9mguQ56Sy5fDmsUxZ0e"
+                  amount={1} // cents
+                  currency="CAD"
+                  />
 
                   </p>
 

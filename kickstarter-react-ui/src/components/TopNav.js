@@ -15,12 +15,15 @@ class TopNav extends React.Component {
     isToggleOn: false,
     SignUpShow: false,
     LoginShow: false,
-    NewDemoShow: false
+    NewDemoShow: false,
+    ShowErrorModal: false,
+    user: ""
     }
     if (props.location && props.location.state) {
         this.state.user = this.props.location.state.user
         }
         this.handleNewDemoClick = this.handleNewDemoClick.bind(this)
+        this.toggleErrorModal = this.toggleErrorModal.bind(this)
     }
 
     handleLogoutClick = () => {
@@ -48,8 +51,20 @@ class TopNav extends React.Component {
    }
 
    handleNewDemoClick = () => {
+     // if (!this.state.user) {
+     //   this.setState({
+     //     ShowErrorModal: !this.state.ShowErrorModal
+     //   })
+     // } else {
+       this.setState({
+         NewDemoShow: !this.state.NewDemoShow
+       });
+     }
+   // }
+
+   toggleErrorModal = () => {
      this.setState({
-       NewDemoShow: !this.state.NewDemoShow
+       ShowErrorModal: !this.state.ShowErrorModal
      });
    }
 
@@ -68,14 +83,14 @@ class TopNav extends React.Component {
       });
     };
 
-    // componentWillMount() {
-    //     this.setState({
-    //       // isToggleOn: false,
-    //       // SignUpShow: false,
-    //       // LoginShow: false,
-    //       // NewDemoShow: false
-    //     })
-    // }
+    componentDidMount() {
+      const cookies = new Cookies();
+      if (cookies.get('userCookie')) {
+        this.setState({
+        user: cookies.get('userCookie')
+        });
+      }
+    }
 
 
 render() {
@@ -85,7 +100,7 @@ render() {
 
   let displayLogin
     if (cookies.get('userCookie')) {
-      displayLogin = <Button>Logged in as {cookies.get('userCookie')}</Button>
+      displayLogin = <Button>Logged in as {cookies.get('userCookie').email}</Button>
     } else {
       displayLogin = <Button onClick={this.handleLoginClick}>Login</Button>
     };
@@ -140,7 +155,7 @@ render() {
               {displayLogin}
           </NavItem>
 
-          <LogoutModal show={this.state.isToggleOn} toggleLogOutModal={this.handleLogoutClick}
+        <LogoutModal show={this.state.isToggleOn} toggleLogOutModal={this.handleLogoutClick}
         onSave={this.handleLogoutPost}/>
 
         <SignUpModal show={this.state.SignUpShow} toggleModal={this.handleSignUpClick}
@@ -149,7 +164,11 @@ render() {
         <LoginModal show={this.state.LoginShow} toggleModal={this.handleLoginClick}
         />
 
-        <NewDemoCreate show={this.state.NewDemoShow} toggleModal={this.handleNewDemoClick}
+        <NewDemoCreate
+          user={this.state.user}
+          show={this.state.NewDemoShow}
+          toggleModal={this.handleNewDemoClick}
+          toggleErrorModal={this.state.toggleErrorModal}
         />
 
         </Nav>

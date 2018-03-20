@@ -17,6 +17,7 @@ import NewDemoForm from './NewDemoForm'
 
 
 const cookies = new Cookies();
+console.log('here', cookies.get('userCookie'))
 
 const App = (props) => (
   <div>

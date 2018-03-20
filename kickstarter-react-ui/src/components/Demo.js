@@ -1,9 +1,8 @@
 import React from 'react'
 import {Redirect} from 'react-router-dom'
 import Cookies from 'universal-cookie'
-import {Button, PageHeader, Col, Row, Grid, ListGroup, ListGroupItem, ProgressBar, wellStyles} from 'react-bootstrap'
+import {Button, ButtonToolbar, PageHeader, Col, Row, Grid, ListGroup, ListGroupItem, ProgressBar, wellStyles} from 'react-bootstrap'
 import {Route, Switch, Link} from 'react-router-dom'
-import Dialog from './Dialog'
 
 import Resource from '../utilities/resource'
 const DemoStore = Resource('demos')
@@ -59,8 +58,10 @@ class Demo extends React.Component {
             <ListGroup className="contributeButtonOnDetailsPage">
 
             <Button bsStyle="primary" bsSize="large" block>
-              Give Money To This Demo
-            </Button>
+              <span><img className="zapButtonImagesL" className="detailsButtonImage" src={process.env.PUBLIC_URL + "/images/if_capacitor_748998.svg"}
+              width="40" height="40"></img></span>
+              <span><h4><em>Fund This Demo to 88 mph!</em></h4></span>
+          </Button>
             </ListGroup>
 
 
@@ -90,8 +91,17 @@ class Demo extends React.Component {
               <ProgressBar now={now} label={`${now}%`} />
                 </ListGroupItem>
               <ListGroupItem>
-              <div class="fb-share-button" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button" data-size="large" data-mobile-iframe="true"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a></div>
-              <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-size="large" data-show-count="false">Tweet</a> 
+              <ButtonToolbar>
+              <Button bsStyle="warning" className="shareButtons" bsSize="small">
+              <img className="heavyIt" src={process.env.PUBLIC_URL + "/images/if_skate_748989.svg"}></img>
+              Heavy it!
+              </Button>
+              <Button className="shareButtons"><div class="fb-share-button" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button" data-size="large" data-mobile-iframe="true"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a></div>
+              </Button>
+              <Button className="shareButtons">
+              <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" className="twitter-share-button" data-size="large" data-show-count="false">Tweet</a>
+              </Button>
+              </ ButtonToolbar>
               </ListGroupItem>
               </ListGroup>
 
@@ -117,3 +127,6 @@ class Demo extends React.Component {
 
 
 export default Demo
+//
+// <span><img className="zapButtonImagesR" width="40" height="40" className="detailsButtonImage" src={process.env.PUBLIC_URL + "/images/lightninglike.svg"}></img>
+// </span>

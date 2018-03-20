@@ -1,131 +1,174 @@
 import React, { Component } from 'react'
 import Demo from './Demo'
 import TopNav from './TopNav'
-import {DropdownButton, MenuItem, ButtonToolbar, Tab, Tabs} from 'react-bootstrap'
+import FilterNavbar from './FilterNavbar'
 import Cookies from 'universal-cookie'
-
-// import Dialog from './Dialog'
-// import Modal from './Modal';
-
-// import $ from 'jquery'
-// import { Card, CardImg, CardText, CardBody, CardTitle, CardSubtitle, Button} from 'reactstrap'
-import {Grid, Button, Navbar, Nav, NavItem, NavDropdown, Thumbnail, Row, Col, PageHeader, Modal, Table} from 'react-bootstrap'
+import {DropdownButton, MenuItem, ButtonToolbar, Tab, Tabs} from 'react-bootstrap'
+import {ListGroupItem, ListGroup, Grid, Button, Navbar, Nav, NavItem, NavDropdown, Thumbnail, Row, Col, PageHeader, Modal, Table} from 'react-bootstrap'
 import {Route, Switch, Link} from 'react-router-dom'
-
-  // Client-side model
-import Resource from '../utilities/resource'
-
-const DemoStore = Resource('demos')
-
-
 class Demos extends React.Component {
   constructor(props) {
     super(props)
 
-
     this.state = {
       demos: [],
-      selectedDemo: {},
-      showDetails: false,
+      showDemoId: false,
       errors: null,
-      isOpen: false
+      isOpen: false,
+      trendingFilter: false,
+      webAppFilter: false,
+      iOSAppFilter: false,
+      UXUIAppFilter: false,
+      ioTandHardwareAppFilter: false,
+      liveEventsFilter: false
       }
-    if (props.location.state) {
-      this.state.user = this.props.location.state.user
-    }
-    // this.state.map = this.state.map.bind(this);
+    // if (props.location.state) {
+    //   this.state.user = this.props.location.state.user
     }
 
-    componentWillMount() {
-      // fetch('http://localhost:3000/demos')
-      // .then(r => r.clone().json())
-      // .then(data => this.setState({ demos: data }))
-      // // .then(demos => this.setState({ demos: data }))
-      // .catch(e => console.log('parsing failed'))
-
-      // }
-      DemoStore.findAll() // DemoStore does the API fetching!
-      .then((result) => this.setState({demos: result, errors: null}))
-      .catch((errors) => this.setState({errors: errors}))
+    componentDidMount() {
+      fetch('http://localhost:3000/demos')
+      .then(response => response.json())
+      .then((response) => this.setState({ demos: response.data }))
+      .catch(e => console.log('parsing failed'))
     }
 
+// state change functions:
     toggleModal = () => {
       this.setState({
         isOpen: !this.state.isOpen
       });
-    }
+    };
 
-    // show by category = () =>
-    // change demos to categories with videos
+    toggleShowDemoId = () => {
+      this.setState({
+        false: !this.state.false
+      });
+    };
 
-  //
+    turnAllFiltersOff = () => {
+      this.setState({
+        trendingFilter: false,
+        webAppFilter: false,
+        iOSAppFilter: false,
+        UXUIAppFilter: false,
+        ioTandHardwareAppFilter: false,
+        liveEventsFilter: false
+      })
+    };
 
+    turnTrendingFilterOn = () => {
+      this.setState({ trendingFilter: true })
+    };
+    turnWebAppFilterOn = () => {
+      this.setState({ webAppFilter: true })
+    };
+    turniOSAppFilterOn = () => {
+      this.setState({ iOSAppFilter: true })
+    };
+    turnUXUIAppFilterOn = () => {
+      this.setState({ UXUIAppFilter: true })
+    };
+    turnioTandHardwareAppFilterOn = () => {
+      this.setState({ ioTandHardwareAppFilter: true })
+    };
+    turnLiveEventsFilterOn = () => {
+      this.setState({ liveEventsFilter: true })
+    };
   //
   //   DemoStore.findAll() // DemoStore does the API fetching!
   //   .then((result) => console.log(result))//this.setState({demos: result.data, errors: null}))
   //   .catch((errors) => this.setState({errors: errors}))
   // }
   render() {
-    return (
-      <div>
-      <Navbar>
-    <Navbar.Header>
-    <Navbar.Brand>
-      <a href="/demos">Trending</a>
-    </Navbar.Brand>
-  </Navbar.Header>
-  <Nav>
-    <NavDropdown eventKey={3} title="Sort by Category" id="basic-nav-dropdown">
-      <MenuItem eventKey={3.1}>Web Apps</MenuItem>
-      <MenuItem divider />
-      <MenuItem eventKey={3.2}>iOS Apps</MenuItem>
-      <MenuItem divider />
-      <MenuItem eventKey={3.3}>UI/UX Apps</MenuItem>
-      <MenuItem divider />
-      <MenuItem eventKey={3.4}>Hardware</MenuItem>
-    </NavDropdown>
 
-    <NavDropdown eventKey={3} title="Sort by Location" id="basic-nav-dropdown">
-      <MenuItem eventKey={3.1}>LHL Toronto</MenuItem>
-      <MenuItem divider />
-      <MenuItem eventKey={3.2}>LHL Montreal</MenuItem>
-      <MenuItem divider />
-      <MenuItem eventKey={3.3}>Brainstation</MenuItem>
-      <MenuItem divider />
-      <MenuItem eventKey={3.4}>Hacker You</MenuItem>
-    </NavDropdown>
-  </Nav>
-</Navbar>
+    let categoriesToShow;
+    if (this.state.trendingFilter) {
+      categoriesToShow = this.state.demos.filter(demo => demo.category.id == 94 )
+    } else if (this.state.webAppFilter) {
+      categoriesToShow = this.state.demos.filter(demo => demo.category.id == 93 )
+    } else if (this.state.iOSAppFilter) {
+      categoriesToShow = this.state.demos.filter(demo => demo.category.id == 200 )
+    } else if (this.state.UXUIAppFilter) {
+      categoriesToShow = this.state.demos.filter(demo => demo.category.id == 201 )
+    } else if (this.state.ioTandHardwareAppFilter) {
+      categoriesToShow = this.state.demos.filter(demo => demo.category.id == 94 )
+    } else if (this.state.liveEventsFilter) {
+      categoriesToShow = this.state.demos.filter(demo => demo.event.id == 31 )
+    } else {
+    categoriesToShow = this.state.demos
+    }
+    //
+    console.log(this.state)
+
+// Facebook:
+    // <div class="fb-video" data-href="https://www.facebook.com/facebook/videos/10153231379946729/" data-width="500" data-show-text="false">
+    // <div class="fb-xfbml-parse-ignore">
+    // </div>
+    // </div>
+
+    return (
+
+  <div>
+
+    <FilterNavbar
+      filterbyNone={this.turnAllFiltersOff}
+      filterbyTrending={this.turnTrendingFilterOn}
+      filterbyWebApps={this.turnWebAppFilterOn}
+      filterbyiOSApps={this.turniOSAppFilterOn}
+      filterbyUXUIApps={this.turnUXUIAppFilterOn}
+      filterbyiOTApps={this.turnioTandHardwareAppFilterOn}
+      filterbyLiveEvents={this.turnLiveEventsFilterOn}
+      />
       <div>
         {/*<TopNav user={this.state.user}/>*/}
         <Grid>
           <Row>
-            {this.state.demos.map((demo, id) => {
+            {categoriesToShow.map((demo, id) => {
               return (
 
-                    <Col xs={6} md={4}>
-                      <Thumbnail className= "demotile" src="">
-                      {/*{"https://img.youtube.com/vi/" + demo.videos + "/0.jpg"}*/}
-                        <iframe width="240" height="200" src={"https://www.youtube.com/embed/"+demo.videos} frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-                        <h3>{demo.name} <small> asking for ${demo.fundingreq}</small> </h3>
-                        <p>
-                          {/*{demo.name} asking for ${demo.fundingreq}*/}
-                        </p>
-                        <p>
-                          Initially pitched their idea at {demo.event.name} 
-                          on {demo.live}
-                          Here is some quick info about 
-                          {demo.name}: {demo.description}. Their main focus is {demo.category.name}.
-                        </p>
-                          {/*<Button bsStyle="primary" href="/login">Contribute</Button>&nbsp;*/}
-                          {/*<Button bsStyle="default" href={"https://www.youtube.com/watch?v="+demo.videos}>View Video</Button>*/}
-                          <Button bsStyle="primary" href="/demo/:id">See More Details</Button>&nbsp;
-                          <Button bsStyle="warning" href="/order"></Button>
-                          {/*<img src=""> </img>*/}
-                          <Button>Back It!</Button>
-                        <p></p>
-                      </Thumbnail>
-                    </Col>
+            <Col xs={6} md={4}>
+              <Thumbnail>
+                <iframe width="240" height="200" src={"https://www.youtube.com/embed/"+demo.videos} frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                <Table className="thumbnailtable">
+                <thead><tr>
+                <th>{demo.name}</th>
+                </tr></thead>
+                <tbody>
+                <tr><td>
+                {demo.category.name}
+                </td></tr>
+                <tr className="descriptionrow"><td>
+                {demo.description}
+                </td></tr>
+                <tr><td>
+                {demo.event.name}
+                </td></tr>
+                <tr><td>
+                {demo.live}
+                </td></tr>
+                <tr><td>
+                {demo.fundingreq}
+                </td></tr>
+                </tbody>
+                </Table>
+
+                  <p className="clearfix">
+
+                  <Button className="clickToDetailsButton" href={`/demos/${demo.id}`} bsStyle="">
+                  <img className="detailsButtonImage" src={process.env.PUBLIC_URL + "/images/glasses.svg"}></img>
+                  <p>Details</p>
+                  </Button>
+
+                  <Button className="clearfix" className="contributeButton" bsStyle="warning" href="/order">
+                  <img className="contributeButtonImage" src={process.env.PUBLIC_URL + "/images/lightninglike.svg"}></img>
+                  Back It
+                  </Button>
+
+                  </p>
+
+              </Thumbnail>
+            </Col>
               )
             })}
           </Row>

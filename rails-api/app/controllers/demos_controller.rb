@@ -12,8 +12,8 @@ class DemosController < ApplicationController
 
   # GET /demos
   def index
-        @demos = Demo.includes(:category, :event).all
-        render json: @demos.to_json(include: [:event, :category]), status: 200
+      @demos = Demo.includes(:category, :event).all
+      render json: { data: @demos.as_json(include: [:event, :category]) }
   end
 
   # GET /demos/:id
@@ -31,9 +31,9 @@ class DemosController < ApplicationController
     # POST /clients
   @demo = Demo.new(demo_params) #demo_params
     if @demo.save
-      render json: @demo, status: :created, location: @client
+      render json: @demo, status: :created, location: @user, msg: "success"
     else
-      render json: @demo.errors, status: :unprocessable_entity
+      render json: @demo.errors, status: :unprocessable_entity, error_msg: @demo.errors.full_messages
     end
   end
 
@@ -61,8 +61,7 @@ class DemosController < ApplicationController
   # Only allow a trusted parameter "white list" through.
   def demo_params
     params.require(:demo).permit(:name,
-      :live, :description, :fundingreq,
-      :votes, :featured, :category_id, :user_id, :event_id)
+      :live, :description, :fundingreq, :category_id, :user_id, :event_id, :videos)
   end
 
 end

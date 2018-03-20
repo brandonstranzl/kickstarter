@@ -2,25 +2,23 @@ import React, { Component } from 'react';
 import {Route, Switch, BrowserRouter, Link, NavLink, withRouter} from 'react-router-dom'
 import {Grid} from 'react-bootstrap'
 import Cookies from 'universal-cookie'
+import moment from 'moment';
+
 
 import TopNav from './TopNav'
 import LogoutModal from './LogoutModal'
 import Dashboard from './Dashboard'
-import LoginForm from './LoginForm'
+import LoginModal from './LoginModal'
 import SignUpForm from './SignUpForm'
 import Demos from './Demos'
-import Categories from './Categories'
-import Events from './Events'
 import Demo from './Demo'
 import Order from './order'
 import OrderModal from './OrderModal2'
+import NewDemoCreate from './NewDemoCreate'
+import NewDemoForm from './NewDemoForm'
 
-// handleLogout = () => {
-//   fetch(`http://localhost:3000:sessions/${this.props.match.params.id},
-//   { method: DELETE }).then(response => response.json())
-//   .catch(error => console.error('Error:', error))
-//   .then(response => console.log('Success:', response));
 const cookies = new Cookies();
+console.log('here', cookies.get('userCookie'))
 
 const App = (props) => (
   <div>
@@ -28,14 +26,12 @@ const App = (props) => (
     <Grid>
       <Switch>
         <Route path="/" exact component={Dashboard}/>
-        <Route path="/login" component={LoginForm}/>
         <Route path="/SignUpForm" component={SignUpForm}/>
         <Route exact path="/demos" component={Demos} />
-        <Route path="/categories" component={Categories} />
-        <Route path="/events" component={Events} />
         <Route path="/demos/:id" component={Demo} />
         <Route path="/order" component={Order} />
         <Route path="/ordermodal" component={OrderModal} />
+        <Route path="/newdemo" component={NewDemoCreate} />
       </Switch>
     </Grid>
   </div>

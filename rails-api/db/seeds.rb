@@ -21,16 +21,20 @@ Category.destroy_all
 
 category = Category.create([
   {
-    name: "Applications",
-    description: "the latest software and web apps"
+    name: "Web Apps",
+    description: "Leading edge Full Stack Applications."
   },
   {
     name: "Hardware",
-    description: "amazing robots and gadgets"
+    description: "ioT, robots, smart-devices and more."
   },
   {
-    name: "Software",
-    description: "cool software for users"
+    name: "iOS Apps",
+    description: "The best apps to make you smile."
+  },
+  {
+    name: "UI/UX Apps",
+    description: "Seamless integration to users."
   }
 ])
 
@@ -87,8 +91,8 @@ demo = Demo.create([
     fundingreq: 5500,
     votes: 5,
     videos: 'WRduVfYXjI8',
-    category: categories[2],
-    event: events[1],
+    category: categories[1],
+    event: events[0],
     user: users[0]
   },
   {
@@ -98,8 +102,8 @@ demo = Demo.create([
     fundingreq: 8000,
     votes: 10,
     videos: '3H-Y-D3-j-M',
-    category: categories[1],
-    event: events[0],
+    category: categories[3],
+    event: events[1],
     user: users[0]
   },
   {

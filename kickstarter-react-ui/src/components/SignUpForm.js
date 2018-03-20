@@ -31,20 +31,6 @@ class SignUpForm extends Component {
     this.setState({password: event.target.value});
   }
 
-  // handleSignUpSuccess = (event) => {
-  //   alert('Your info submitted');
-  //   event.preventDefault();
-  //   $.post('http://localhost:3000/users', {data},
-  //     function(data) {
-  //     console.log(data)
-  //     this.setState({email: data.email},{password: data.password});
-  //     const cookies = new Cookies();
-  //     cookies.set("userCookie", data.id, { path: '/'})
-  //     this.setState({user: data})
-  //     this.props.history.push('/demos', this.state);
-  //     console.log('Success:', data)
-  //   });
-  // }
   handleSignUpSuccess = (event) => {
     event.preventDefault();
     console.log(this.state)
@@ -64,25 +50,17 @@ class SignUpForm extends Component {
       } else {
         this.setState({errors: response.error_msg})
       }
-      // if (response.status = 403) { alert('something is wrong please try again') }
-
       // this.props.history.push('/demos', this.state);
-
       // window.location = '/demos'
 
     });
   };
 
-  //   UserStore.create() // DemoStore does the API fetching!
-  //   .then((result) => this.setState({user: data, errors: null}))
-  //   .catch((errors) => this.setState({errors: errors}))
-  // }
-
   render() {
      return (
        <div>
        {this.state.errors.map((errorText) => {
-         return <h3><em>{errorText}</em></h3>
+         return <h3 className="error-msg-sign-up"><em>{errorText}</em></h3>
        })}
 
        <Form onSubmit={this.handleSignUpSuccess}>
@@ -110,7 +88,3 @@ class SignUpForm extends Component {
 }
 
 export default SignUpForm;
-
-// {this.state.errors.map((errorText) => {
-//   return <p>{errorText}</p>
-// })}

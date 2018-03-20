@@ -5,8 +5,8 @@ import LogoutModal from './LogoutModal'
 import SignUpModal from './SignUpModal'
 import SignUpForm from './SignUpForm'
 import Cookies from 'universal-cookie';
-
-
+import LoginModal from './LoginModal'
+import NewDemoCreate from './NewDemoCreate'
 
 class TopNav extends React.Component {
   constructor(props) {
@@ -14,10 +14,16 @@ class TopNav extends React.Component {
     this.state = {
     isToggleOn: false,
     SignUpShow: false,
+    LoginShow: false,
+    NewDemoShow: false,
+    ShowErrorModal: false,
+    user: ""
     }
     if (props.location && props.location.state) {
         this.state.user = this.props.location.state.user
         }
+        this.handleNewDemoClick = this.handleNewDemoClick.bind(this)
+        this.toggleErrorModal = this.toggleErrorModal.bind(this)
     }
 
     handleLogoutClick = () => {
@@ -32,36 +38,35 @@ class TopNav extends React.Component {
       });
     }
 
-    _onButtonClick = () => {
+    // _onButtonClick = () => {
+    //    this.setState({
+    //      SignUpShow: true,
+    //    });
+    //  }
+
+   handleLoginClick = () => {
+     this.setState({
+       LoginShow: !this.state.LoginShow
+     });
+   }
+
+   handleNewDemoClick = () => {
+     // if (!this.state.user) {
+     //   this.setState({
+     //     ShowErrorModal: !this.state.ShowErrorModal
+     //   })
+     // } else {
        this.setState({
-         SignUpShow: true,
+         NewDemoShow: !this.state.NewDemoShow
        });
      }
+   // }
 
-
-
-      // this.setState({
-      //   SignUpShow: !this.state.SignUpShow
-      // });
-
-
-    // handleSignUpSuccess = (data) => {
-    //   const cookies = new Cookies();
-    //   fetch(`http://localhost:3000/users`,
-    //   { method: "POST",
-    //   body: JSON.stringify(data)
-    //   })
-    //   .then(response => response.json())
-    //   .catch(error => console.error('Error:', error))
-    //   .then((response) => {
-    //     const cookies = new Cookies();
-    //     cookies.set("userCookie", data.id, { path: '/'})
-    //     this.setState({user: data})
-    //     this.props.history.push('/demos', this.state);
-    //     console.log('Success:', response)
-    //   });
-    // };
-
+   toggleErrorModal = () => {
+     this.setState({
+       ShowErrorModal: !this.state.ShowErrorModal
+     });
+   }
 
     // this.props.user.id
     handleLogoutPost = (data) => {
@@ -78,11 +83,13 @@ class TopNav extends React.Component {
       });
     };
 
-    componentWillMount() {
+    componentDidMount() {
+      const cookies = new Cookies();
+      if (cookies.get('userCookie')) {
         this.setState({
-          isToggleOn: false,
-          SignUpShow: false
-        })
+        user: cookies.get('userCookie')
+        });
+      }
     }
 
 
@@ -90,11 +97,12 @@ render() {
   this.state ? console.log("HERE IS THE STATE", this.props) : console.log("MAJOR ISSUE")
 
   const cookies = new Cookies();
+
   let displayLogin
     if (cookies.get('userCookie')) {
-      displayLogin = <p>Logged in as {cookies.get('userCookie')}</p>
+      displayLogin = <Button>Logged in as {cookies.get('userCookie').email}</Button>
     } else {
-      displayLogin = <Link to="/login">Login</Link>
+      displayLogin = <Button onClick={this.handleLoginClick}>Login</Button>
     };
 
   let displaySignUp
@@ -104,21 +112,34 @@ render() {
       displaySignUp = <Button onClick={this.handleSignUpClick}>SignUp</Button>
     };
 
+    let displayLogOut
+      if (cookies.get('userCookie')) {
+        displayLogOut =
+        <NavItem className="navbar-right" eventKey={2}>
+        <Button onClick={this.handleLogoutClick}>Logout</Button>
+        </NavItem>
+      } else {
+        displayLogOut = ""
+      };
+
+
+
+
   return(
 
   <Navbar collapseOnSelect>
       <Navbar.Header>
         <Navbar.Brand>
-          <Link to='/'>Demo88</Link>
+          <Link to='/' className="brand-name">Demo88</Link>
           </Navbar.Brand>
       </Navbar.Header>
 
       <Nav>
-        <NavItem eventKey={1}>
-        <Link to='/demos'>Explore Demos</Link>
+        <NavItem className="demosLink" eventKey={1}>
+        <Link to='/demos' className="linkToDemos">Explore Demos</Link>
         </NavItem>
         <NavItem eventKey={2}>
-        <Link to='/demos/new'>Create A Demo</Link>
+        <Button onClick={this.handleNewDemoClick} bsStyle="link">Create</Button>
         </NavItem>
       </Nav>
 
@@ -128,21 +149,27 @@ render() {
               {displaySignUp}
           </NavItem>
 
-          <NavItem className="navbar-right" eventKey={2}>
-            <Button onClick={this.handleLogoutClick}>Logout</Button>
-          </NavItem>
+              {displayLogOut}
 
           <NavItem className="navbar-right" eventKey={1}>
-            <Button>{displayLogin}</Button>
+              {displayLogin}
           </NavItem>
 
-          <LogoutModal show={this.state.isToggleOn} toggleLogOutModal={this.handleLogoutClick}
+        <LogoutModal show={this.state.isToggleOn} toggleLogOutModal={this.handleLogoutClick}
         onSave={this.handleLogoutPost}/>
 
         <SignUpModal show={this.state.SignUpShow} toggleModal={this.handleSignUpClick}
         />
 
+        <LoginModal show={this.state.LoginShow} toggleModal={this.handleLoginClick}
+        />
 
+        <NewDemoCreate
+          user={this.state.user}
+          show={this.state.NewDemoShow}
+          toggleModal={this.handleNewDemoClick}
+          toggleErrorModal={this.state.toggleErrorModal}
+        />
 
         </Nav>
 

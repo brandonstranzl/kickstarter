@@ -81,6 +81,7 @@ class NewDemoForm extends React.Component {
       } else {
         this.setState({errors: response.status})
       }
+      this.props.toggleModal()
     })
   }
 

@@ -25,7 +25,7 @@ category = Category.create([
     description: "Leading edge Full Stack Applications."
   },
   {
-    name: "Hardware",
+    name: "iOT Apps",
     description: "ioT, robots, smart-devices and more."
   },
   {
@@ -79,7 +79,7 @@ demo = Demo.create([
   {
     name: "Bytesoft",
     live: "2018-03-31",
-    description: "this is goign to be really big even though i am a nerd",
+    description: "This is goign to be really big even though I am a nerd",
     fundingreq: 10000,
     votes: 5,
     videos: 'WRduVfYXjI8',
@@ -90,7 +90,7 @@ demo = Demo.create([
   {
     name: "Clementine",
     live: "2018-03-31",
-    description: "this is a twitter clone messenger",
+    description: "Appls are not oranges. Clentines Rock.",
     fundingreq: 8000,
     votes: 10,
     videos: '3H-Y-D3-j-M',

@@ -61,6 +61,8 @@ class LoginModal extends Component {
         cookies.set("userCookie", JSON.stringify(response.data), { path: '/'})
         // this.props.history.push('/demos', this.state);
         this.props.toggleModal()
+        console.log("here is the response from server on login", response.data)
+        console.log("here is the cookie", cookies.get('userCookie'))
       } else {
         this.setState({ errors: response.error_msg })
       }

@@ -10,25 +10,26 @@ class ErrorModal extends Component {
     }
   }
 render() {
-  if (!this.props.show) {
-      return ""
-      } else {
-      return (
-    <Modal.Dialog>
+    if (!this.props.show) {
+        return ""
+        } else {
+        return (
+      <Modal.Dialog>
 
-    <Modal.Header className="newDemoModalHeader">
-      <Modal.Title className="modal-tital">Error</Modal.Title>
-      <Button className="errorModalClose" onClick={this.props.toggleErrorModal}>&times;</Button>
-    </Modal.Header>
+      <Modal.Header className="newDemoModalHeader">
+        <Modal.Title className="modal-tital">Error</Modal.Title>
 
-    <Modal.Body>
-    <h3> There are no cookies here. You must be logged in to create a demo.</h3>
-    </Modal.Body>
+      </Modal.Header>
 
-    </Modal.Dialog>
-    )
+      <Modal.Body>
+      <h3> There are no cookies here. You must be logged in to create a demo.</h3>
+      <Button onClick={this.toggleErrorOff} bsStyle="primary" bsSize="large"></Button>
+      </Modal.Body>
+
+      </Modal.Dialog>
+      )
+    }
   }
-}
 }
 
 export default ErrorModal;

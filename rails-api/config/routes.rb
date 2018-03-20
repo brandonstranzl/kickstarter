@@ -21,5 +21,7 @@ resources :sessions, only: [:create, :destroy]
 
 resources :orders, only: [:create]
 
+resources :charges
+
 
 end

@@ -14,6 +14,7 @@ import {Route, Switch, Link} from 'react-router-dom'
 
   // Client-side model
 import Resource from '../utilities/resource'
+
 const DemoStore = Resource('demos')
 
 
@@ -25,10 +26,9 @@ class Demos extends React.Component {
     this.state = {
       demos: [],
       selectedDemo: {},
-      showDemoId: false,
+      showDetails: false,
       errors: null,
-      isOpen: false,
-
+      isOpen: false
       }
     if (props.location.state) {
       this.state.user = this.props.location.state.user
@@ -36,17 +36,17 @@ class Demos extends React.Component {
     // this.state.map = this.state.map.bind(this);
     }
 
-    componentDidMount() {
-      fetch('http://localhost:3000/demos')
-      .then(r => r.clone().json())
-      .then(data => this.setState({ demos: data }))
-      // .then(demos => this.setState({ demos: data }))
+    componentWillMount() {
+      // fetch('http://localhost:3000/demos')
+      // .then(r => r.clone().json())
+      // .then(data => this.setState({ demos: data }))
+      // // .then(demos => this.setState({ demos: data }))
       // .catch(e => console.log('parsing failed'))
 
       // }
-      // DemoStore.findAll() // DemoStore does the API fetching!
-      // .then((result) => this.setState({demos: result, errors: null}))
-      // .catch((errors) => this.setState({errors: errors}))
+      DemoStore.findAll() // DemoStore does the API fetching!
+      .then((result) => this.setState({demos: result, errors: null}))
+      .catch((errors) => this.setState({errors: errors}))
     }
 
     toggleModal = () => {
@@ -55,18 +55,21 @@ class Demos extends React.Component {
       });
     }
 
-    toggleShowDemoId = () => {
-      this.setState({
-        false: !this.state.false
-      });
-    }
+    // show by category = () =>
+    // change demos to categories with videos
 
+  //
+
+  //
+  //   DemoStore.findAll() // DemoStore does the API fetching!
+  //   .then((result) => console.log(result))//this.setState({demos: result.data, errors: null}))
+  //   .catch((errors) => this.setState({errors: errors}))
+  // }
   render() {
     return (
-<div>
-
-<Navbar>
-  <Navbar.Header>
+      <div>
+      <Navbar>
+    <Navbar.Header>
     <Navbar.Brand>
       <a href="/demos">Trending</a>
     </Navbar.Brand>
@@ -93,54 +96,42 @@ class Demos extends React.Component {
     </NavDropdown>
   </Nav>
 </Navbar>
-
       <div>
+        {/*<TopNav user={this.state.user}/>*/}
         <Grid>
           <Row>
             {this.state.demos.map((demo, id) => {
               return (
 
-            <Col xs={6} md={4}>
-              <Thumbnail className="demotile">
-                <iframe width="240" height="200" src={"https://www.youtube.com/embed/"+demo.videos} frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-                <h3>{demo.name} <small> asking for ${demo.fundingreq}</small> </h3>
-                <p>
-                  {/*{demo.name} asking for ${demo.fundingreq}*/}
-                </p>
-                <p>
-                  Initially pitched their idea at {demo.event.name} on {demo.live}.
-                </p>
-                <p>
-                  Here is some quick info about {demo.name}: {demo.description}
-                </p>
-                <p> 
-                  Their main focus is {demo.category.name}.
-                </p>
-
-                <p className="clearfix">
-
-                <Button className="clickToDetailsButton" href={`/demos/${demo.id}`} bsStyle="">
-                <img className="detailsButtonImage" src={process.env.PUBLIC_URL + "/images/glasses.svg"}></img>
-                <p>Details</p>
-                </Button>
-
-                <Button className="clearfix" className="contributeButton" bsStyle="warning" href="/order">
-                <img className="contributeButtonImage" src={process.env.PUBLIC_URL + "/images/lightninglike.svg"}></img>
-                Back It
-                </Button>
-
-                </p>
-
-              </Thumbnail>
-            </Col>
+                    <Col xs={6} md={4}>
+                      <Thumbnail className= "demotile" src="">
+                      {/*{"https://img.youtube.com/vi/" + demo.videos + "/0.jpg"}*/}
+                        <iframe width="240" height="200" src={"https://www.youtube.com/embed/"+demo.videos} frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                        <h3>{demo.name} <small> asking for ${demo.fundingreq}</small> </h3>
+                        <p>
+                          {/*{demo.name} asking for ${demo.fundingreq}*/}
+                        </p>
+                        <p>
+                          Initially pitched their idea at {demo.event.name} 
+                          on {demo.live}
+                          Here is some quick info about 
+                          {demo.name}: {demo.description}. Their main focus is {demo.category.name}.
+                        </p>
+                          {/*<Button bsStyle="primary" href="/login">Contribute</Button>&nbsp;*/}
+                          {/*<Button bsStyle="default" href={"https://www.youtube.com/watch?v="+demo.videos}>View Video</Button>*/}
+                          <Button bsStyle="primary" href="/demo/:id">See More Details</Button>&nbsp;
+                          <Button bsStyle="warning" href="/order"></Button>
+                          {/*<img src=""> </img>*/}
+                          <Button>Back It!</Button>
+                        <p></p>
+                      </Thumbnail>
+                    </Col>
               )
             })}
           </Row>
         </Grid>
       </div>
-
-</div>
-
+      </div>
     )
   }
 }

@@ -19,7 +19,7 @@ class SignUpModal extends React.Component {
         } else {
           return (
 
-<div>
+  <div>
 
     <Modal.Dialog>
 
@@ -28,13 +28,11 @@ class SignUpModal extends React.Component {
         <Button className="close" onClick={this.props.toggleModal}>&times;</Button>
       </Modal.Header>
 
-        <Modal.Body>
-
+      <Modal.Body>
         <SignUpForm toggleModal={this.props.toggleModal}/>
-
-           </Modal.Body>
-  </Modal.Dialog>
-</div>
+      </Modal.Body>
+    </Modal.Dialog>
+  </div>
 
 
 

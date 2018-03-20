@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 // import { Navbar, Jumbotron, Button } from 'react-bootstrap';
 import {Link, Redirect} from 'react-router-dom'
-import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+import { Button, Form, FormGroup, Label, Input} from 'reactstrap';
 import Cookies from 'universal-cookie';
 
-import $ from 'jquery';
+// import $ from 'jquery';
 
 // import Resource from '../utilities/resource'
 // const UserStore = Resource('users')
@@ -20,9 +20,6 @@ class SignUpForm extends Component {
       errors: []
     };
   }
-
-
-
 
   emailHandleChange = (event) => {
     this.setState({
@@ -111,7 +108,6 @@ class SignUpForm extends Component {
     )
   }
 }
-
 
 export default SignUpForm;
 

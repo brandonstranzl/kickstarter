@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 // import { Navbar, Jumbotron, Button } from 'react-bootstrap';
-import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+import { Button, Form, FormGroup, Label, Input} from 'reactstrap';
 import $ from 'jquery';
 import Cookies from 'universal-cookie'
 

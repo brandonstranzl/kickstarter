@@ -2,15 +2,13 @@ import React, { Component } from 'react'
 import Cookies from 'universal-cookie'
 import NewDemoForm from './NewDemoForm'
 import {Modal, Button} from 'react-bootstrap'
-
-
+import ErrorModal from './ErrorModal'
 
 class NewDemoCreate extends Component {
   constructor(props) {
     super(props);
     this.state = {
       animation: true,
-
     }
     // this.handleNewDemoCreate = this.handleNewDemoCreate.bind(this)
   }
@@ -47,32 +45,26 @@ class NewDemoCreate extends Component {
   // }
 
   render() {
-
     if (!this.props.show) {
-        return ""
-        } else {
-        return (
-
+      return ("");
+    } else {
+    return (
     <Modal.Dialog>
       <div className="modalContainer">
-      <Modal.Header className="newDemoModalHeader">
-        <Modal.Title className="modal-tital">Upload Your Demo!</Modal.Title>
-        <Button className="newDemoModalHeaderClose" onClick={this.props.toggleModal}>&times;</Button>
-      </Modal.Header>
+        <Modal.Header className="newDemoModalHeader">
+          <Modal.Title className="modal-tital">Upload Your Demo!</Modal.Title>
+          <Button className="newDemoModalHeaderClose" onClick={this.props.toggleModal}>&times;</Button>
+        </Modal.Header>
       </div>
       <Modal.Body>
-
-       <NewDemoForm show={this.props.show} toggleModal={this.props.toggleModal}
-        />
-
-        </Modal.Body>
-
-        </Modal.Dialog>
-
-          )
-        }
-      }
+       <NewDemoForm
+        show={this.props.show}
+        toggleModal={this.props.toggleModal}
+       />
+      </Modal.Body>
+    </Modal.Dialog>)
     }
-
+  }
+}
 
 export default NewDemoCreate;

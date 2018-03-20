@@ -55,18 +55,20 @@ class NewDemoForm extends React.Component {
   handleNewDemoCreate = (event) => {
     event.preventDefault();
     const data = new FormData(event.target);
+    const cookies = new Cookies();
     fetch(`http://localhost:3000/demos`,
     { method: "POST",
       body: JSON.stringify(
-        {name: this.state.name,
-        description: this.state.description,
-        fundingreq: this.state.fundingreq,
-        live: this.state.live,
-        videos: this.state.videos,
-        category_id: this.state.category_id,
-        event_id: this.state.event_id,
-        user: this.state.user
-        }),
+        {demo: {
+          name: this.state.name,
+          description: this.state.description,
+          fundingreq: this.state.fundingreq,
+          live: this.state.live,
+          videos: this.state.videos,
+          category_id: this.state.category_id,
+          event_id: this.state.event_id,
+          user_id: cookies.get('userCookie').id
+        }}),
       headers: {"content-type": "application/json"}
     })
     .then(console.log("here is the post", data))
@@ -99,10 +101,10 @@ class NewDemoForm extends React.Component {
                 <ControlLabel>Select Demo Category:</ControlLabel>
                   <FormControl name="category_id" componentClass="select" placeholder="select"
                    onChange={this.handleChange}>
-                    <option value="100">Web App</option>
-                    <option value="101">iOS App</option>
-                    <option value="102">UI/UX App</option>
-                    <option value="103">ioT/Hardward</option>
+                    <option value="96">Web App</option>
+                    <option value="97">iOS App</option>
+                    <option value="98">UI/UX App</option>
+                    <option value="99">ioT/Hardward</option>
                   </FormControl>
               </FormGroup>
 
@@ -125,8 +127,15 @@ class NewDemoForm extends React.Component {
                 <ControlLabel>For Live Demos, please select the event:</ControlLabel>
                 <FormControl name="event_id" componentClass="select" placeholder="select"
                  onChange={this.handleChange}>
-                  <option value="30">Hacker Stack</option>
-                  <option value="31">Lighthouse Labs</option>
+                  <option value="31">Hacker Stack</option>
+                  <option value="32">Lighthouse Labs</option>
+                </FormControl>
+                </FormGroup>
+
+              <FormGroup controlId="live">
+                <ControlLabel>For And the live event date:</ControlLabel>
+                <FormControl name="live" type="input" placeholder="MM/DD/YYYY"
+                 onChange={this.handleChange}>
                 </FormControl>
                 </FormGroup>
 

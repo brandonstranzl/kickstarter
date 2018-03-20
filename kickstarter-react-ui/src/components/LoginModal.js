@@ -4,8 +4,6 @@ import { Modal } from 'react-bootstrap';
 // import $ from 'jquery';
 import Cookies from 'universal-cookie'
 
-
-
 class LoginModal extends Component {
   constructor(props) {
     super(props);
@@ -60,7 +58,7 @@ class LoginModal extends Component {
       if (response.ok) {
         this.setState({ user: response.data })
         const cookies = new Cookies();
-        cookies.set("userCookie", response.data.email, { path: '/'})
+        cookies.set("userCookie", JSON.stringify(response.data), { path: '/'})
         // this.props.history.push('/demos', this.state);
         this.props.toggleModal()
       } else {

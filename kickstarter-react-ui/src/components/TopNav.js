@@ -7,6 +7,7 @@ import SignUpForm from './SignUpForm'
 import Cookies from 'universal-cookie';
 import LoginModal from './LoginModal'
 import NewDemoCreate from './NewDemoCreate'
+import ErrorModal from './ErrorModal'
 
 class TopNav extends React.Component {
   constructor(props) {
@@ -23,7 +24,17 @@ class TopNav extends React.Component {
         this.state.user = this.props.location.state.user
         }
         this.handleNewDemoClick = this.handleNewDemoClick.bind(this)
-        this.toggleErrorModal = this.toggleErrorModal.bind(this)
+        // this.toggleErrorModal = this.toggleErrorModal.bind(this)
+    }
+
+    componentDidMount() {
+      const cookies = new Cookies();
+      if (cookies.get('userCookie')) {
+        this.setState({
+        user: cookies.get('userCookie')
+        });
+        console.log("here is the user cookie", cookies.get('userCookie'))
+      }
     }
 
     handleLogoutClick = () => {
@@ -38,12 +49,6 @@ class TopNav extends React.Component {
       });
     }
 
-    // _onButtonClick = () => {
-    //    this.setState({
-    //      SignUpShow: true,
-    //    });
-    //  }
-
    handleLoginClick = () => {
      this.setState({
        LoginShow: !this.state.LoginShow
@@ -51,16 +56,17 @@ class TopNav extends React.Component {
    }
 
    handleNewDemoClick = () => {
-     // if (!this.state.user) {
-     //   this.setState({
-     //     ShowErrorModal: !this.state.ShowErrorModal
-     //   })
-     // } else {
-       this.setState({
-         NewDemoShow: !this.state.NewDemoShow
-       });
-     }
-   // }
+     const cookies = new Cookies();
+     if (cookies.get('userCookie')) {
+      this.setState({
+        NewDemoShow: !this.state.NewDemoShow
+        });
+      } else {
+      this.setState({
+        ShowErrorModal: !this.state.ShowErrorModal
+      })
+    }
+  }
 
    toggleErrorModal = () => {
      this.setState({
@@ -80,18 +86,9 @@ class TopNav extends React.Component {
         cookies.remove('userCookie')
         console.log('Success:', response)
         this.handleLogoutClick();
+        console.log(cookies.get('userCookie'))
       });
     };
-
-    componentDidMount() {
-      const cookies = new Cookies();
-      if (cookies.get('userCookie')) {
-        this.setState({
-        user: cookies.get('userCookie')
-        });
-      }
-    }
-
 
 render() {
   this.state ? console.log("HERE IS THE STATE", this.props) : console.log("MAJOR ISSUE")
@@ -121,9 +118,6 @@ render() {
       } else {
         displayLogOut = ""
       };
-
-
-
 
   return(
 
@@ -165,11 +159,13 @@ render() {
         />
 
         <NewDemoCreate
-          user={this.state.user}
-          show={this.state.NewDemoShow}
+          user={this.state.user} show={this.state.NewDemoShow}
           toggleModal={this.handleNewDemoClick}
-          toggleErrorModal={this.state.toggleErrorModal}
         />
+
+        <ErrorModal toggleErrorOff={this.state.toggleErrorModal}
+        show={this.state.ShowErrorModal}
+         />
 
         </Nav>
 

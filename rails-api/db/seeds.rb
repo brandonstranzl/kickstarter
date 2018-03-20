@@ -25,7 +25,7 @@ category = Category.create([
     description: "Leading edge Full Stack Applications."
   },
   {
-    name: "Hardware",
+    name: "iOT Apps",
     description: "ioT, robots, smart-devices and more."
   },
   {

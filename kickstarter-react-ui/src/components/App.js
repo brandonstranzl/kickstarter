@@ -12,7 +12,7 @@ import LoginModal from './LoginModal'
 import SignUpForm from './SignUpForm'
 import Demos from './Demos'
 import Demo from './Demo'
-import Order from './order'
+// import Order from './order'
 import OrderModal from './OrderModal2'
 import NewDemoCreate from './NewDemoCreate'
 import NewDemoForm from './NewDemoForm'
@@ -29,13 +29,12 @@ const App = (props) => (
         <Route path="/SignUpForm" component={SignUpForm}/>
         <Route exact path="/demos" component={Demos} />
         <Route path="/demos/:id" component={Demo} />
-        <Route path="/order" component={Order} />
+        {/*<Route path="/order" component={Order} />*/}
         <Route path="/ordermodal" component={OrderModal} />
         <Route path="/newdemo" component={NewDemoCreate} />
       </Switch>
     </Grid>
   </div>
 )
-
 
 export default withRouter(App);

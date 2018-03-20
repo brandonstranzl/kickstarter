@@ -173,17 +173,20 @@ class Demos extends React.Component {
                   <img className="detailsButtonImage" src={process.env.PUBLIC_URL + "/images/glasses.svg"}></img>
                   <p>Details</p>
                   </Button>
-
-                  {/*<Button className="clearfix" className="contributeButton" bsStyle="warning" href="/ordermodal">
+                  {/*<button className="clearfix" className="contributeButton" bsStyle="warning">
                   <img className="contributeButtonImage" src={process.env.PUBLIC_URL + "/images/lightninglike.svg"}></img>
                   Back It
-                  </Button>*/}
-                  <StripeCheckout
-                  name="{demo.name}"
+                  </button>*/}
+
+                  <StripeCheckout 
+                  name={`Project: ${demo.name}`}
                   token={this.onToken}
                   stripeKey="pk_test_s4jPh9mguQ56Sy5fDmsUxZ0e"
-                  amount={1} // cents
+                  amount={1000} // cents
                   currency="CAD"
+                  panelLabel="Contribute"
+                  image="http://funfaredecals.com/wordpress/wp-content/uploads/2017/01/Back-To-The-Future-Flux-Capacitor-FD1037.jpg" // the pop-in header image (default none)
+                  
                   />
 
                   </p>

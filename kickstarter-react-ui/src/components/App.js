@@ -12,6 +12,8 @@ import Demos from './Demos'
 import Categories from './Categories'
 import Events from './Events'
 import Demo from './Demo'
+import Order from './order'
+import OrderModal from './OrderModal2'
 
 // handleLogout = () => {
 //   fetch(`http://localhost:3000:sessions/${this.props.match.params.id},
@@ -32,6 +34,8 @@ const App = (props) => (
         <Route path="/categories" component={Categories} />
         <Route path="/events" component={Events} />
         <Route path="/demos/:id" component={Demo} />
+        <Route path="/order" component={Order} />
+        <Route path="/ordermodal" component={OrderModal} />
       </Switch>
     </Grid>
   </div>

@@ -67,13 +67,15 @@ class Order extends React.Component {
     let demo = this.state.demo
     let demo_id = this.state.demo_id
     let amount = this.state.amount
+    let user_id = this.state.user_id
+    let email = this.state.email
     fetch(`http://localhost:3000/orders`,
       { method: "POST",
         body: JSON.stringify(
           {
             stripeToken: token.id,
-            email: token.email,
-            user_id: this.state.user_id,
+            email: email,
+            user_id: user_id,
             demo: demo,
             demo_id: demo_id,
             amount: amount,
@@ -126,7 +128,7 @@ class Order extends React.Component {
         description={this.props.location.state.demo}
         email={this.state.email}
         token={this.onToken}
-        allowRememberMe={false}
+        allowRememberMe={true}
         bitcoin={true}
         stripeKey="pk_test_xUNvQmTjw4mSlN2LXXqsK45u"
         >

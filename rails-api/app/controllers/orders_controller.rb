@@ -3,8 +3,15 @@ class OrdersController < ApplicationController
 
 
   def create
+
     @order = Order.new(order_params)
     if @order.save
+      amount = params[:amount]
+      @demo = Demo.find(params[:demo_id])
+      old_progress = @demo.progress
+      new_progress = amount.to_i + old_progress
+      Demo.update(params[:demo_id], progress: new_progress)
+      puts @demo
       render json: {ok: true, data: @order.as_json, status: :created, msg: "success"}
     else
       render json: {ok: false, status: :unprocessable_entity, error_msg: @order.errors.full_messages}

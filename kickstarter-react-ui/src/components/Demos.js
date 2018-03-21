@@ -7,6 +7,7 @@ import {DropdownButton, MenuItem, ButtonToolbar, Tab, Tabs} from 'react-bootstra
 import {ListGroupItem, ListGroup, Grid, Button, Navbar, Nav, NavItem, NavDropdown, Thumbnail, Row, Col, PageHeader, Modal, Table} from 'react-bootstrap'
 import {Route, Switch, Link} from 'react-router-dom'
 import StripeCheckout from 'react-stripe-checkout';
+// import YouTube from 'react-youtube';
 
 
 class Demos extends React.Component {
@@ -79,19 +80,6 @@ class Demos extends React.Component {
       this.setState({ liveEventsFilter: true })
     };
 
-//stripe stuff
-    onToken = (token) => {
-    console.log(token)
-    const data = token;
-    fetch('/orders', {
-      method: 'POST',
-      body: JSON.stringify(token),
-    }).then(response => {
-      response.json().then(data => {
-        // alert(`We are in business`);
-      });
-    });
-  }
   //
   //   DemoStore.findAll() // DemoStore does the API fetching!
   //   .then((result) => console.log(result))//this.setState({demos: result.data, errors: null}))
@@ -145,8 +133,8 @@ class Demos extends React.Component {
               return (
 
             <Col xs={6} md={4}>
-              <Thumbnail className="demoThumbnail">
-                <iframe width="240" height="200" src={"https://www.youtube.com/embed/"+demo.videos+"?modestbranding=1&autohide=1&showinfo=0&controls=0"} frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+              <Thumbnail className="demoThumbnail" src={"https://www.youtube.com/embed/"+demo.videos}>
+                {/*<iframe width='240' height='141' src={"https://www.youtube.com/embed/"+demo.videos+"?&theme=dark&color=white&autohide=2&modestbranding=1&fs=0&showinfo=0&rel=0"} frameborder="0"></iframe>                */}
                 <Table className="thumbnailtable">
                 <thead><tr>
                 <th>{demo.name}</th>
@@ -169,12 +157,12 @@ class Demos extends React.Component {
                 </td></tr>
                 </tbody>
                 </Table>
-                  <Link to={{ pathname="/demos/" + ${demo.id}, demo=demo.name, demo.fundingreq, demo_id: demo.id}} }>>
+                  {/*<Link to={{ pathname="/demos/" + ${demo.id}, demo=demo.name, demo.fundingreq, demo_id: demo.id}} }>>
                     <Button className="clearfix" className="clickToDetailsButton"  bsStyle="">
                     <img className="detailsButtonImage" src={process.env.PUBLIC_URL + "/images/glasses.svg"}></img>
                     <p>Details</p>
                     </Button>
-                  </Link>
+                  </Link>*/}
 
                   <Link to={{ pathname: "/order", state: {demo: demo.name, goal: demo.fundingreq, demo_id: demo.id}} }>
                   <Button className="clearfix" className="contributeButton" bsStyle="warning">

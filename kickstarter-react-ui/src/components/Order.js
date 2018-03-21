@@ -1,6 +1,7 @@
 import StripeCheckout from 'react-stripe-checkout';
-import {Grid, Col, Row, FormGroup, FormControl, ControlLabel, HelpBlock, InputGroup, Well} from 'react-bootstrap'
+import {Button, Grid, Col, Row, FormGroup, FormControl, ControlLabel, HelpBlock, InputGroup, Well} from 'react-bootstrap'
 import Cookies from 'universal-cookie';
+import HeavyButton from './HeavyButton'
 import React, { Component } from 'react'
 
 // CheckoutForm.js
@@ -19,20 +20,31 @@ class Order extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: "",
+      user_id: "",
       amount: "",
-      email: ""
+      email: "",
+      goal: "",
+      demo: "",
+      demo_id: ""
     }
   }
 
   // THIS shold be done in props:
-  componentDidMount() {
+  componentWillMount() {
     const cookies = new Cookies();
+    let demo = this.props.location.state.demo
+    let demo_id = this.props.location.state.demo_id
+    let goal = this.props.location.state.goal
     if (cookies.get('userCookie')) {
       this.setState({
-      email: cookies.get('userCookie').email
+      email: cookies.get('userCookie').email,
+      user_id: cookies.get('userCookie').id,
+      goal: goal,
+      demo: demo,
+      demo_id: demo_id
       });
-      console.log("here is the user cookie", cookies.get('userCookie').email)
+      console.log("here is the ORDER form cookie", cookies.get('userCookie').id)
+      console.log("*******the state on order form: ", this.state  )
     }
   }
 
@@ -52,7 +64,8 @@ class Order extends React.Component {
   onToken = (token) => {
     console.log(token)
     const data = (token);
-    let demo = this.state.name
+    let demo = this.state.demo
+    let demo_id = this.state.demo_id
     let amount = this.state.amount
     fetch(`http://localhost:3000/orders`,
       { method: "POST",
@@ -60,14 +73,24 @@ class Order extends React.Component {
           {
             stripeToken: token.id,
             email: token.email,
+            user_id: this.state.user_id,
             demo: demo,
-            amount: amount
+            demo_id: demo_id,
+            amount: amount,
+
           }),
           headers: {"content-type": "application/json"}
         })
         .then(response => response.json())
         .catch(error => console.error('Error:', error))
-    }
+        .then((response) => {
+          if (response.ok) {
+            console.log({ response })
+          } else {
+            console.log({ msg: response.error_msg })
+          }
+        })
+      }
 
 
   render() {
@@ -77,12 +100,12 @@ class Order extends React.Component {
         <Row>
           <Col xs={12} md={8}>
 
-      <Well><h4>{this.state.email}, please confirm the below contribution:</h4></Well>
+      <Well bsSize="small"><h4>{this.state.email}, please confirm the below contribution:</h4></Well>
 
-      <Well bsSize="small"><h5>Demo to receive funds: {this.props.location.state.demo}</h5></Well>
+      <Well bsSize="small"><h4>Demo to receive funds: {this.props.location.state.demo}</h4></Well>
 
       <Row>
-        <Col xs={8} md={6}>
+        <Col xs={6} md={5}>
       <form>
       <FormGroup controlId="fundingreq">
         <ControlLabel>Amount of Funding to Provide:</ControlLabel>
@@ -93,8 +116,8 @@ class Order extends React.Component {
           </InputGroup>
       </FormGroup>
       </form>
-      </Col>
-      </Row>
+        </Col>
+          </Row>
 
       <StripeCheckout
         amount={this.state.amount * 100}
@@ -104,8 +127,13 @@ class Order extends React.Component {
         email={this.state.email}
         token={this.onToken}
         allowRememberMe={false}
+        bitcoin={true}
         stripeKey="pk_test_xUNvQmTjw4mSlN2LXXqsK45u"
-      />
+        >
+        <Button>
+        <HeavyButton amount={this.state.amount * 100}/>
+        </Button>
+        </ StripeCheckout>
 
       </Col>
       </Row>

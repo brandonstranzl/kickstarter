@@ -4,7 +4,6 @@ import Cookies from 'universal-cookie'
 import {Button, ButtonToolbar, PageHeader, Col, Row, Grid, ListGroup, ListGroupItem, ProgressBar, wellStyles} from 'react-bootstrap'
 import {Route, Switch, Link} from 'react-router-dom'
 import {StripeProvider} from 'react-stripe-elements';
-import MyStoreCheckout from './MyStoreCheckout';
 
 
 import Resource from '../utilities/resource'

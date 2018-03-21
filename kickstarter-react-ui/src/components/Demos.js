@@ -127,7 +127,6 @@ class Demos extends React.Component {
 
             <Col xs={6} md={4}>
               <Thumbnail className="demoThumbnail">
-                <iframe width="240" height="200" src={"https://www.youtube.com/embed/"+demo.videos+"?modestbranding=1&autohide=1&showinfo=0&controls=0"} frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
                 <Table className="thumbnailtable">
                 <thead><tr>
                 <th>{demo.name}</th>
@@ -152,7 +151,7 @@ class Demos extends React.Component {
                 </Table>
 
 
-                  <Link to={{ pathname: "/demos/demo.id", state: { demo:demo.name, goal:demo.fundingreq, demo_id:demo.id}} }>
+                  <Link to={{ pathname: `/demos/${demo.id}`, state: { demo:demo.name, goal:demo.fundingreq, demo_id:demo.id}} }>
                     <Button className="clearfix" className="clickToDetailsButton"  bsStyle="">
                     <img className="detailsButtonImage" src={process.env.PUBLIC_URL + "/images/glasses.svg"}></img>
                     <p>Details</p>
@@ -177,3 +176,4 @@ class Demos extends React.Component {
   }
 }
 export default Demos
+// <iframe width="240" height="200" src={"https://www.youtube.com/embed/"+demo.videos+"?modestbranding=1&autohide=1&showinfo=0&controls=0"} frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>

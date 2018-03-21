@@ -5,7 +5,6 @@ import Cookies from 'universal-cookie'
 import moment from 'moment';
 import {StripeProvider} from 'react-stripe-elements';
 
-
 import TopNav from './TopNav'
 import LogoutModal from './LogoutModal'
 import Dashboard from './Dashboard'
@@ -32,11 +31,9 @@ const App = (props) => (
         <Route exact path="/demos" component={Demos} />
         <Route path="/demos/:id" component={Demo} />
         <Route path="/order" component={Order} />
-
       </Switch>
     </Grid>
   </div>
 )
-
 
 export default withRouter(App);

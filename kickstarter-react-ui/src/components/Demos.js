@@ -6,6 +6,8 @@ import Cookies from 'universal-cookie'
 import {DropdownButton, MenuItem, ButtonToolbar, Tab, Tabs} from 'react-bootstrap'
 import {ListGroupItem, ListGroup, Grid, Button, Navbar, Nav, NavItem, NavDropdown, Thumbnail, Row, Col, PageHeader, Modal, Table} from 'react-bootstrap'
 import {Route, Switch, Link} from 'react-router-dom'
+import StripeCheckout from 'react-stripe-checkout';
+
 class Demos extends React.Component {
   constructor(props) {
     super(props)
@@ -75,11 +77,7 @@ class Demos extends React.Component {
     turnLiveEventsFilterOn = () => {
       this.setState({ liveEventsFilter: true })
     };
-  //
-  //   DemoStore.findAll() // DemoStore does the API fetching!
-  //   .then((result) => console.log(result))//this.setState({demos: result.data, errors: null}))
-  //   .catch((errors) => this.setState({errors: errors}))
-  // }
+
   render() {
 
     let categoriesToShow;
@@ -122,14 +120,14 @@ class Demos extends React.Component {
       />
       <div>
         {/*<TopNav user={this.state.user}/>*/}
-        <Grid>
+        <Grid className="grid">
           <Row>
             {categoriesToShow.map((demo, id) => {
               return (
 
             <Col xs={6} md={4}>
               <Thumbnail className="demoThumbnail">
-                <iframe width="240" height="200" src={"https://www.youtube.com/embed/"+demo.videos} frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                <iframe width="240" height="200" src={"https://www.youtube.com/embed/"+demo.videos+"?modestbranding=1&autohide=1&showinfo=0&controls=0"} frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
                 <Table className="thumbnailtable">
                 <thead><tr>
                 <th>{demo.name}</th>
@@ -167,9 +165,6 @@ class Demos extends React.Component {
                   Back It
                   </Button>
                   </Link>
-
-
-
               </Thumbnail>
             </Col>
               )

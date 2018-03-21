@@ -1,35 +1,36 @@
 class OrdersController < ApplicationController
 
-def create
-  puts "we got this far"
-  @order = Order.new
-
-  charge = perform_stripe_charge
-  order  = create_order(charge)
-  Stripe.api_key = "sk_test_QixMaM3bimQjGyvHOirA5yYq"
 
 
-
-  def perform_stripe_charge
-    Stripe::Charge.create(
-      source:      params[:stripeToken],
-      amount:      params[:amount] , # in cents
-      description: "Demo88 Order for "{params[:user_id]},
-      currency:    params[:currency]
-    )
+  def create
+    @order = Order.new(order_params)
+    if @order.save
+      render json: {ok: true, data: @order.as_json, status: :created, msg: "success"}
+    else
+      render json: {ok: false, status: :unprocessable_entity, error_msg: @order.errors.full_messages}
+    end
   end
 
-  order  = create_order(charge)
 
-    def create_order(stripe_charge)
-      order = Order.new(
-        email: params[:stripeEmail],
-        # total_cents: cart_total,
-        stripe_charge_id: stripe_charge.id, # returned by stripe
-      )
-      end
-      order.save!
-      order
+    private
+
+    def order_params
+      params.require(:order).permit(:amount, :demo_id, :user_id, :stripeToken, :email, :demo, :order)
     end
 
+    def process_payment
+      begin
+        charge = Stripe::Charge.create(
+          source:      params[:stripeToken],
+          amount:      (params[:amount] * 100), # in cents
+          description: params[:user_id],
+          currency:    params[:currency]
+        )
+      rescue Stripe::StripeError => e
+          self.update_attributes(error: e.message)
+          self.fail!
+      end
+    end
+
+    # Stripe.api_key = "sk_test_QixMaM3bimQjGyvHOirA5yYq"
 end

@@ -15,7 +15,6 @@ import Demo from './Demo'
 import Order from './Order'
 import NewDemoCreate from './NewDemoCreate'
 import NewDemoForm from './NewDemoForm'
-import MyStoreCheckout from './MyStoreCheckout';
 import StripeButton from './StripeButton';
 
 const cookies = new Cookies();

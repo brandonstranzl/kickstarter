@@ -46,8 +46,9 @@ class Demo extends React.Component {
 
      if (this.state.redirect) return <Redirect to={this.state.redirect} />
 
-     const now = 60;
-     const progressInstance = <ProgressBar now={now} label={`${now}%`} />;
+     const now = ((this.state.demo.progress/this.state.demo.fundingreq)*100);
+     console.log(now)
+     const progressInstance = <ProgressBar now={now} label={now} />;
 
     return (
       <Grid>

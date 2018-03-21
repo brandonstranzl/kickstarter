@@ -8,6 +8,7 @@ import Cookies from 'universal-cookie';
 import LoginModal from './LoginModal'
 import NewDemoCreate from './NewDemoCreate'
 import ErrorModal from './ErrorModal'
+import { withRouter } from "react-router-dom";
 
 class TopNav extends React.Component {
   constructor(props) {

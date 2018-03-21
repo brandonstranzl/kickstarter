@@ -20,6 +20,21 @@ import StripeButton from './StripeButton';
 const cookies = new Cookies();
 console.log('here', cookies.get('userCookie'))
 
+let loggedIn = () => {
+  const cookies = new Cookies();
+  if (cookies.get('userCookie')) {
+    return true
+  } else {
+    return false
+  }
+}
+
+let requireAuth = () => {
+  if (!loggedIn()) {
+      pathname: '/login'
+    }
+  }
+
 
 const App = (props) => (
   <div>
@@ -27,9 +42,10 @@ const App = (props) => (
     <Grid>
       <Switch>
         <Route path="/" exact component={Dashboard}/>
+        <Route path="/login" exact component={LoginModal}/>
         <Route exact path="/demos" component={Demos} />
         <Route path="/demos/:id" component={Demo} />
-        <Route path="/order" component={Order} />
+        <Route path="/order" component={Order} onEnter={requireAuth} />
       </Switch>
     </Grid>
   </div>

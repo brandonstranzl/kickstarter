@@ -50,17 +50,19 @@ class NewDemoCreate extends Component {
     } else {
     return (
     <Modal.Dialog>
-      <div className="modalContainer">
+      <div className="newDemoModalContainer">
         <Modal.Header className="newDemoModalHeader">
           <Modal.Title className="modal-tital">Upload Your Demo!</Modal.Title>
           <Button className="newDemoModalHeaderClose" onClick={this.props.toggleModal}>&times;</Button>
         </Modal.Header>
       </div>
-      <Modal.Body>
+      <Modal.Body className="newDemoModalBody">
+
        <NewDemoForm
         show={this.props.show}
         toggleModal={this.props.toggleModal}
        />
+
       </Modal.Body>
     </Modal.Dialog>)
     }

@@ -1,9 +1,9 @@
 import StripeCheckout from 'react-stripe-checkout';
 import {FormGroup, FormControl, ControlLabel, HelpBlock, InputGroup} from 'react-bootstrap'
 import Cookies from 'universal-cookie';
+import React, { Component } from 'react'
 
 // CheckoutForm.js
-import React from 'react';
 // import {
 // 	CardElement,
 //   CardNumberElement,

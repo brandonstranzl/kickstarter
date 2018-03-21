@@ -60,12 +60,13 @@ class Demo extends React.Component {
 
             <ListGroup className="contributeButtonOnDetailsPage">
 
-            // here is the contribute button:
-            <Button bsStyle="primary" bsSize="large" block onClick={this.showMyStoreCheckOut}>
+            <Link to={{ pathname: "/order", state: {demo: demo.name, goal: demo.fundingreq, demo_id: demo.id}} }>
+            <Button bsStyle="primary" bsSize="large" block>
               <span><img className="zapButtonImagesL" className="detailsButtonImage" src={process.env.PUBLIC_URL + "/images/if_capacitor_748998.svg"}
               width="40" height="40"></img></span>
               <span><h4><em>Fund This Demo to 88 mph!</em></h4></span>
             </Button>
+            </Link>
             </ListGroup>
 
 

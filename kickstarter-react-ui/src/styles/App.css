@@ -5,8 +5,14 @@
   height: 500px;
 }
 
-.grid{
-  background-color: #E37222;
+.cookieMonster {
+  height: 50px;
+  width: 50px;
+}
+
+.demoThumbnail {
+  height: 530px;
+  width: 270px;
 }
 
 .zapButtonImagesR {
@@ -60,13 +66,21 @@
 
 .newDemoModalHeader {
   height: 4em;
-  display: inline;
+
 }
+
 .modal-tital {
   display:inline;
   margin-left: 10px;
-  color: blue;
-  border-bottom:
+  color: black;
+  border-bottom: none;
+
+}
+
+.error-msg-modal-title {
+  margin-left: 10px;
+  color: red;
+  border-bottom: none;
 
 }
 
@@ -149,7 +163,7 @@ width: 25%;
 .contributeButtonImage {
 width: 25%;
 display: inline-block;
-margin: 0% 75% 0% 10%;
+margin: 0% 0%% 0% 10%;
 float:left;
 }
 
@@ -201,12 +215,6 @@ float:left;
   max-width: 900px;
   max-height: 500px;
   padding-left: 0px;
-}
-
-.demotile{
-  height: 530px;
-  width: 270px;
-  background-color: #E37222;
 }
 
 .userFirstName{

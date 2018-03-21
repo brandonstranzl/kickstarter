@@ -103,15 +103,15 @@ class Demos extends React.Component {
     if (this.state.trendingFilter) {
       categoriesToShow = this.state.demos.filter(demo => demo.category.id == 101 )
     } else if (this.state.webAppFilter) {
-      categoriesToShow = this.state.demos.filter(demo => demo.category.id == 100 )
+      categoriesToShow = this.state.demos.filter(demo => demo.category.id == 108 )
     } else if (this.state.iOSAppFilter) {
-      categoriesToShow = this.state.demos.filter(demo => demo.category.id == 102 )
-    } else if (this.state.UXUIAppFilter) {
-      categoriesToShow = this.state.demos.filter(demo => demo.category.id == 103 )
+      categoriesToShow = this.state.demos.filter(demo => demo.category.id == 110 )
+      } else if (this.state.UXUIAppFilter) {
+      categoriesToShow = this.state.demos.filter(demo => demo.category.id == 111 )
     } else if (this.state.ioTandHardwareAppFilter) {
-      categoriesToShow = this.state.demos.filter(demo => demo.category.id == 101 )
+      categoriesToShow = this.state.demos.filter(demo => demo.category.id == 109 )
     } else if (this.state.liveEventsFilter) {
-      categoriesToShow = this.state.demos.filter(demo => demo.event.id == 34 )
+      categoriesToShow = this.state.demos.filter(demo => demo.event.id == 34)
     } else {
     categoriesToShow = this.state.demos
     }
@@ -145,7 +145,7 @@ class Demos extends React.Component {
               return (
 
             <Col xs={6} md={4}>
-              <Thumbnail className="demotile">
+              <Thumbnail className="demoThumbnail">
                 <iframe width="240" height="200" src={"https://www.youtube.com/embed/"+demo.videos+"?modestbranding=1&autohide=1&showinfo=0&controls=0"} frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
                 <Table className="thumbnailtable">
                 <thead><tr>
@@ -169,32 +169,19 @@ class Demos extends React.Component {
                 </td></tr>
                 </tbody>
                 </Table>
+                  <Link to={{ pathname="/demos/" + ${demo.id}, demo=demo.name, demo.fundingreq, demo_id: demo.id}} }>>
+                    <Button className="clearfix" className="clickToDetailsButton"  bsStyle="">
+                    <img className="detailsButtonImage" src={process.env.PUBLIC_URL + "/images/glasses.svg"}></img>
+                    <p>Details</p>
+                    </Button>
+                  </Link>
 
-                  <p className="clearfix">
-
-                  <Button className="clickToDetailsButton" href={`/demos/${demo.id}`} bsStyle="">
-                  <img className="detailsButtonImage" src={process.env.PUBLIC_URL + "/images/glasses.svg"}></img>
-                  <p>Details</p>
-                  </Button>
-                  {/*<button className="clearfix" className="contributeButton" bsStyle="warning">
+                  <Link to={{ pathname: "/order", state: {demo: demo.name, goal: demo.fundingreq, demo_id: demo.id}} }>
+                  <Button className="clearfix" className="contributeButton" bsStyle="warning">
                   <img className="contributeButtonImage" src={process.env.PUBLIC_URL + "/images/lightninglike.svg"}></img>
                   Back It
-                  </button>*/}
-
-                  <StripeCheckout 
-                  name={`Project: ${demo.name}`}
-                  token={this.onToken}
-                  stripeKey="pk_test_s4jPh9mguQ56Sy5fDmsUxZ0e"
-                  amount={1000} // cents
-                  currency="CAD"
-                  panelLabel="Contribute"
-                  allowRememberMe = "false"
-                  image="https://arcanestore.com/wp-content/uploads/2016/09/image-9754.png" // the pop-in header image (default none)
-                  
-                  />
-
-                  </p>
-
+                  </Button>
+                  </Link>
               </Thumbnail>
             </Col>
               )

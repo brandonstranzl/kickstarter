@@ -139,7 +139,7 @@ class Demos extends React.Component {
       />
       <div>
         {/*<TopNav user={this.state.user}/>*/}
-        <Grid>
+        <Grid className="grid">
           <Row>
             {categoriesToShow.map((demo, id) => {
               return (

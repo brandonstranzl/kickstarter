@@ -79,13 +79,16 @@ class Demos extends React.Component {
       this.setState({ liveEventsFilter: true })
     };
 
+//stripe stuff
     onToken = (token) => {
-    fetch('/save-stripe-token', {
+    console.log(token)
+    const data = token;
+    fetch('/orders', {
       method: 'POST',
       body: JSON.stringify(token),
     }).then(response => {
       response.json().then(data => {
-        alert(`We are in business, ${data.email}`);
+        // alert(`We are in business`);
       });
     });
   }
@@ -142,8 +145,8 @@ class Demos extends React.Component {
               return (
 
             <Col xs={6} md={4}>
-              <Thumbnail>
-                <iframe width="240" height="200" src={"https://www.youtube.com/embed/"+demo.videos} frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+              <Thumbnail className="demotile">
+                <iframe width="240" height="200" src={"https://www.youtube.com/embed/"+demo.videos+"?modestbranding=1&autohide=1&showinfo=0&controls=0"} frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
                 <Table className="thumbnailtable">
                 <thead><tr>
                 <th>{demo.name}</th>
@@ -185,7 +188,8 @@ class Demos extends React.Component {
                   amount={1000} // cents
                   currency="CAD"
                   panelLabel="Contribute"
-                  image="http://funfaredecals.com/wordpress/wp-content/uploads/2017/01/Back-To-The-Future-Flux-Capacitor-FD1037.jpg" // the pop-in header image (default none)
+                  allowRememberMe = "false"
+                  image="https://arcanestore.com/wp-content/uploads/2016/09/image-9754.png" // the pop-in header image (default none)
                   
                   />
 

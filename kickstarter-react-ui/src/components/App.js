@@ -13,11 +13,9 @@ import LoginModal from './LoginModal'
 import SignUpForm from './SignUpForm'
 import Demos from './Demos'
 import Demo from './Demo'
-import Order from './order'
-import OrderModal from './OrderModal2'
+import Order from './Order'
 import NewDemoCreate from './NewDemoCreate'
 import NewDemoForm from './NewDemoForm'
-import Order from './Order'
 import MyStoreCheckout from './MyStoreCheckout';
 import StripeButton from './StripeButton';
 

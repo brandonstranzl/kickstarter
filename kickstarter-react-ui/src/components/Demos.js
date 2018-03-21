@@ -155,7 +155,7 @@ class Demos extends React.Component {
 
 
                   <Link to={`/demos/${demo.id}`}>
-                    <Button className="clickToDetailsButton"  bsStyle="">
+                    <Button className="clearfix" className="clickToDetailsButton"  bsStyle="">
                     <img className="detailsButtonImage" src={process.env.PUBLIC_URL + "/images/glasses.svg"}></img>
                     <p>Details</p>
                     </Button>

@@ -30,7 +30,7 @@ render() {
       <th>
       <tr>Doh! Sorry to be CRUD, but there are no cookies here.</tr>
       <tr>You can check yourself in the Developer Tools.</tr>
-      <tr>You must be logged in to create, edit, or delete your demo.</tr>
+      <tr>You must be logged in to contribute to a demo, or to CRUD: create, edit, or delete your demo.</tr>
       </th>
       </tr>
       </thead>

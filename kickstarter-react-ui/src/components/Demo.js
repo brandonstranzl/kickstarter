@@ -60,7 +60,7 @@ class Demo extends React.Component {
 
             <ListGroup className="contributeButtonOnDetailsPage">
 
-            <Link to={{ pathname: "/order", state: {demo: demo.name, goal: demo.fundingreq, demo_id: demo.id}} }>
+            <Link to={{ pathname: "/order", state: {demo: this.props.location.state.demo, goal: this.props.location.state.goal, demo_id: this.props.location.state.demo_id}} }>
             <Button bsStyle="primary" bsSize="large" block>
               <span><img className="zapButtonImagesL" className="detailsButtonImage" src={process.env.PUBLIC_URL + "/images/if_capacitor_748998.svg"}
               width="40" height="40"></img></span>

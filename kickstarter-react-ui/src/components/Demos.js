@@ -9,7 +9,6 @@ import {Route, Switch, Link} from 'react-router-dom'
 import StripeCheckout from 'react-stripe-checkout';
 // import YouTube from 'react-youtube';
 
-
 class Demos extends React.Component {
   constructor(props) {
     super(props)
@@ -80,11 +79,6 @@ class Demos extends React.Component {
       this.setState({ liveEventsFilter: true })
     };
 
-  //
-  //   DemoStore.findAll() // DemoStore does the API fetching!
-  //   .then((result) => console.log(result))//this.setState({demos: result.data, errors: null}))
-  //   .catch((errors) => this.setState({errors: errors}))
-  // }
   render() {
 
     let categoriesToShow;
@@ -157,7 +151,12 @@ class Demos extends React.Component {
                 </td></tr>
                 </tbody>
                 </Table>
+
                   {/*<Link to={{ pathname="/demos/" + ${demo.id}, demo=demo.name, demo.fundingreq, demo_id: demo.id}} }>>
+
+
+
+                  <Link to={{ pathname: "/demos/demo.id", state: { demo:demo.name, goal:demo.fundingreq, demo_id:demo.id}} }>
                     <Button className="clearfix" className="clickToDetailsButton"  bsStyle="">
                     <img className="detailsButtonImage" src={process.env.PUBLIC_URL + "/images/glasses.svg"}></img>
                     <p>Details</p>

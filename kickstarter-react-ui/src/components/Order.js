@@ -85,7 +85,7 @@ class Order extends React.Component {
         <Col xs={8} md={6}>
       <form>
       <FormGroup controlId="fundingreq">
-        <ControlLabel>Amount of Funding You Would Like to Provide:</ControlLabel>
+        <ControlLabel>Amount of Funding to Provide:</ControlLabel>
           <InputGroup>
             <InputGroup.Addon>$</InputGroup.Addon>
               <FormControl name="amount" type="integer" onChange={this.handleChange}/>

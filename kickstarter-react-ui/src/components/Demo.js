@@ -3,6 +3,9 @@ import {Redirect} from 'react-router-dom'
 import Cookies from 'universal-cookie'
 import {Button, ButtonToolbar, PageHeader, Col, Row, Grid, ListGroup, ListGroupItem, ProgressBar, wellStyles} from 'react-bootstrap'
 import {Route, Switch, Link} from 'react-router-dom'
+import {StripeProvider} from 'react-stripe-elements';
+import MyStoreCheckout from './MyStoreCheckout';
+
 
 import Resource from '../utilities/resource'
 const DemoStore = Resource('demos')
@@ -57,11 +60,12 @@ class Demo extends React.Component {
 
             <ListGroup className="contributeButtonOnDetailsPage">
 
-            <Button bsStyle="primary" bsSize="large" block>
+            // here is the contribute button:
+            <Button bsStyle="primary" bsSize="large" block onClick={this.showMyStoreCheckOut}>
               <span><img className="zapButtonImagesL" className="detailsButtonImage" src={process.env.PUBLIC_URL + "/images/if_capacitor_748998.svg"}
               width="40" height="40"></img></span>
               <span><h4><em>Fund This Demo to 88 mph!</em></h4></span>
-          </Button>
+            </Button>
             </ListGroup>
 
 

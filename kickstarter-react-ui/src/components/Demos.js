@@ -128,7 +128,7 @@ class Demos extends React.Component {
               return (
 
             <Col xs={6} md={4}>
-              <Thumbnail>
+              <Thumbnail className="demoThumbnail">
                 <iframe width="240" height="200" src={"https://www.youtube.com/embed/"+demo.videos} frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
                 <Table className="thumbnailtable">
                 <thead><tr>
@@ -153,19 +153,22 @@ class Demos extends React.Component {
                 </tbody>
                 </Table>
 
-                  <p className="clearfix">
 
-                  <Button className="clickToDetailsButton" href={`/demos/${demo.id}`} bsStyle="">
-                  <img className="detailsButtonImage" src={process.env.PUBLIC_URL + "/images/glasses.svg"}></img>
-                  <p>Details</p>
-                  </Button>
+                  <Link to={`/demos/${demo.id}`}>
+                    <Button className="clickToDetailsButton"  bsStyle="">
+                    <img className="detailsButtonImage" src={process.env.PUBLIC_URL + "/images/glasses.svg"}></img>
+                    <p>Details</p>
+                    </Button>
+                  </Link>
 
-                  <Button className="clearfix" className="contributeButton" bsStyle="warning" href="/order">
+                  <Link to={"/order"}>
+                  <Button className="clearfix" className="contributeButton" bsStyle="warning">
                   <img className="contributeButtonImage" src={process.env.PUBLIC_URL + "/images/lightninglike.svg"}></img>
                   Back It
                   </Button>
+                  </Link>
 
-                  </p>
+
 
               </Thumbnail>
             </Col>

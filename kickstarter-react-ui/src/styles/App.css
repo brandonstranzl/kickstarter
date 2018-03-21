@@ -1,3 +1,15 @@
+@import '/stripe.css'
+
+.cookieMonster {
+  height: 200px;
+  width: 200px;
+}
+
+.demoThumbnail {
+  height: 530px;
+  width: 270px;
+}
+
 .zapButtonImagesR {
 
 }
@@ -49,13 +61,21 @@
 
 .newDemoModalHeader {
   height: 4em;
-  display: inline;
+
 }
+
 .modal-tital {
   display:inline;
   margin-left: 10px;
-  color: blue;
-  border-bottom:
+  color: black;
+  border-bottom: none;
+
+}
+
+.error-msg-modal-title {
+  margin-left: 10px;
+  color: red;
+  border-bottom: none;
 
 }
 

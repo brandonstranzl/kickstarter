@@ -1,8 +1,9 @@
 import StripeCheckout from 'react-stripe-checkout';
-import {Button, Grid, Col, Row, FormGroup, FormControl, ControlLabel, HelpBlock, InputGroup, Well} from 'react-bootstrap'
+import {Button, Grid, Col, Row, FormGroup, FormControl, ControlLabel, HelpBlock, InputGroup, ProgressBar, Well} from 'react-bootstrap'
 import Cookies from 'universal-cookie';
 import HeavyButton from './HeavyButton'
 import React, { Component } from 'react'
+import ErrorModal from './ErrorModal'
 
 // CheckoutForm.js
 // import {
@@ -23,9 +24,11 @@ class Order extends React.Component {
       user_id: "",
       amount: "",
       email: "",
-      goal: "",
+      goal: 0,
       demo: "",
-      demo_id: ""
+      demo_id: "",
+      ShowErrorModal: "",
+      progress: 0
     }
   }
 
@@ -35,16 +38,23 @@ class Order extends React.Component {
     let demo = this.props.location.state.demo
     let demo_id = this.props.location.state.demo_id
     let goal = this.props.location.state.goal
+    let progress = this.props.location.state.progress
     if (cookies.get('userCookie')) {
       this.setState({
       email: cookies.get('userCookie').email,
       user_id: cookies.get('userCookie').id,
       goal: goal,
       demo: demo,
-      demo_id: demo_id
+      demo_id: demo_id,
+      progress: progress,
+      ShowErrorModal: false
       });
       console.log("here is the ORDER form cookie", cookies.get('userCookie').id)
       console.log("*******the state on order form: ", this.state  )
+    } else {
+      this.setState({
+        ShowErrorModal: true
+      })
     }
   }
 
@@ -54,11 +64,16 @@ class Order extends React.Component {
     this.setState(newState)
   }
 
-
-
   handleSubmit = (ev) => {
     ev.preventDefault();
 
+  }
+
+  toggleErrorModal = () => {
+    this.setState({
+      ShowErrorModal: !this.state.ShowErrorModal
+
+    })
   }
 
   onToken = (token) => {
@@ -79,6 +94,7 @@ class Order extends React.Component {
             demo: demo,
             demo_id: demo_id,
             amount: amount,
+            currency: 'cad'
 
           }),
           headers: {"content-type": "application/json"}
@@ -95,7 +111,13 @@ class Order extends React.Component {
       }
 
 
+
   render() {
+    if (this.state.ShowErrorModal) {
+        return <ErrorModal show={this.state.ShowErrorModal} toggleErrorModal={this.toggleErrorModal} />
+        } else {
+          const now = Number(((this.state.progress/this.state.goal)*100)).toFixed(0)
+
     return (
       <div>
       <Grid>
@@ -105,6 +127,12 @@ class Order extends React.Component {
       <Well bsSize="small"><h4>{this.state.email}, please confirm the below contribution:</h4></Well>
 
       <Well bsSize="small"><h4>Demo to receive funds: {this.props.location.state.demo}</h4></Well>
+      <Well bsSize="small">
+      <h5>{this.state.demo}s funding Goal: ${this.state.goal}.00</h5>
+      <ProgressBar now={now} label={now} />
+
+      </Well>
+
 
       <Row>
         <Col xs={6} md={5}>
@@ -141,9 +169,8 @@ class Order extends React.Component {
       </Row>
       </Grid>
       </div>
-
-
-    );
+    )
+    }
   }
 }
 

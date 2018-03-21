@@ -19,6 +19,7 @@ class TopNav extends React.Component {
     LoginShow: false,
     NewDemoShow: false,
     ShowErrorModal: false,
+    SignUpModal: false,
     user: ""
     }
     if (props.location && props.location.state) {
@@ -131,10 +132,16 @@ render() {
 
       <Nav>
         <NavItem className="demosLink" eventKey={1}>
-        <Link to='/demos' className="linkToDemos">Explore Demos</Link>
+        <Link to='/demos' className="linkToDemos">
+        Explore Demos
+        </Link>
         </NavItem>
+
         <NavItem eventKey={2}>
-        <Button onClick={this.handleNewDemoClick} bsStyle="link">Create</Button>
+        <Button onClick={this.handleNewDemoClick} bsStyle="link">
+        Create
+        </Button>
+
         </NavItem>
       </Nav>
 

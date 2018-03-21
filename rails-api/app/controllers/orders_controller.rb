@@ -5,6 +5,7 @@ class OrdersController < ApplicationController
   def create
 
     @order = Order.new(order_params)
+    process_payment
     if @order.save
       amount = params[:amount]
       @demo = Demo.find(params[:demo_id])
@@ -22,22 +23,23 @@ class OrdersController < ApplicationController
     private
 
     def order_params
-      params.require(:order).permit(:amount, :demo_id, :user_id, :stripeToken, :email, :demo, :order)
+      params.require(:order).permit(:currency, :amount, :demo_id, :user_id, :stripeToken, :email, :demo, :order)
     end
 
     def process_payment
       begin
+        Stripe.api_key = "sk_test_QixMaM3bimQjGyvHOirA5yYq"
+
         charge = Stripe::Charge.create(
           source:      params[:stripeToken],
-          amount:      (params[:amount] * 100), # in cents
+          amount:      (params[:amount].to_f * 100).to_i, # in cents
           description: params[:user_id],
           currency:    params[:currency]
         )
       rescue Stripe::StripeError => e
-          self.update_attributes(error: e.message)
+          puts error: e.message
           self.fail!
       end
     end
 
-    # Stripe.api_key = "sk_test_QixMaM3bimQjGyvHOirA5yYq"
 end

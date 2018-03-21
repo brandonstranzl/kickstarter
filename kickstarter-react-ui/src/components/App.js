@@ -16,6 +16,7 @@ import Order from './Order'
 import NewDemoCreate from './NewDemoCreate'
 import NewDemoForm from './NewDemoForm'
 import StripeButton from './StripeButton';
+import SignUpModal from './SignUpModal'
 
 const cookies = new Cookies();
 console.log('here', cookies.get('userCookie'))

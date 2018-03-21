@@ -46,8 +46,7 @@ class Demo extends React.Component {
 
      if (this.state.redirect) return <Redirect to={this.state.redirect} />
 
-     const now = ((this.state.demo.progress/this.state.demo.fundingreq)*100);
-     console.log(now)
+     const now = Number(((this.state.demo.progress/this.state.demo.fundingreq)*100)).toFixed(0);
      const progressInstance = <ProgressBar now={now} label={now} />;
 
     return (
@@ -60,7 +59,7 @@ class Demo extends React.Component {
 
             <ListGroup className="contributeButtonOnDetailsPage">
 
-            <Link to={{ pathname: "/order", state: {demo: this.props.location.state.demo, goal: this.props.location.state.goal, demo_id: this.props.location.state.demo_id}} }>
+            <Link to={{ pathname: "/order", state: {demo: this.props.location.state.demo, goal: this.props.location.state.goal, progress: this.props.location.state.progress, demo_id: this.props.location.state.demo_id}} }>
             <Button bsStyle="primary" bsSize="large" block>
               <span><img className="zapButtonImagesL" className="detailsButtonImage" src={process.env.PUBLIC_URL + "/images/if_capacitor_748998.svg"}
               width="40" height="40"></img></span>
@@ -90,7 +89,10 @@ class Demo extends React.Component {
               Live Stream Date: {this.state.demo.event.date}
               </ListGroupItem>
               <ListGroupItem header="Funding Needed">
-                {this.state.demo.fundingreq}
+                ${this.state.demo.fundingreq}
+              </ListGroupItem>
+              <ListGroupItem header="Funding Received To Date">
+                ${this.state.demo.progress}
               </ListGroupItem>
               <ListGroupItem header="Funding Progress:">
               <ProgressBar now={now} label={`${now}%`} />

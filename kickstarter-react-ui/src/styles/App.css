@@ -1,3 +1,10 @@
+.carousel{
+  background-color: #E37222;
+  /*height: 1000px;*/
+  width: 100%;
+  height: 500px;
+}
+
 .grid{
   background-color: #E37222;
 }
@@ -192,6 +199,7 @@ float:left;
 
 .container{
   max-width: 900px;
+  max-height: 500px;
   padding-left: 0px;
 }
 

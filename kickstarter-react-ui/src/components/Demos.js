@@ -86,15 +86,15 @@ class Demos extends React.Component {
     if (this.state.trendingFilter) {
       categoriesToShow = this.state.demos.filter(demo => demo.category.id == 101 )
     } else if (this.state.webAppFilter) {
-      categoriesToShow = this.state.demos.filter(demo => demo.category.id == 100 )
+      categoriesToShow = this.state.demos.filter(demo => demo.category.id == 108 )
     } else if (this.state.iOSAppFilter) {
-      categoriesToShow = this.state.demos.filter(demo => demo.category.id == 102 )
-    } else if (this.state.UXUIAppFilter) {
-      categoriesToShow = this.state.demos.filter(demo => demo.category.id == 103 )
+      categoriesToShow = this.state.demos.filter(demo => demo.category.id == 110 )
+      } else if (this.state.UXUIAppFilter) {
+      categoriesToShow = this.state.demos.filter(demo => demo.category.id == 111 )
     } else if (this.state.ioTandHardwareAppFilter) {
-      categoriesToShow = this.state.demos.filter(demo => demo.category.id == 101 )
+      categoriesToShow = this.state.demos.filter(demo => demo.category.id == 109 )
     } else if (this.state.liveEventsFilter) {
-      categoriesToShow = this.state.demos.filter(demo => demo.event.id == 34 )
+      categoriesToShow = this.state.demos.filter(demo => demo.event.id == 34)
     } else {
     categoriesToShow = this.state.demos
     }
@@ -161,7 +161,7 @@ class Demos extends React.Component {
                     </Button>
                   </Link>
 
-                  <Link to={"/order"}>
+                  <Link to={"/order"} name={demo.name} goal={demo.fundingreq} demo_id={demo.id}>
                   <Button className="clearfix" className="contributeButton" bsStyle="warning">
                   <img className="contributeButtonImage" src={process.env.PUBLIC_URL + "/images/lightninglike.svg"}></img>
                   Back It

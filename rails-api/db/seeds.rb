@@ -6,14 +6,33 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+require 'faker'
+
 ## CATEGORIES
 User.destroy_all
 
-user = User.create!({
+user = User.create!([
+{
   name: "Jazz",
   email: "jazz@jazz.com",
   password_digest: BCrypt::Password.create("password")
-})
+},
+{
+  name: "Brandon",
+  email: "brandon@brandon.com",
+  password_digest: BCrypt::Password.create("password")
+},
+{
+  name: "Cookie Monster",
+  email: "cookiemonster@sesamestreet.com",
+  password_digest: BCrypt::Password.create("password")
+},
+{
+  name: "Marty McFly",
+  email: "Marty@marty.com",
+  password_digest: BCrypt::Password.create("password")
+}
+])
 
 puts "Finding or Creating Categories ..."
 
@@ -47,19 +66,19 @@ Event.destroy_all
 event = Event.create([
   {
     name: "Hacker Stack Labs Demo Day",
-    date: "2018-03-31",
+    date: "2017-03-31",
   },
   {
     name: "LHL Toronto",
-    date: "2018-03-22"
+    date: "2018-04-22"
   },
   {
     name: "Brainstation",
-    date: "2018-03-21"
+    date: "2015-03-21"
   },
   {
     name: "HackerYou",
-    date: "2018-04-01"
+    date: "2014-04-01"
   }
   ])
 
@@ -83,10 +102,48 @@ puts "Re-creating Demos ..."
 
 Demo.destroy_all
 
+range = [*'0'..'9',*'A'..'Z',*'a'..'z', "_", "-"]
+
+
+
+20.times do
+Demo.create([
+  {
+    name: Faker::Company.name,
+    live: events[0].date,
+    description: Faker::Company.catch_phrase,
+    fundingreq: rand(2000000/100),
+    votes: rand(300),
+    videos: (0...11).map{ [*'0'..'9',*'A'..'Z',*'a'..'z', "_","-"].sample }.join,
+    category: categories[rand(0..3)],
+    event: events[rand(0..3)],
+    user: users[0]
+  }
+])
+end
+
+20.times do
+Demo.create([
+  {
+    name: Faker::SiliconValley.company,
+    live: events[0].date,
+    description: Faker::SiliconValley.motto,
+    fundingreq: rand(2000000/100),
+    votes: rand(300),
+    videos: (0...11).map{ [*'0'..'9',*'A'..'Z',*'a'..'z', "_","-"].sample }.join,
+    category: categories[rand(0..3)],
+    event: events[rand(0..3)],
+    user: users[0]
+  }
+])
+end
+
+puts Demo.all.as_json
+
 demo = Demo.create([
   {
     name: "Bytesoft",
-    live: "1975-04-04",
+    live: events[0].date,
     description: "Focusing on software for business and consumer solutions.",
     fundingreq: 5500,
     votes: 5,
@@ -97,13 +154,13 @@ demo = Demo.create([
   },
   {
     name: "Pear",
-    live: "1976-04-01",
+    live: "01-01-2021",
     description: "The makers of innovative smart devices with amazing UI and UX.",
     fundingreq: 8000,
     votes: 10,
     videos: '3H-Y-D3-j-M',
     category: categories[3],
-    event: events[1],
+    event: events[0],
     user: users[0]
   },
   {
@@ -263,7 +320,7 @@ demo = Demo.create([
   {
     name: "ElonMotors",
     live: "2018-03-31",
-    description: "A revolutionary company specializing in electric vehicles and energy solutions such as battery packs and solar panels.",
+    description: "A revolutionary company specializing in electric vehicles, battery packs, and solar panels.",
     fundingreq: 1864,
     votes: 96,
     videos: 'cJ9Xep22oEY',

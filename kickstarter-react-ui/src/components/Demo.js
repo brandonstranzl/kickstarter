@@ -63,7 +63,11 @@ class Demo extends React.Component {
             <Button bsStyle="primary" bsSize="large" block>
               <span><img className="zapButtonImagesL" className="detailsButtonImage" src={process.env.PUBLIC_URL + "/images/if_capacitor_748998.svg"}
               width="40" height="40"></img></span>
-              <span><h4><em>Fund This Demo to 88 mph!</em></h4></span>
+              <span><h4><em>
+
+              Fund This Demo to 88 mph!
+
+              </em></h4></span>
             </Button>
             </Link>
             </ListGroup>

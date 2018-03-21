@@ -124,7 +124,7 @@ class NewDemoForm extends React.Component {
                   </InputGroup>
               </FormGroup>
 
-              <FormGroup controlId="event_id">
+              <FormGroup controlId="formValidationError2" validationState="error">
                 <ControlLabel>For Live Demos, please select the event:</ControlLabel>
                 <FormControl name="event_id" componentClass="select" placeholder="select"
                  onChange={this.handleChange}>

@@ -35,7 +35,9 @@ class LogoutModal extends React.Component {
               </Modal.Body>
 
               <Modal.Footer>
-                <Button onClick={this.props.onSave} bsStyle="primary">Click here to confirm logout</Button>
+                <Button onClick={this.props.onSave} bsStyle="primary">
+                Click here to confirm logout
+                </Button>
               </Modal.Footer>
             </Modal.Dialog>
           </div>

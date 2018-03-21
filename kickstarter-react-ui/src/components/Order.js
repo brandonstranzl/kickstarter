@@ -33,7 +33,7 @@ class Order extends React.Component {
   }
 
   // THIS shold be done in props:
-  componentWillMount() {
+  componentDidMount() {
     const cookies = new Cookies();
     let demo = this.props.location.state.demo
     let demo_id = this.props.location.state.demo_id
@@ -70,10 +70,7 @@ class Order extends React.Component {
   }
 
   toggleErrorModal = () => {
-    this.setState({
-      ShowErrorModal: !this.state.ShowErrorModal
-
-    })
+      window.location='/';
   }
 
   onToken = (token) => {

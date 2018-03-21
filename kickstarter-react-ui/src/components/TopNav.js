@@ -161,7 +161,7 @@ render() {
         <NewDemoCreate
           user={this.state.user} show={this.state.NewDemoShow}
           toggleModal={this.handleNewDemoClick}
-        />  
+        />
 
         <ErrorModal toggleErrorModal={this.toggleErrorModal}
         show={this.state.ShowErrorModal}

@@ -3,6 +3,7 @@ import {Route, Switch, BrowserRouter, Link, NavLink, withRouter} from 'react-rou
 import {Grid} from 'react-bootstrap'
 import Cookies from 'universal-cookie'
 import moment from 'moment';
+import {StripeProvider} from 'react-stripe-elements';
 
 
 import TopNav from './TopNav'
@@ -14,10 +15,14 @@ import Demos from './Demos'
 import Demo from './Demo'
 import NewDemoCreate from './NewDemoCreate'
 import NewDemoForm from './NewDemoForm'
+import Order from './Order'
+import MyStoreCheckout from './MyStoreCheckout';
+import StripeButton from './StripeButton';
 
 
 const cookies = new Cookies();
 console.log('here', cookies.get('userCookie'))
+
 
 const App = (props) => (
   <div>
@@ -25,10 +30,10 @@ const App = (props) => (
     <Grid>
       <Switch>
         <Route path="/" exact component={Dashboard}/>
-        <Route path="/SignUpForm" component={SignUpForm}/>
         <Route exact path="/demos" component={Demos} />
         <Route path="/demos/:id" component={Demo} />
-        <Route path="/newdemo" component={NewDemoCreate} />
+        <Route path="/order" component={Order} />
+
       </Switch>
     </Grid>
   </div>

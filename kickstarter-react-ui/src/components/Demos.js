@@ -83,17 +83,17 @@ class Demos extends React.Component {
 
     let categoriesToShow;
     if (this.state.trendingFilter) {
-      categoriesToShow = this.state.demos.filter(demo => demo.category.id == 161 )
+      categoriesToShow = this.state.demos.filter(demo => demo.category.id == 165 )
     } else if (this.state.webAppFilter) {
-      categoriesToShow = this.state.demos.filter(demo => demo.category.id == 54 )
+      categoriesToShow = this.state.demos.filter(demo => demo.category.id == 164 )
     } else if (this.state.iOSAppFilter) {
-      categoriesToShow = this.state.demos.filter(demo => demo.category.id == 56 )
+      categoriesToShow = this.state.demos.filter(demo => demo.category.id == 166 )
     } else if (this.state.UXUIAppFilter) {
-      categoriesToShow = this.state.demos.filter(demo => demo.category.id == 57 )
+      categoriesToShow = this.state.demos.filter(demo => demo.category.id == 167 )
     } else if (this.state.ioTandHardwareAppFilter) {
-      categoriesToShow = this.state.demos.filter(demo => demo.category.id == 55 )
+      categoriesToShow = this.state.demos.filter(demo => demo.category.id == 165 )
     } else if (this.state.liveEventsFilter) {
-      categoriesToShow = this.state.demos.filter(demo => demo.event.id == 92)
+      categoriesToShow = this.state.demos.filter(demo => demo.event.id == 96)
     } else {
     categoriesToShow = this.state.demos
     }

@@ -43,7 +43,7 @@ class SignUpForm extends Component {
     .catch(error => console.error('Error:', error))
     .then((response) => {
       if (response.ok) {
-        // this.setState({ user: response.data })
+        this.setState({ user: response.data })
         const cookies = new Cookies();
         cookies.set("userCookie", JSON.stringify(response.data), { path: '/'})
         this.props.toggleModal()

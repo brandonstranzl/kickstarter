@@ -128,10 +128,10 @@ class NewDemoForm extends React.Component {
                 <ControlLabel>Select Demo Category:</ControlLabel>
                   <FormControl name="category_id" componentClass="select" placeholder="select"
                    onChange={this.handleChange}>
-                    <option value="161">Web App</option>
-                    <option value="161">iOS App</option>
-                    <option value="162">UI/UX App</option>
-                    <option value="163">ioT/Hardward</option>
+                    <option value="164">Web App</option>
+                    <option value="166">iOS App</option>
+                    <option value="167">UI/UX App</option>
+                    <option value="165">ioT/Hardward</option>
                   </FormControl>
               </FormGroup>
 
@@ -154,10 +154,10 @@ class NewDemoForm extends React.Component {
                 <ControlLabel>For Live Demos, please select the event:</ControlLabel>
                 <FormControl name="event_id" componentClass="select" placeholder="select"
                  onChange={this.handleChange}>
-                  <option value="91">Hacker Stack</option>
-                  <option value="92">Lighthouse Labs</option>
-                  <option value="93">Brainstation</option>
-                  <option value="94">HackerYou</option>
+                  <option value="95">Hacker Stack</option>
+                  <option value="96">Lighthouse Labs</option>
+                  <option value="97">Brainstation</option>
+                  <option value="98">HackerYou</option>
                 </FormControl>
                 </FormGroup>
 

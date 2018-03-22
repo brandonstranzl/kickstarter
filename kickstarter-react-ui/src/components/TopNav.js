@@ -169,9 +169,11 @@ toggleErrorModal = () => {
         </Navbar.Header>
         <Navbar.Collapse>
         <Nav>
-        <NavItem eventKey={1} href="#">
-          <Link to='/demos' className="linkToDemos"> Explore Demos </Link>
+        <NavItem eventKey={1} href="/demos">
+          {/*<Link to='/demos' className="linkToDemos"> Explore Demos </Link>*/}
+          <Button href="/demos" bsStyle="link"> Explore Demos </Button>
         </NavItem>
+
         <NavItem eventKey={2} href="#">
           <Button onClick={this.handleNewDemoClick} bsStyle="link"> Create </Button>
         </NavItem>

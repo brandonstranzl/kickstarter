@@ -1,8 +1,41 @@
 @import url('https://fonts.googleapis.com/css?family=Josefin+Sans:400,700');
-
-
 .navbar{
   background-color: #FFFFFF;
+}
+
+.demoWell{
+  width: 610px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.demoGrid{
+  height: 100vh;
+}
+
+.wellLrg{
+  width: 25%;
+  font-size: 50px;
+  margin-right: auto;
+  margin-left: auto;
+  text-align: center;
+  font-family: 'Josefin Sans', sans-serif;
+  padding: 5px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  color: #23c4bf;
+}
+
+.wellSm{
+  width: 35%;
+  font-size: 25px;
+  margin-right: auto;
+  margin-left: auto;
+  text-align: center;
+  font-family: 'Josefin Sans', sans-serif;
+  padding: 5px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  color: #23c4bf;
 }
 .logo{
   width:300px; /* you can use % */
@@ -14,6 +47,9 @@
   color: #A8ECE3;
 }
 
+.pageHeader{
+  color: ;
+}
 /*.TopNav{
   background-color: #A8ECE3;
 }*/
@@ -83,6 +119,10 @@
   margin-top: 6px;
 
 }
+.linkToDemos{
+  margin-top: 0 auto;
+  margin-bottom: 0 auto;
+}
 
 .demosLink {
   margin-top: 6px;
@@ -118,18 +158,6 @@
 .modalContainer {
   margin: 0px 0px 0px 0px;
   height: 45px;
-}
-
-
-.facebookiframe {
-  width:500;
-  height:380;
-  border:none;
-  overflow:hidden;
-  scrolling:no;
-  frameborder:0;
-  allowTransparency:true;
-  allowFullScreen:true;
 }
 
 .error-msg-sign-up {
@@ -246,9 +274,14 @@ float:left;
   max-width: 900px;
   /*padding-top: 500px;*/
   max-height: 500px;
-  /*margin-left: auto;*/
+  margin-left: auto;
+  margin-right: auto;
   /*margin-right: auto;*/
   /*padding-left: 0px;*/
+}
+
+.dashboardHeader{
+  padding-left: 20px;
 }
 
 .userFirstName{
@@ -265,7 +298,8 @@ float:left;
 
 .app{
   font-family: 'Josefin Sans', sans-serif;
-  background-color: #4abdac;
+  background-color: #23c4bf;
+  /*height: 100vh;*/
   /*color: #fc4a1a;*/
 }
 

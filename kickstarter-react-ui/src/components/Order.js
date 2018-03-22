@@ -157,7 +157,7 @@ class Order extends React.Component {
         bitcoin={true}
         stripeKey="pk_test_xUNvQmTjw4mSlN2LXXqsK45u"
         >
-        <Button>
+        <Button href="/demos">
         <HeavyButton amount={this.state.amount * 100}/>
         </Button>
         </ StripeCheckout>

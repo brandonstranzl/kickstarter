@@ -3,11 +3,10 @@ import Demo from './Demo'
 import TopNav from './TopNav'
 import FilterNavbar from './FilterNavbar'
 import Cookies from 'universal-cookie'
-import {DropdownButton, MenuItem, ButtonToolbar, Tab, Tabs} from 'react-bootstrap'
+import {DropdownButton, MenuItem, ButtonToolbar, Tab, Tabs, Image} from 'react-bootstrap'
 import {ListGroupItem, ListGroup, Grid, Button, Navbar, Nav, NavItem, NavDropdown, Thumbnail, Row, Col, PageHeader, Modal, Table} from 'react-bootstrap'
 import {Route, Switch, Link} from 'react-router-dom'
 import StripeCheckout from 'react-stripe-checkout';
-// import YouTube from 'react-youtube';
 
 class Demos extends React.Component {
   constructor(props) {
@@ -23,7 +22,8 @@ class Demos extends React.Component {
       iOSAppFilter: false,
       UXUIAppFilter: false,
       ioTandHardwareAppFilter: false,
-      liveEventsFilter: false
+      liveEventsFilter: false,
+      shouldHide: true
       }
     // if (props.location.state) {
     //   this.state.user = this.props.location.state.user
@@ -85,26 +85,19 @@ class Demos extends React.Component {
     if (this.state.trendingFilter) {
       categoriesToShow = this.state.demos.filter(demo => demo.category.id == 161 )
     } else if (this.state.webAppFilter) {
-      categoriesToShow = this.state.demos.filter(demo => demo.category.id == 160 )
+      categoriesToShow = this.state.demos.filter(demo => demo.category.id == 54 )
     } else if (this.state.iOSAppFilter) {
-      categoriesToShow = this.state.demos.filter(demo => demo.category.id == 161 )
-      } else if (this.state.UXUIAppFilter) {
-      categoriesToShow = this.state.demos.filter(demo => demo.category.id == 161 )
+      categoriesToShow = this.state.demos.filter(demo => demo.category.id == 56 )
+    } else if (this.state.UXUIAppFilter) {
+      categoriesToShow = this.state.demos.filter(demo => demo.category.id == 57 )
     } else if (this.state.ioTandHardwareAppFilter) {
-      categoriesToShow = this.state.demos.filter(demo => demo.category.id == 163 )
+      categoriesToShow = this.state.demos.filter(demo => demo.category.id == 55 )
     } else if (this.state.liveEventsFilter) {
       categoriesToShow = this.state.demos.filter(demo => demo.event.id == 92)
     } else {
     categoriesToShow = this.state.demos
     }
-    //
     console.log(this.state)
-
-// Facebook:
-    // <div class="fb-video" data-href="https://www.facebook.com/facebook/videos/10153231379946729/" data-width="500" data-show-text="false">
-    // <div class="fb-xfbml-parse-ignore">
-    // </div>
-    // </div>
 
     return (
 
@@ -112,12 +105,12 @@ class Demos extends React.Component {
 
     <FilterNavbar
       filterbyNone={this.turnAllFiltersOff}
-      filterbyTrending={this.turnTrendingFilterOn}
-      filterbyWebApps={this.turnWebAppFilterOn}
-      filterbyiOSApps={this.turniOSAppFilterOn}
-      filterbyUXUIApps={this.turnUXUIAppFilterOn}
-      filterbyiOTApps={this.turnioTandHardwareAppFilterOn}
-      filterbyLiveEvents={this.turnLiveEventsFilterOn}
+        filterbyTrending={this.turnTrendingFilterOn}
+        filterbyWebApps={this.turnWebAppFilterOn}
+        filterbyiOSApps={this.turniOSAppFilterOn}
+        filterbyUXUIApps={this.turnUXUIAppFilterOn}
+        filterbyiOTApps={this.turnioTandHardwareAppFilterOn}
+        filterbyLiveEvents={this.turnLiveEventsFilterOn}
       />
       <div>
         {/*<TopNav user={this.state.user}/>*/}
@@ -127,19 +120,30 @@ class Demos extends React.Component {
               return (
 
             <Col xs={6} md={4}>
-              <Thumbnail className="demoThumbnail" src={"https://www.youtube.com/embed/"+demo.videos}>
-                {/*<iframe width='240' height='141' src={"https://www.youtube.com/embed/"+demo.videos+"?&theme=dark&color=white&autohide=2&modestbranding=1&fs=0&showinfo=0&rel=0"} frameborder="0"></iframe>                */}
+              <Thumbnail className="demoThumbnail" >
+              <Link to={{ pathname: `/demos/${demo.id}`, state: { demo:demo.name, goal:demo.fundingreq, demo_id:demo.id}} }>
+              <img src={`https://img.youtube.com/vi/${demo.videos}/0.jpg`} title="Example Image Link" width="240" height="200" />
+              </Link>
                 <Table className="thumbnailtable">
-                <thead><tr>
-                <th>{demo.name}</th>
-                </tr></thead>
+
+                <thead>
+                  <tr>
+                    <th>{demo.name}</th>
+                  </tr>
+                </thead>
+
                 <tbody>
-                <tr><td>
-                {demo.category.name}
-                </td></tr>
-                <tr className="descriptionrow"><td>
-                {demo.description}
-                </td></tr>
+                  <tr>
+                    <td>
+                      {demo.category.name}
+                    </td>
+                  </tr>
+                
+                  <tr className="descriptionrow">
+                    <td>
+                    {demo.description}
+                    </td>
+                  </tr>
                 <tr><td>
                 {demo.event.name}
                 </td></tr>
@@ -147,21 +151,16 @@ class Demos extends React.Component {
                 {demo.live}
                 </td></tr>
                 <tr><td>
-                {demo.fundingreq}
+                ${demo.fundingreq}
                 </td></tr>
                 </tbody>
                 </Table>
-
-                  {/*<Link to={{ pathname="/demos/" + ${demo.id}, demo=demo.name, demo.fundingreq, demo_id: demo.id}} }>>
-
-
-
                   <Link to={{ pathname: `/demos/${demo.id}`, state: { demo:demo.name, goal:demo.fundingreq, demo_id:demo.id}} }>
                     <Button className="clearfix" className="clickToDetailsButton"  bsStyle="">
                     <img className="detailsButtonImage" src={process.env.PUBLIC_URL + "/images/glasses.svg"}></img>
                     <p>Details</p>
                     </Button>
-                  </Link>*/}
+                  </Link>
 
                   <Link to={{ pathname: "/order", state: {demo: demo.name, goal: demo.fundingreq, demo_id: demo.id}} }>
                   <Button className="clearfix" className="contributeButton" bsStyle="warning">
@@ -181,4 +180,3 @@ class Demos extends React.Component {
   }
 }
 export default Demos
-// <iframe width="240" height="200" src={"https://www.youtube.com/embed/"+demo.videos+"?modestbranding=1&autohide=1&showinfo=0&controls=0"} frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>

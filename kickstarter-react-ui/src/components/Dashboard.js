@@ -43,9 +43,9 @@ return(
   {demosSorted.map((demo, id) => {
   return (
         <Carousel.Item>
-          <img width={900} height={500} src={`https://img.youtube.com/vi/${demo.videos}/0.jpg`} />
+          <img src={`https://img.youtube.com/vi/${demo.videos}/0.jpg`} height="500" width="900"/>
             <Carousel.Caption>
-            <h3>{demo.name}</h3>
+            {/*<h3>{demo.name}</h3>*/}
 {/*            <h4>{demo.description}</h4>
             <h4>Number of Likes: {demo.votes}</h4>
             <h4>Funding Goal Met: {Math.ceil((demo.progress/demo.fundingreq)*100)}%

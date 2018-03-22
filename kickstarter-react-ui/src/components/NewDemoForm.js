@@ -1,5 +1,7 @@
 import React from 'react'
 import Cookies from 'universal-cookie'
+import FailOnSubmitModal from './FailOnSubmitModal'
+import SuccessOnSubmitModal from './SuccessOnSubmitModal'
 // import {Input} from 'reactstrap';
 import {
   Button,
@@ -31,10 +33,39 @@ class NewDemoForm extends React.Component {
       time: "",
       msg: "",
       status: "",
-      user: ""
+      user: ""//,
+      // SuccessOnSubmit: "",
+      // FailOnSubmit: ""
     }
     this.handleChange = this.handleChange.bind(this)
+    // this.toggleFailOnSubmit = this.toggleFailOnSubmit.bind(this)
+    // this.toggleSuccessOnSubmit = this.toggleSuccessOnSubmit.bind(this)
+
   }
+
+  componentWillMount() {
+    const cookies = new Cookies();
+    if (cookies.get('userCookie')) {
+      this.setState({
+      user: (cookies.get('userCookie')),
+      // FailOnSubmit: false,
+      // ShowOnSubmit: false
+      });
+    }
+  }
+
+  // toggleSuccessOnSubmit = () => {
+  //     this.setState({
+  //   SuccessOnSubmit: !this.state.SuccessOnSubmit
+  //   })
+  // }
+  //
+  // toggleFailOnSubmit = () => {
+  //   this.setState({
+  //   FailOnSubmit: !this.state.FailOnSubmit
+  //   })
+  // }
+
 
   handleChange(e) {
     let newState = {}
@@ -42,14 +73,7 @@ class NewDemoForm extends React.Component {
     this.setState(newState)
   }
 
-  componentWillMount() {
-    const cookies = new Cookies();
-    if (cookies.get('userCookie')) {
-      this.setState({
-      user: (cookies.get('userCookie'))
-      });
-    }
-  }
+
 
 // for forms from React Bootstrap  - id is on <FormControl> and htmlFor on <FormGroup.Label>
   handleNewDemoCreate = (event) => {
@@ -71,17 +95,19 @@ class NewDemoForm extends React.Component {
         }}),
       headers: {"content-type": "application/json"}
     })
-    .then(console.log("here is the post", data))
     .then(response => response.json())
     .catch(error => console.error('Error:', error))
     .then((response) => {
       if (response.ok) {
-        this.setState({ msg: response.status })
-        this.props.toggleModal()
+        // debugger
+        alert("Thank you for your Demo")
+        // this.props.toggleNewDemoForm()
+        // this.toggleSuccessOnSubmit()
       } else {
-        this.setState({errors: response.status})
+        // debugger
+        alert("Error")
+        // this.toggleFailOnSubmit();
       }
-      this.props.toggleModal()
     })
   }
 
@@ -102,10 +128,10 @@ class NewDemoForm extends React.Component {
                 <ControlLabel>Select Demo Category:</ControlLabel>
                   <FormControl name="category_id" componentClass="select" placeholder="select"
                    onChange={this.handleChange}>
-                    <option value="100">Web App</option>
-                    <option value="101">iOS App</option>
-                    <option value="102">UI/UX App</option>
-                    <option value="103">ioT/Hardward</option>
+                    <option value="161">Web App</option>
+                    <option value="161">iOS App</option>
+                    <option value="162">UI/UX App</option>
+                    <option value="163">ioT/Hardward</option>
                   </FormControl>
               </FormGroup>
 
@@ -128,8 +154,10 @@ class NewDemoForm extends React.Component {
                 <ControlLabel>For Live Demos, please select the event:</ControlLabel>
                 <FormControl name="event_id" componentClass="select" placeholder="select"
                  onChange={this.handleChange}>
-                  <option value="33">Hacker Stack</option>
-                  <option value="34">Lighthouse Labs</option>
+                  <option value="91">Hacker Stack</option>
+                  <option value="92">Lighthouse Labs</option>
+                  <option value="93">Brainstation</option>
+                  <option value="94">HackerYou</option>
                 </FormControl>
                 </FormGroup>
 
@@ -147,9 +175,10 @@ class NewDemoForm extends React.Component {
               </FormGroup>
 
               <FormGroup>
-                <Button color="warning" type="Submit" onClick="this.handleChange">Click Here to Submit and Create Your Demo!</Button>
+                <Button color="warning" type="Submit">Click Here to Submit and Create Your Demo!</Button>
               </FormGroup>
             </form>
+
           </div>
 
           )
@@ -157,6 +186,10 @@ class NewDemoForm extends React.Component {
       }
 
 export default NewDemoForm;
+
+// <FailOnSubmitModal showFail={this.state.FailOnSubmit} toggle={this.toggleFailOnSubmit}/>
+// <SuccessOnSubmitModal  showSuccess={this.state.SuccessOnSubmit} toggle={this.toggleSuccessOnSubmit}/>
+
 
 
 // <Calendar format='DD/MM/YYYY' date='4-12-2014' />

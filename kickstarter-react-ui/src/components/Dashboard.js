@@ -6,9 +6,9 @@ import Cookies from 'universal-cookie'
 class Dashboard extends React.Component {
   constructor(props) {
     super(props)
-
     this.state = {
       demos: [],
+      }
     }
 
   componentDidMount() {
@@ -18,20 +18,48 @@ class Dashboard extends React.Component {
     .catch(e => console.log('parsing failed'))
   }
 
-  <Carousel className="carousel">
-    <Carousel.Item>
-      <iframe width="900" height="500" src="https://www.youtube.com/embed/S2S_4G103Ik" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+render() {
+  const funding_progess = ((this.state.demos.progress / this.state.demos.fundingreq)*100)
 
-    </Carousel.Item>
-    <Carousel.Item>
-      <img width={900} height={500} alt="900x500" src="https://img.thedailybeast.com/image/upload/c_crop,d_placeholder_euli9k,h_1439,w_2560,x_0,y_0/dpr_2.0/c_limit,w_740/fl_lossy,q_auto/v1492113726/articles/2016/04/23/welcome-to-the-devolution-the-high-tech-world-is-making-us-weak-and-weird/160422-mustain-weird-tech-tease_yiwuun" />
+  const sorted = this.state.demos.sort((a,b) => {
+      if (a.votes > b.votes) {
+        return -1;
+      } else if (a.votes < b.votes ) {
+        return 1;
+      } else {
+        return 0;
+      }})
 
-    </Carousel.Item>
-    <Carousel.Item>
-      <img width={900} height={500} alt="900x500" src="https://9to5mac.files.wordpress.com/2017/01/tech-brain-blue.jpg?quality=82&strip=all&strip=all&w=1600&h=1000" />
+  const demosSorted = sorted.slice(0,4)
 
-    </Carousel.Item>
+return(
+
+
+
+  <Carousel>
+
+  {demosSorted.map((demo, id) => {
+  return (
+        <Carousel.Item>
+          <iframe width="900" height="500" src={`https://www.youtube.com/embed/${demo.votes}`} frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
+          </iframe>
+
+            <Carousel.Caption>
+            <h3>{demo.name}</h3>
+            <h4>{demo.description}</h4>
+            <h4>Nuber of Likes: {demo.votes}</h4>
+            <h4>Funding Goal Met: {Math.ceil((demo.progress/demo.fundingreq)*100)}%
+            </h4>
+            </Carousel.Caption>
+          </Carousel.Item>
+            )
+          }
+        )
+      }
   </Carousel>
-)
+
+      )
+    }
+  }
 
 export default Dashboard

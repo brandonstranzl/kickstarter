@@ -128,7 +128,7 @@ Demo.create([
     category: categories[rand(0..3)],
     event: events[rand(0..3)],
     user: users[rand(0..3)],
-    progress: rand(1000000/100)
+    progress: rand(300000/100)
   }
 ])
 end
@@ -145,7 +145,7 @@ Demo.create([
     category: categories[rand(0..3)],
     event: events[rand(0..3)],
     user: users[rand(0..3)],
-    progress: rand(2000000/100)
+    progress: rand(300000/100)
   }
 ])
 end

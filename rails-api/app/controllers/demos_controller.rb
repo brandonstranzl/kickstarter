@@ -1,4 +1,4 @@
-#New is the precursor action to render a form, that upon submitting,
+  #New is the precursor action to render a form, that upon submitting,
 # runs the Create action. (the view is typically redirected back to the
 # index view showing a list of similar items you already created)
 

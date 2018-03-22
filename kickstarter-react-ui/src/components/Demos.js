@@ -3,7 +3,7 @@ import Demo from './Demo'
 import TopNav from './TopNav'
 import FilterNavbar from './FilterNavbar'
 import Cookies from 'universal-cookie'
-import {DropdownButton, MenuItem, ButtonToolbar, Tab, Tabs, Image} from 'react-bootstrap'
+import {DropdownButton, MenuItem, ButtonToolbar, ProgressBar, Tab, Tabs, Image} from 'react-bootstrap'
 import {ListGroupItem, ListGroup, Grid, Button, Navbar, Nav, NavItem, NavDropdown, Thumbnail, Row, Col, PageHeader, Modal, Table} from 'react-bootstrap'
 import {Route, Switch, Link} from 'react-router-dom'
 import StripeCheckout from 'react-stripe-checkout';
@@ -83,17 +83,24 @@ class Demos extends React.Component {
 
     let categoriesToShow;
     if (this.state.trendingFilter) {
-      categoriesToShow = this.state.demos.filter(demo => demo.category.id == 165 )
+      categoriesToShow = this.state.demos.sort((a,b) => {
+          if (a.votes > b.votes) {
+            return -1;
+          } else if (a.votes < b.votes ) {
+            return 1;
+          } else {
+            return 0;
+          }}).slice(0,10)
     } else if (this.state.webAppFilter) {
-      categoriesToShow = this.state.demos.filter(demo => demo.category.id == 164 )
+      categoriesToShow = this.state.demos.filter(demo => demo.category.name == "Web Apps")
     } else if (this.state.iOSAppFilter) {
-      categoriesToShow = this.state.demos.filter(demo => demo.category.id == 166 )
+      categoriesToShow = this.state.demos.filter(demo => demo.category.name == "iOS Apps")
     } else if (this.state.UXUIAppFilter) {
-      categoriesToShow = this.state.demos.filter(demo => demo.category.id == 167 )
+      categoriesToShow = this.state.demos.filter(demo => demo.category.name == "UI/UX Apps")
     } else if (this.state.ioTandHardwareAppFilter) {
-      categoriesToShow = this.state.demos.filter(demo => demo.category.id == 165 )
+      categoriesToShow = this.state.demos.filter(demo => demo.category.name == "iOT Apps")
     } else if (this.state.liveEventsFilter) {
-      categoriesToShow = this.state.demos.filter(demo => demo.event.id == 96)
+      categoriesToShow = this.state.demos.filter(demo => demo.event.name == "LHL Toronto")
     } else {
     categoriesToShow = this.state.demos
     }
@@ -145,24 +152,21 @@ class Demos extends React.Component {
                     </td>
                   </tr>
                 <tr><td>
-                {demo.event.name}
-                </td></tr>
-                <tr><td>
-                {demo.live}
-                </td></tr>
-                <tr><td>
                 ${demo.fundingreq}
+                </td></tr>
+                <tr><td>
+                <ProgressBar now={(demo.progress/demo.fundingreq)*100} />
                 </td></tr>
                 </tbody>
                 </Table>
-                  <Link to={{ pathname: `/demos/${demo.id}`, state: { demo:demo.name, goal:demo.fundingreq, demo_id:demo.id}} }>
+                  <Link to={{ pathname: `/demos/${demo.id}`, state: { demo:demo.name, progress: demo.progress, goal: demo.fundingreq, demo_id:demo.id, event: demo.event}} }>
                     <Button className="clearfix" className="clickToDetailsButton"  bsStyle="">
                     <img className="detailsButtonImage" src={process.env.PUBLIC_URL + "/images/glasses.svg"}></img>
                     <p>Details</p>
                     </Button>
                   </Link>
 
-                  <Link to={{ pathname: "/order", state: {demo: demo.name, goal: demo.fundingreq, demo_id: demo.id}} }>
+                  <Link to={{ pathname: "/order", state: {demo: demo.name, goal: demo.fundingreq, progress: demo.progress, demo_id: demo.id }} }>
                   <Button className="clearfix" className="contributeButton" bsStyle="warning">
                   <img className="contributeButtonImage" src={process.env.PUBLIC_URL + "/images/lightninglike.svg"}></img>
                   Back It

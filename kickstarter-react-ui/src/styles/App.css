@@ -1,5 +1,14 @@
+
+.modal-container .modal, .modal-container .modal-backdrop {
+  position: absolute;
+    width: fit-content;
+}
+
 .newDemoModalBody {
-  overflow: scroll;
+      width: fit-content;
+  overflow-y:auto;
+  max-height:90%;
+  width: 100%;
 }
 
 .payButton {
@@ -29,12 +38,16 @@
 }
 
 .heavyIt {
-  width: 25%;
+  width: 30%;
+  height:auto;
   font-weight: bolder;
   color: white;
   display: inline-block;
-  margin: 0% 0% 0% 0%;
+  margin: 0% 0% 5% 0%;
   float:left;
+  padding-top: 0px;
+  padding-bottom: 10px;
+  vertical-align: middle;
 
   }
 

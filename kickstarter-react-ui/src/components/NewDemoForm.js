@@ -98,9 +98,10 @@ class NewDemoForm extends React.Component {
     .then(response => response.json())
     .catch(error => console.error('Error:', error))
     .then((response) => {
-      if (response.ok) {
+      if (response.name) {
         // debugger
         alert("Thank you for your Demo")
+        this.props.toggleModal();
         // this.props.toggleNewDemoForm()
         // this.toggleSuccessOnSubmit()
       } else {
@@ -128,10 +129,10 @@ class NewDemoForm extends React.Component {
                 <ControlLabel>Select Demo Category:</ControlLabel>
                   <FormControl name="category_id" componentClass="select" placeholder="select"
                    onChange={this.handleChange}>
-                    <option value="164">Web App</option>
-                    <option value="166">iOS App</option>
-                    <option value="167">UI/UX App</option>
-                    <option value="165">ioT/Hardward</option>
+                    <option value="168">Web App</option>
+                    <option value="170">iOS App</option>
+                    <option value="171">UI/UX App</option>
+                    <option value="169">ioT/Hardward</option>
                   </FormControl>
               </FormGroup>
 
@@ -154,10 +155,10 @@ class NewDemoForm extends React.Component {
                 <ControlLabel>For Live Demos, please select the event:</ControlLabel>
                 <FormControl name="event_id" componentClass="select" placeholder="select"
                  onChange={this.handleChange}>
-                  <option value="95">Hacker Stack</option>
-                  <option value="96">Lighthouse Labs</option>
-                  <option value="97">Brainstation</option>
-                  <option value="98">HackerYou</option>
+                  <option value="99">Hacker Stack</option>
+                  <option value="100">Lighthouse Labs</option>
+                  <option value="101">Brainstation</option>
+                  <option value="102">HackerYou</option>
                 </FormControl>
                 </FormGroup>
 

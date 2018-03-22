@@ -159,7 +159,10 @@ render() {
         <LogoutModal show={this.state.isToggleOn} toggleLogOutModal={this.handleLogoutClick}
         onSave={this.handleLogoutPost}/>
 
-        <SignUpModal show={this.state.SignUpShow} toggleModal={this.handleSignUpClick}
+        <SignUpModal
+        show={this.state.SignUpShow}
+        toggleModal={this.handleSignUpClick}
+        
         />
 
         <LoginModal show={this.state.LoginShow} toggleModal={this.handleLoginClick}

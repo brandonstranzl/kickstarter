@@ -35,10 +35,10 @@ class Order extends React.Component {
   // THIS shold be done in props:
   componentDidMount() {
     const cookies = new Cookies();
-    let demo = this.props.location.state.demo
-    let demo_id = this.props.location.state.demo_id
-    let goal = this.props.location.state.goal
-    let progress = this.props.location.state.progress
+    let demo = this.props.demo
+    let demo_id = this.props.demo_id
+    let goal = this.props.goal
+    let progress = this.props.progress
     if (cookies.get('userCookie')) {
       this.setState({
       email: cookies.get('userCookie').email,
@@ -76,8 +76,8 @@ class Order extends React.Component {
   onToken = (token) => {
     console.log(token)
     const data = (token);
-    let demo = this.state.demo
-    let demo_id = this.state.demo_id
+    let demo = this.props.location.state.demo
+    let demo_id = this.props.location.state.demo.id
     let amount = this.state.amount
     let user_id = this.state.user_id
     let email = this.state.email
@@ -101,6 +101,8 @@ class Order extends React.Component {
         .then((response) => {
           if (response.ok) {
             console.log({ response })
+            this.props.history.push(`/demos/${demo_id}`);
+            // this.props.history.push('/');
           } else {
             console.log({ msg: response.error_msg })
           }
@@ -113,8 +115,8 @@ class Order extends React.Component {
     if (this.state.ShowErrorModal) {
         return <ErrorModal show={this.state.ShowErrorModal} toggleErrorModal={this.toggleErrorModal} />
         } else {
-          const now = Number(((this.state.progress/this.state.goal)*100)).toFixed(0)
-
+          const now = Math.ceil(((this.props.location.state.progress/this.props.location.state.goal)*100)).toFixed(0)
+          console.log(now)
     return (
       <div>
       <Grid>
@@ -123,10 +125,10 @@ class Order extends React.Component {
 
       <Well bsSize="small"><h4>{this.state.email}, please confirm the below contribution:</h4></Well>
 
-      <Well bsSize="small"><h4>Demo to receive funds: {this.props.location.state.demo}</h4></Well>
+      <Well bsSize="small"><h4>Demo to receive funds: {this.props.location.state.demo.name}</h4></Well>
       <Well bsSize="small">
-      <h5>{this.state.demo}s funding Goal: ${this.state.goal}.00</h5>
-      <ProgressBar now={now} label={now} />
+      <h5>{this.props.location.state.demo.name}s funding Goal: ${this.props.location.state.goal}.00</h5>
+      <ProgressBar now={now} label={`${now}%`} />
 
       </Well>
 

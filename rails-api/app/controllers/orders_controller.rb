@@ -6,6 +6,7 @@ class OrdersController < ApplicationController
 
     @order = Order.new(order_params)
     process_payment
+    # @order.demo_id = params[:demo][:id]
     if @order.save
       amount = params[:amount]
       @demo = Demo.find(params[:demo_id])

@@ -14,7 +14,7 @@ class Demo extends React.Component {
     super(props)
     this.state = {
       demoId: (this.props.match.params.id || null),
-      demo: { event: {}, category: {}, user: {} },
+      demo: { demo: {}, category: {}, user: {}, event: {} },
       show: true,
       redirect: '',
       errors: []
@@ -41,13 +41,12 @@ class Demo extends React.Component {
     }
 
   render() {
-    console.log("this is the state", this.state)
+    console.log("this is the state YOYOY", this.state)
     console.log(this.state.demo)
 
      if (this.state.redirect) return <Redirect to={this.state.redirect} />
 
-     const now = Number(((this.state.demo.progress/this.state.demo.fundingreq)*100)).toFixed(0);
-     const progressInstance = <ProgressBar now={now} label={now} />;
+     const now = ((this.state.demo.progress/this.state.demo.fundingreq)*100).toFixed(0);
 
     return (
       <Grid>
@@ -59,7 +58,7 @@ class Demo extends React.Component {
 
             <ListGroup className="contributeButtonOnDetailsPage">
 
-            <Link to={{ pathname: "/order", state: {demo: this.props.location.state.demo, goal: this.props.location.state.goal, progress: this.props.location.state.progress, demo_id: this.props.location.state.demo_id}} }>
+            <Link to={{ pathname: "/order", state: {demo: this.state.demo, goal: this.state.demo.fundingreq, progress: this.state.demo.progress, demo_id: this.state.demo.demo_id}} }>
             <Button bsStyle="primary" bsSize="large" block>
               <span><img className="zapButtonImagesL" className="detailsButtonImage" src={process.env.PUBLIC_URL + "/images/if_capacitor_748998.svg"}
               width="40" height="40"></img></span>
@@ -87,10 +86,9 @@ class Demo extends React.Component {
               <ListGroupItem header="Description">
               {this.state.demo.description}
               </ListGroupItem>
-              <ListGroupItem header="Live Stream:">
-              Event: {this.state.demo.event.name}
-              <br></br>
-              Live Stream Date: {this.state.demo.event.date}
+              <ListGroupItem header="Live Events">
+              {this.state.demo.event.name}<br></br>
+              {this.state.demo.event.date}
               </ListGroupItem>
               <ListGroupItem header="Funding Needed">
                 ${this.state.demo.fundingreq}
@@ -103,9 +101,10 @@ class Demo extends React.Component {
                 </ListGroupItem>
               <ListGroupItem>
               <ButtonToolbar>
-              <Button bsStyle="warning" className="shareButtons" bsSize="small">
+              <Button bsStyle="primary" className="shareButtons" bsSize="small">
               <img className="heavyIt" src={process.env.PUBLIC_URL + "/images/if_skate_748989.svg"}></img>
-              Heavy it!
+              <tr>{' '}Likes: {this.state.demo.votes} </tr>
+              <tr></tr>
               </Button>
               <Button className="shareButtons"><div class="fb-share-button" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button" data-size="large" data-mobile-iframe="true"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a></div>
               </Button>

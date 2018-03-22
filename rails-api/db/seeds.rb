@@ -118,12 +118,12 @@ Demo.create([
     live: events[0].date,
     description: Faker::Company.catch_phrase,
     fundingreq: rand(2000000/100),
-    votes: rand(300),
+    votes: rand(500),
     videos: (0...11).map{ [*'0'..'9',*'A'..'Z',*'a'..'z', "_","-"].sample }.join,
     category: categories[rand(0..3)],
     event: events[rand(0..3)],
     user: users[0],
-    progress: 1
+    progress: rand(2000000/100)
   }
 ])
 end
@@ -140,7 +140,7 @@ Demo.create([
     category: categories[rand(0..3)],
     event: events[rand(0..3)],
     user: users[0],
-    progress: 1
+    progress: rand(2000000/100)
   }
 ])
 end
@@ -152,13 +152,13 @@ demo = Demo.create([
     name: "Bytesoft",
     live: events[0].date,
     description: "Focusing on software for business and consumer solutions.",
-    fundingreq: 5500,
+    fundingreq: rand(2000000/100),
     votes: 5,
     videos: 'WRduVfYXjI8',
     category: categories[1],
     event: events[0],
     user: users[0],
-    progress: 1
+    progress: rand(2000000/100)
   },
   {
     name: "Pear",
@@ -385,6 +385,6 @@ demo = Demo.create([
     category: categories[1],
     event: events[2],
     user: users[0],
-    progress: 1    
+    progress: 1
   }
 ])

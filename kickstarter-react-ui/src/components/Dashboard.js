@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Carousel, Row, Col, PageHeader} from 'react-bootstrap';
+import {Carousel, Row, Col, PageHeader,} from 'react-bootstrap';
 import { Button } from 'reactstrap';
 import Cookies from 'universal-cookie'
 
@@ -35,22 +35,21 @@ render() {
 return(
   <div>
   <PageHeader>
-    Welcome to Demo88<br></br>
-    <small>Launch your demo into the future!</small>
+    Welcome to Demo88
+    <br></br>
+    <small className="smallPageHeader">Launch your demo into the future!</small>
   </PageHeader>
-  <Carousel>
+  <Carousel className="carousel">
   {demosSorted.map((demo, id) => {
   return (
         <Carousel.Item>
-          <iframe width="900" height="500" src={`https://www.youtube.com/embed/${demo.votes}`} frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
-          </iframe>
-
+          <img width={900} height={500} src={`https://img.youtube.com/vi/${demo.videos}/0.jpg`} />
             <Carousel.Caption>
             <h3>{demo.name}</h3>
-            <h4>{demo.description}</h4>
-            <h4>Nuber of Likes: {demo.votes}</h4>
+{/*            <h4>{demo.description}</h4>
+            <h4>Number of Likes: {demo.votes}</h4>
             <h4>Funding Goal Met: {Math.ceil((demo.progress/demo.fundingreq)*100)}%
-            </h4>
+            </h4>*/}
             </Carousel.Caption>
           </Carousel.Item>
             )

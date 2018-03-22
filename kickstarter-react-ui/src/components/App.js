@@ -38,17 +38,15 @@ let requireAuth = () => {
 
 
 const App = (props) => (
-  <div>
+  <div className="app">
     <TopNav user={cookies.get('userCookie')}/>
-    <Grid>
-      <Switch>
-        <Route path="/" exact component={Dashboard}/>
-        <Route path="/login" exact component={LoginModal}/>
-        <Route exact path="/demos" component={Demos} />
-        <Route path="/demos/:id" component={Demo} />
-        <Route path="/order" component={Order} onEnter={requireAuth} />
-      </Switch>
-    </Grid>
+    <Switch>
+      <Route path="/" exact component={Dashboard}/>
+      <Route path="/login" exact component={LoginModal}/>
+      <Route exact path="/demos" component={Demos} />
+      <Route path="/demos/:id" component={Demo} />
+      <Route path="/order" component={Order} onEnter={requireAuth} />
+    </Switch>
   </div>
 )
 

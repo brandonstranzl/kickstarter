@@ -154,10 +154,10 @@ class NewDemoForm extends React.Component {
                 <ControlLabel>For Live Demos, please select the event:</ControlLabel>
                 <FormControl name="event_id" componentClass="select" placeholder="select"
                  onChange={this.handleChange}>
-                  <option value="91">Hacker Stack</option>
-                  <option value="92">Lighthouse Labs</option>
-                  <option value="93">Brainstation</option>
-                  <option value="94">HackerYou</option>
+                  <option value="50">Hacker Stack</option>
+                  <option value="51">Lighthouse Labs</option>
+                  <option value="52">Brainstation</option>
+                  <option value="53">HackerYou</option>
                 </FormControl>
                 </FormGroup>
 

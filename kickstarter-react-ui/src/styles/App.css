@@ -1,3 +1,23 @@
+@import url('https://fonts.googleapis.com/css?family=Josefin+Sans:400,700');
+
+
+.navbar{
+  background-color: #FFFFFF;
+}
+.logo{
+  width:300px; /* you can use % */
+  height: auto;
+  padding-top: 13px;
+}
+.topNav{
+  background-color: #A8ECE3;
+  color: #A8ECE3;
+}
+
+/*.TopNav{
+  background-color: #A8ECE3;
+}*/
+
 .newDemoModalBody {
   overflow: scroll;
 }
@@ -8,10 +28,11 @@
 }
 
 .carousel{
-  background-color: #E37222;
+  /*background-color: #E37222;*/
   /*height: 1000px;*/
-  width: 100%;
-  height: 500px;
+  /*width: 100%;*/
+  /*height: 500px;*/
+  font-family: 'Josefin Sans', sans-serif;
 }
 
 .cookieMonster {
@@ -198,10 +219,10 @@ float:left;
   margin: 5px 10px 0 0;
 }
 
-.App-header {
+/*.App-header {
   height: 150px;
   padding: 2px;
-}
+}*/
 
 .App-title {
   font-size: 1.5em;
@@ -211,7 +232,7 @@ float:left;
   font-size: large;
 }
 
-.tile {
+/*.tile {
   height: 150px;
   width: 150px;
   margin: 10px;
@@ -219,12 +240,15 @@ float:left;
   float: left;
   font-size: 11px;
   text-align: left;
-}
+}*/
 
-.container{
+.carousel{
   max-width: 900px;
+  /*padding-top: 500px;*/
   max-height: 500px;
-  padding-left: 0px;
+  /*margin-left: auto;*/
+  /*margin-right: auto;*/
+  /*padding-left: 0px;*/
 }
 
 .userFirstName{
@@ -237,4 +261,18 @@ float:left;
   /*justify-content: center;*/
   /*align-items: center;*/
   font-family: Helvetica Neue;
+}
+
+.app{
+  font-family: 'Josefin Sans', sans-serif;
+  background-color: #4abdac;
+  /*color: #fc4a1a;*/
+}
+
+.smallPageHeader{
+  color: #fd724c;
+}
+
+.navModals{
+  margin-top: 0px;
 }

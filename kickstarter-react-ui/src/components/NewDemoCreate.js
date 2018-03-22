@@ -1,20 +1,29 @@
 import React, { Component } from 'react'
 import Cookies from 'universal-cookie'
 import NewDemoForm from './NewDemoForm'
-import {Modal, Button} from 'react-bootstrap'
+import {Modal, Button, Popover, Tooltip, OverlayTrigger} from 'react-bootstrap'
 import ErrorModal from './ErrorModal'
 import FailOnSubmitModal from './FailOnSubmitModal'
 import SuccessOnSubmitModal from './SuccessOnSubmitModal'
 
-
 class NewDemoCreate extends Component {
-  constructor(props) {
-    super(props);
+    constructor(props, context) {
+    super(props, context);
+
+    this.handleShow = this.handleShow.bind(this);
+    this.handleClose = this.handleClose.bind(this);
+
     this.state = {
-      animation: true,
-      show: ""
-    }
-    // this.handleNewDemoCreate = this.handleNewDemoCreate.bind(this)
+      show: false
+    };
+  }
+
+  handleClose() {
+    this.setState({ show: false });
+  }
+
+  handleShow() {
+    this.setState({ show: true });
   }
 
   toggleNewDemoForm = () => {
@@ -22,7 +31,6 @@ class NewDemoCreate extends Component {
       show: false
     })
   }
-
 
   componentDidMount = () => {
     if (!this.props.show) {
@@ -36,59 +44,38 @@ class NewDemoCreate extends Component {
     }
   }
 
-
-// for forms from React Bootstrap  - id is on <FormControl> and htmlFor on <FormGroup.Label>
-  // handleNewDemoCreate = (event) => {
-  //   event.preventDefault();
-  //   const data = new FormData(event.target);
-  //   fetch(`http://localhost:3000/demos`,
-  //   { method: "POST",
-  //     body: JSON.stringify(
-  //       {name: "",
-  //       description: "",
-  //       fundingreq: "",
-  //       live: "",
-  //       video: "",
-  //       category_name: "",
-  //       event_name: "",
-  //       time: ""   //I dont need to get time except text display to user.
-  //       }),
-  //     headers: {"content-type": "application/json"}
-  //   })
-  //   .then(console.log("here is the post", data))
-  //   .then(response => response.json())
-  //   .catch(error => console.error('Error:', error))
-  //   .then((response) => {
-  //     if (response.ok) {
-  //       this.setState({ msg: response.status })
-  //       this.props.toggleModal()
-  //     } else {
-  //       this.setState({errors: response.status})
-  //     }
-  //   })
-  // }
-
   render() {
+    const popover = (
+      <Popover id="modal-popover" title="popover">
+        very popover. such engagement
+      </Popover>
+    );
+    const tooltip = <Tooltip id="modal-tooltip">wow.</Tooltip>;
+
     if (!this.props.show) {
       return ("");
     } else {
     return (
-    <Modal.Dialog>
-      <div className="newDemoModalContainer">
-        <Modal.Header className="newDemoModalHeader">
-          <Modal.Title className="modal-tital">Upload Your Demo!</Modal.Title>
-          <Button className="newDemoModalHeaderClose" onClick={this.props.toggleModal}>&times;</Button>
-        </Modal.Header>
+        <div>
+        <Button bsStyle="primary" bsSize="large" onClick={this.handleShow}>
+          Launch demo modal
+        </Button>
+
+        <Modal show={this.state.show} onHide={this.handleClose}>
+          <Modal.Header closeButton>
+            <Modal.Title>Upload Your Demo!</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <NewDemoForm
+              show={this.props.show}
+              toggleModal={this.props.toggleModal}
+            />
+          </Modal.Body>
+          <Modal.Footer>
+          </Modal.Footer>
+        </Modal>
       </div>
-      <Modal.Body className="newDemoModalBody">
-
-       <NewDemoForm
-        show={this.props.show}
-        toggleModal={this.props.toggleModal}
-       />
-
-      </Modal.Body>
-    </Modal.Dialog>)
+      )
     }
   }
 }

@@ -92,7 +92,7 @@ class TopNav extends React.Component {
     };
 
 render() {
-  this.state ? console.log("HERE IS THE STATE", this.props) : console.log("MAJOR ISSUE")
+  // this.state ? console.log("HERE IS THE STATE", this.props) : console.log("MAJOR ISSUE")
 
   const cookies = new Cookies();
 

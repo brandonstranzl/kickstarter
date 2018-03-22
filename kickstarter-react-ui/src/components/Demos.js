@@ -138,7 +138,7 @@ class Demos extends React.Component {
                       {demo.category.name}
                     </td>
                   </tr>
-                
+
                   <tr className="descriptionrow">
                     <td>
                     {demo.description}

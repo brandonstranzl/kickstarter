@@ -60,6 +60,7 @@
 
 .brand-name {
   margin-top: 6px;
+
 }
 
 .demosLink {
@@ -213,7 +214,7 @@ float:left;
 .tile {
   height: 150px;
   width: 150px;
-  /*margin: 10px;*/
+  margin: 10px;
   background: lightyellow;
   float: left;
   font-size: 11px;

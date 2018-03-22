@@ -8,6 +8,7 @@ import Cookies from 'universal-cookie';
 import LoginModal from './LoginModal'
 import NewDemoCreate from './NewDemoCreate'
 import ErrorModal from './ErrorModal'
+import { withRouter } from "react-router-dom";
 
 class TopNav extends React.Component {
   constructor(props) {
@@ -18,6 +19,7 @@ class TopNav extends React.Component {
     LoginShow: false,
     NewDemoShow: false,
     ShowErrorModal: false,
+    SignUpModal: false,
     user: ""
     }
     if (props.location && props.location.state) {
@@ -85,8 +87,7 @@ class TopNav extends React.Component {
         const cookies = new Cookies();
         cookies.remove('userCookie')
         console.log('Success:', response)
-        this.handleLogoutClick();
-        console.log(cookies.get('userCookie'))
+        window.location='/'
       });
     };
 
@@ -130,10 +131,16 @@ render() {
 
       <Nav>
         <NavItem className="demosLink" eventKey={1}>
-        <Link to='/demos' className="linkToDemos">Explore Demos</Link>
+        <Link to='/demos' className="linkToDemos">
+        Explore Demos
+        </Link>
         </NavItem>
+
         <NavItem eventKey={2}>
-        <Button onClick={this.handleNewDemoClick} bsStyle="link">Create</Button>
+        <Button onClick={this.handleNewDemoClick} bsStyle="link">
+        Create
+        </Button>
+
         </NavItem>
       </Nav>
 

@@ -9,6 +9,8 @@
 require 'faker'
 
 ## CATEGORIES
+
+Order.destroy_all
 User.destroy_all
 
 user = User.create!([
@@ -33,6 +35,8 @@ user = User.create!([
   password_digest: BCrypt::Password.create("password")
 }
 ])
+
+
 
 puts "Finding or Creating Categories ..."
 
@@ -98,6 +102,7 @@ puts "Re-creating users ..."
 
 users = User.all.to_a
 
+
 puts "Re-creating Demos ..."
 
 Demo.destroy_all
@@ -117,7 +122,8 @@ Demo.create([
     videos: (0...11).map{ [*'0'..'9',*'A'..'Z',*'a'..'z', "_","-"].sample }.join,
     category: categories[rand(0..3)],
     event: events[rand(0..3)],
-    user: users[0]
+    user: users[0],
+    progress: 1
   }
 ])
 end
@@ -133,7 +139,8 @@ Demo.create([
     videos: (0...11).map{ [*'0'..'9',*'A'..'Z',*'a'..'z', "_","-"].sample }.join,
     category: categories[rand(0..3)],
     event: events[rand(0..3)],
-    user: users[0]
+    user: users[0],
+    progress: 1
   }
 ])
 end
@@ -150,7 +157,8 @@ demo = Demo.create([
     videos: 'WRduVfYXjI8',
     category: categories[1],
     event: events[0],
-    user: users[0]
+    user: users[0],
+    progress: 1
   },
   {
     name: "Pear",
@@ -161,7 +169,8 @@ demo = Demo.create([
     videos: '3H-Y-D3-j-M',
     category: categories[3],
     event: events[0],
-    user: users[0]
+    user: users[0],
+    progress: 1
   },
   {
     name: "LaggerGram",
@@ -172,7 +181,8 @@ demo = Demo.create([
     videos: 'KAC_JAnhspw',
     category: categories[0],
     event: events[1],
-    user: users[0]
+    user: users[0],
+    progress: 1
   },
   {
     name: "Book of Faces",
@@ -183,6 +193,7 @@ demo = Demo.create([
     videos: 'WzgNAN3dW-I',
     category: categories[0],
     event: events[3],
+    progress: 1,
     user: users[0]
   },
   {
@@ -193,6 +204,7 @@ demo = Demo.create([
     votes: 60,
     videos: 'BhKEOYsOSds',
     category: categories[2],
+    progress: 1,
     event: events[0],
     user: users[0]
   },
@@ -204,6 +216,7 @@ demo = Demo.create([
     votes: 39,
     videos: '7m2j_0ivw2I',
     category: categories[2],
+    progress: 1,
     event: events[3],
     user: users[0]
   },
@@ -215,6 +228,7 @@ demo = Demo.create([
     votes: 81,
     videos: 'tCn4hdTI2jc',
     category: categories[0],
+    progress: 1,
     event: events[1],
     user: users[0]
   },
@@ -227,6 +241,7 @@ demo = Demo.create([
     videos: 'PE7M-obxSvg',
     category: categories[0],
     event: events[1],
+    progress: 1,
     user: users[0]
   },
   {
@@ -238,6 +253,7 @@ demo = Demo.create([
     videos: 'xem76O8Tsx0',
     category: categories[0],
     event: events[1],
+    progress: 1,
     user: users[0]
   },
   {
@@ -249,6 +265,7 @@ demo = Demo.create([
     videos: 'E22BbbEZAaw',
     category: categories[0],
     event: events[2],
+    progress: 1,
     user: users[0]
   },
   {
@@ -260,6 +277,7 @@ demo = Demo.create([
     videos: 'so9uIkFKCnc',
     category: categories[0],
     event: events[2],
+    progress: 1,
     user: users[0]
   },
   {
@@ -271,6 +289,7 @@ demo = Demo.create([
     videos: 'NfCFAsJsNp8',
     category: categories[1],
     event: events[0],
+    progress: 1,
     user: users[0]
   },
   {
@@ -282,6 +301,7 @@ demo = Demo.create([
     videos: 'SBDYYGER5iM',
     category: categories[0],
     event: events[1],
+    progress: 1,
     user: users[0]
   },
   {
@@ -291,6 +311,7 @@ demo = Demo.create([
     fundingreq: 2308,
     votes: 79,
     videos: 'sf9tBmMfFcw',
+    progress: 1,
     category: categories[2],
     event: events[0],
     user: users[0]
@@ -303,6 +324,7 @@ demo = Demo.create([
     votes: 41,
     videos: 'zjSFC6pPkyk',
     category: categories[0],
+    progress: 1,
     event: events[0],
     user: users[0]
   },
@@ -326,7 +348,8 @@ demo = Demo.create([
     videos: 'cJ9Xep22oEY',
     category: categories[1],
     event: events[0],
-    user: users[0]
+    user: users[0],
+    progress: 1
   },
   {
     name: "PicChat",
@@ -337,7 +360,8 @@ demo = Demo.create([
     videos: 'ykGXIQAHLnA',
     category: categories[0],
     event: events[2],
-    user: users[0]
+    user: users[0],
+    progress: 1
   },
   {
     name: "Musicify",
@@ -348,7 +372,8 @@ demo = Demo.create([
     videos: 'zVHR1Ol7K5U',
     category: categories[0],
     event: events[0],
-    user: users[0]
+    user: users[0],
+    progress: 1
   },
   {
     name: "Exphone",
@@ -359,6 +384,7 @@ demo = Demo.create([
     videos: 'yvLJd7VzYOE',
     category: categories[1],
     event: events[2],
-    user: users[0]
+    user: users[0],
+    progress: 1    
   }
 ])

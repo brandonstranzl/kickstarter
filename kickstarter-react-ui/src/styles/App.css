@@ -1,3 +1,7 @@
+.newDemoModalBody {
+  overflow: scroll;
+}
+
 .payButton {
   margin: 0;
   width: 150px;

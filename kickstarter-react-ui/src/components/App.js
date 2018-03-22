@@ -16,9 +16,25 @@ import Order from './Order'
 import NewDemoCreate from './NewDemoCreate'
 import NewDemoForm from './NewDemoForm'
 import StripeButton from './StripeButton';
+import SignUpModal from './SignUpModal'
 
 const cookies = new Cookies();
 console.log('here', cookies.get('userCookie'))
+
+let loggedIn = () => {
+  const cookies = new Cookies();
+  if (cookies.get('userCookie')) {
+    return true
+  } else {
+    return false
+  }
+}
+
+let requireAuth = () => {
+  if (!loggedIn()) {
+      pathname: '/login'
+    }
+  }
 
 
 const App = (props) => (
@@ -27,9 +43,10 @@ const App = (props) => (
     <Grid>
       <Switch>
         <Route path="/" exact component={Dashboard}/>
+        <Route path="/login" exact component={LoginModal}/>
         <Route exact path="/demos" component={Demos} />
         <Route path="/demos/:id" component={Demo} />
-        <Route path="/order" component={Order} />
+        <Route path="/order" component={Order} onEnter={requireAuth} />
       </Switch>
     </Grid>
   </div>

@@ -3,15 +3,39 @@ import Cookies from 'universal-cookie'
 import NewDemoForm from './NewDemoForm'
 import {Modal, Button} from 'react-bootstrap'
 import ErrorModal from './ErrorModal'
+import FailOnSubmitModal from './FailOnSubmitModal'
+import SuccessOnSubmitModal from './SuccessOnSubmitModal'
+
 
 class NewDemoCreate extends Component {
   constructor(props) {
     super(props);
     this.state = {
       animation: true,
+      show: ""
     }
     // this.handleNewDemoCreate = this.handleNewDemoCreate.bind(this)
   }
+
+  toggleNewDemoForm = () => {
+    this.setState({
+      show: false
+    })
+  }
+
+
+  componentDidMount = () => {
+    if (!this.props.show) {
+      this.setState({
+        show: false
+      })
+    } else {
+      this.setState({
+        show: true
+      })
+    }
+  }
+
 
 // for forms from React Bootstrap  - id is on <FormControl> and htmlFor on <FormGroup.Label>
   // handleNewDemoCreate = (event) => {
@@ -50,17 +74,19 @@ class NewDemoCreate extends Component {
     } else {
     return (
     <Modal.Dialog>
-      <div className="modalContainer">
+      <div className="newDemoModalContainer">
         <Modal.Header className="newDemoModalHeader">
           <Modal.Title className="modal-tital">Upload Your Demo!</Modal.Title>
           <Button className="newDemoModalHeaderClose" onClick={this.props.toggleModal}>&times;</Button>
         </Modal.Header>
       </div>
-      <Modal.Body>
+      <Modal.Body className="newDemoModalBody">
+
        <NewDemoForm
         show={this.props.show}
         toggleModal={this.props.toggleModal}
        />
+
       </Modal.Body>
     </Modal.Dialog>)
     }

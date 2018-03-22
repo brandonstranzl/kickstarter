@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180321073507) do
+ActiveRecord::Schema.define(version: 20180321110150) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(version: 20180321073507) do
     t.bigint "user_id"
     t.bigint "event_id"
     t.text "videos"
+    t.integer "progress", default: 1
     t.index ["category_id"], name: "index_demos_on_category_id"
     t.index ["event_id"], name: "index_demos_on_event_id"
     t.index ["user_id"], name: "index_demos_on_user_id"

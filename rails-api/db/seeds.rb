@@ -108,8 +108,8 @@ puts "Re-creating Demos ..."
 Demo.destroy_all
 
 range = [*'0'..'9',*'A'..'Z',*'a'..'z', "_", "-"]
-
-
+boredAtWork = ['RdIuza79Y_8', 'y0ZOFc28XB4', 'omuQKa1ouvY', 'BVZFXz48pXQ', 'PX8J8sKukb0', 'LyER2fcrz2A', 'zux5tE54Ato', 'zev5cO0CEjw', 'KKMO_EArmek', 'lVm0doLGaUU', '1ZprCi4C81U', 'aMEX_cGgNA8', 'qh40j51ynC4', 'wvpzfHZXVOg', 'PoMusI-nsX8', 'eAArChKXLr4', 'Ej5C55ycFlw', 'fDM9OFTgSp0', '_4KlF4iYscs', 'KXzVerrjjDc', 'twm_B6YgeXU', 'XnjY4vx44F8', '2TDBLzLYOtU', 'eBTA0dIFDXg', 'BqRhEwZOaDo', 'ZH6yk9Vmzn8', 'fVj4EkZk0xI', 'RiSiALelFHM', 'arwySyXxBcs', 'uL00y47qARI', 'pIYuhZ9_NnM', 'zdxcUwyMcKM', '3mCe3Hm_YUY', 'HYErn28ssDk', 'D-d5Cntjaig', 'COAOY0u1bRQ', '41dp9ASBQr8', 'v2hEYn9l9ys', 'BfsCJodberA', '8BZ4mbjK3-0', '0a8CHjUw1ao', 'R7MQ-GcAPfA', 'dwSIxcBHq5c', 'ceDsQM6zgGM', 'L7nTmBfbtZU', '-kPWs9EuisU', 'LLHwWbtGWm0', 'UFyHBpTP-Gs', 'jz7r945PH3M', 'AdFIcXhUMl4', 'mecxuavpaOY', '2YVfz6i7xMc', '7RJTMyx1HfY', 'AGCrtfjx-dU', '0QBf4WY5kA8', 'q4KZmYSH8jc', '8qH17X9JbMk', 'uG_hf8-YJzI', 'jH7Jfj-_7KI', '349WBjrTn2w', 'UPJLMSaV6DE', '2VjfZKzzEi0', 'e7f_WdsqVn4', 'qpBXPvVICd8', '6g9mGl4MXVU', 'fBQD7aPbEVg', 'N_o0mEDR1jQ', 'wYx1-E1sxu0', 'v561f9gLjsw', 'IbmfZ_Jk0tg', 'F__VtJiKrNs', 'M3BTZUq2NrU', 'VZOCXWvD0bk', 'CdImGcHrA5k', 'HkYlzl_tjJY', 'AubuNDfn15o', 'nn7XxINRGcs', 'aDRnHNsj07w', 'jl7wIDtsp4o', 'HvFanqfaqDU', '3x5QyEEgJno', 'C1i6VctYVSs', 'bVI9gt7PNPU', 'QzNLNthf1g0', 'oPBZf1Ue9A0', '_2D-It8FNpM', 'hjGYtSP2rxc', 'Xon71-UXJ9Y', 'gXSvW7ykxuw', '-jg5ttqqWIg', 'TeRK0ULaZWY', 'CGuUmB_Ur_A', 'uACmXQvvaTs', 'WM7iqwWJAHk', 'fvjy7SGBAzE', 'jNGRkTSZ7dU', 'w8EUjTgDZas', 'Qm5h93Vpr60', 'dwl6s7juDJs', 'BTjI1uZEUqY', 'sdbPpGT-3SA', '-EZgajAnu3o', '5dM2aO-YiVc', '9XIqJBvV3uk', 'UnVQ-V29AmA', 'C7QXA_Q5gdA', 'yKY_096tJ08', 'zY0D2OE8CAU', 'IxUJDWlqa0I', 'P7FlWve-lZM', 'XgbgNhLQQ44', 'y7RVQstp2Eo', 'Dx8c7c82VM0', 'BxXp7KwIVOI', 'GK1z1NfQcpA', 'KAh85LGznZw', 'XitGqHybQK8', 'QjRFr5ioERo', 'QwBF33EKIFA', 'pYYEDf29XOE', '4B-fOMqWxAo', '4rQiPptSBnw', 'FUq-gjjTPeI', 'Y2H1Q_AzFpE', 'SXvOh1dpSQM', '_lrjYeAgDoM', 'KPYe5343jdQ', 'xKN0Yxcpeh8', 'K-aIqitqQE4', 'Xq3YtkL3QV8', 'Yl1JFb8SODQ', 'rjO7nKD0e10', 'UAi0dm97btA', '4h3UTpwJnCY', 'Hcqplp8If3I', 'sPB7J-LM15k', 'glFznyRlAJc', 'QI0skvjoNlQ', 'LMAHCzKXMrg', 'wkRIRnKT__U', 'TROuUF39yHA', 'V-HPMf_PVEg', 'q07PpcltaQI', 'A6ckz_J_EUo', 'gjwCyGz-5PQ', 'q3MaKRpm2xE', '7Ed4A8b8jGs', 'i3Y8X6PxmIE', 'UFDhlVV_ZFg', 'YjtBNbHAfZs', 'lsxF8kJEjuE', 'bOMfwwDtQow', '8HmgiF4VxuA', 'kW-T095Vy1k', '-xV9WLtQtnc', '3vfjEN786M4', 'R0OFOphjFSg', 'iVMhO_jpJfI', 'EF8LhYIB5kw', '8x7sFttRTUM', 'uEN6Fc1Ffy0', 's_xK4GdEG0w', '9_Gu3F_PouQ', 'B7L_u6rUVgw', 'k3xTCwIk3Yw', 'KVx2W2cwgVY', 'jrvzLBN-gow', 'KvTfF6zbc-s', '-eUf-WPI9yU', 'TNd87mWclao', 'sSTZTLtsBV0', 'SDufI52R92w', 'oICWbliDSzc', 'HjzBW1KYy7Y', 'dVqtoRHMLAc', 'jpHHyTEkVbs', 'OAryW_uvFFg']
+tedTalk = ['OIlSXRC-B-I', 'USnf5kbsMlg', 'OEydHbngSz0', 'wOsQKjNoHmw', 'Aw_1mOwx5gM', 'jk6Y3f2c4-I', '1tcqfWki-hw', 'EV3OmxrowWE', 'guXxy8LH2QM', 'twWkGt33X_k', 'yeVU2Ff4ffc', 'TFgtI7nt6Q4', 'YsXg3J1x4OY', 'Cprp_EjVtwA', '1oNlTrLIjU4', 'Y0UB6g8Rsyw', 'mgcjr1yz7ow', '5ErKrSyUpEo', 'ZivM_83PBU0', 'atKSMfx4E3I', 'wmE8dQcZgB4', 'wmMrZyVANUo', 'PfWGiu0jGv0', 'PbgB2TaYhio', 'hQigUH0vZSE', 'k0GQSJrpVhM', 'iclWth_VvBs', 'NcmxEPOQQzg', '5RAJvzV9j-o', 'R84vqXjXWJc', 'pgmiPXAwiLg', 'b4k-KPELNcc', 'NDQ1Mi5I4rg', 'ZJPdJuhI03U', '20adDr7Felw', '7LE4MoJ-2po', 'mT4Qbp89nIQ', '8UhqkX2VAmo', '_7t6Ry4PlTo', 'tbvUCrS5_5I', '85hbMtegrLc', 'yg8SBuTuoKk', 'C6mNITMY7e0', 'JoGCaI1HzYo', 'RtFFT4zjyTM', 'ZpT0cw9bmiw', 'ZzugJPASNB8', 'dDZoGcQVjJg', '-mhe7COLiR0', 'j4LSwZ05laQ', 'LhszKevcH30', '6oLsJUH1cfU', 'a17Z5Sk2XJY', 't6eFzt6kFGE', 'jKM0jlPW8x0', 'S-3qnZrVy9o', 'oHDq1PcYkT4', 'dOt4NkcmIUg', '4tQee2_JgUo', 'F0ofeD8VKMA', 'VMXdSkW6hns', 'O13KwsyDqeE', 'nLB8A--QdHc', 'ER0G2S9r7aE', '0gks6ceq4eQ', 'M0-b-z5Le10', 'XZiNVGA78kA', 'itLUXZnLRn8', 'u4L130DkdOw', 'YATYsgi3e5A', 'mLufqwmPl1A', 'fWqKalpYgLo', '55yGmKc6WfE', 'jtVIDBs60S8', 'j_GzkjHtFiA', 'aupPrDnhrKA', 'G88JZ1DIdg8', 'Kab-mpU-YVM', 'FQfWKSdIreM', '1U2qMRGihGg', 'Cetg4gu0oQQ', '5UH7uTpTa44', 'QijH4UAqGD8', 'CiLn-GrcuEs', 'J6tgYBMXR6s', 'bZsn1_DARRs', 't8R_GKS-M2Y', '73rUjrow5pI', '2wseM6wWd74', 'uL5XUwfkxZw', 'JrRRvqgYgT0', 'coHWLitlm-U', 'xRL2vVAa47I', 'd0a0eXJ5TJM', 'F5h6ynoq8uM', 'g-ONUFFt2qM', 'A_xXC37CDSw', 'a6Qvzp516gY', '_bm98rrVZzE', '5nys6iebjHw', 'HbQZ7jAvgoI', 'y1yK36RMyRE', 'mGbMwP8MDjg', 'Sv5QitqbxJw', 'xAXUq-Qc8DI', '_CEKKHyxgaw', 'O6Vayv9FCLM', 'HX17MXvwYHo', '5w5BhwLzoqg', '9y7YEmyz-Do', 'HNMQ_w7hXTA', 'Mt0PiXLvYlU', 'rtcrqLWZr_0', 'QPC5_P2_Fu8', 'DJGreSgaOTc', 'iFTWM7HV2UI', 'z3kdIL_EbQU', 'swB7Ivct8d8', 'lPtPG2lAmm4', 'ZSEO3dpAs5w', '2BVSEnJte84', 'Uq1idqpX9-A', 'Q-sK-s_TzN0', 'hfznpykprP0', 'a4ZBzM3L6ws', '0-FkPxSc_M4', 'yNhu0MG_2MA', 'Qd5rAVHT6Vw', 'qWNae7vYK6s', '8nbeD1mwCdo', '_B9A3J70IPQ', 'B905LapVP7I', 'Ogce5D2XMZ0', 'pvBlSFVmoaw', '28sa2zGgmwE', 'iU1bhHeCkoU', 'KCr8s57hdzY', 'OzA6jRYjVQs', 'shG0ezBeeJc', '3o655tLnik0', 'oEIYHTlbeLA', '0txtVkBUdSQ', '8Dv2Hdf5TRg', 'ZL-6MeYBeUs']
 
 20.times do
 Demo.create([
@@ -119,7 +119,7 @@ Demo.create([
     description: Faker::Company.catch_phrase,
     fundingreq: rand(2000000/100),
     votes: rand(300),
-    videos: (0...11).map{ [*'0'..'9',*'A'..'Z',*'a'..'z', "_","-"].sample }.join,
+    videos: tedTalk.sample,
     category: categories[rand(0..3)],
     event: events[rand(0..3)],
     user: users[0],
@@ -136,7 +136,7 @@ Demo.create([
     description: Faker::SiliconValley.motto,
     fundingreq: rand(2000000/100),
     votes: rand(300),
-    videos: (0...11).map{ [*'0'..'9',*'A'..'Z',*'a'..'z', "_","-"].sample }.join,
+    videos: boredAtWork.sample,
     category: categories[rand(0..3)],
     event: events[rand(0..3)],
     user: users[0],

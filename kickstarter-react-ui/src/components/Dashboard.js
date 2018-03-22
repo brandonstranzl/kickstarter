@@ -30,14 +30,15 @@ render() {
         return 0;
       }})
 
-  const demosSorted = sorted.slice(0,4)
+  const demosSorted = sorted.slice(0,10)
 
 return(
-
-
-
+  <div>
+  <PageHeader>
+    Welcome to Demo88<br></br>
+    <small>Launch your demo into the future!</small>
+  </PageHeader>
   <Carousel>
-
   {demosSorted.map((demo, id) => {
   return (
         <Carousel.Item>
@@ -57,7 +58,7 @@ return(
         )
       }
   </Carousel>
-
+  </div>
       )
     }
   }
